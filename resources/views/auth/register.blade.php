@@ -28,53 +28,81 @@
     </div>
 </div>
 
-<form action="#" method="POST" class="space-y-4">
+<form action="{{ route('register') }}" method="POST" class="space-y-4">
     @csrf
     
     <div>
         <label for="name" class="block text-sm font-medium text-slate-700 mb-1">Nama Lengkap</label>
-        <input type="text" id="name" name="name" required 
+        <input type="text" id="name" name="name" required value="{{ old('name') }}" autofocus autocomplete="name"
             class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 focus:bg-white focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-colors"
             placeholder="John Doe">
+        @error('name')
+            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+        @enderror
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
             <label for="school" class="block text-sm font-medium text-slate-700 mb-1">Asal Sekolah</label>
-            <input type="text" id="school" name="school" required 
+            <input type="text" id="school" name="school" required value="{{ old('school') }}"
                 class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 focus:bg-white focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-colors"
                 placeholder="SMA N 1 Jakarta">
+            @error('school')
+                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+            @enderror
         </div>
         <div>
             <label for="grade" class="block text-sm font-medium text-slate-700 mb-1">Kelas</label>
             <select id="grade" name="grade" required class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 focus:bg-white focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-colors appearance-none">
                 <option value="">Pilih Kelas</option>
-                <option value="10">Kelas 10</option>
-                <option value="11">Kelas 11</option>
-                <option value="12">Kelas 12</option>
+                <option value="10" {{ old('grade') == '10' ? 'selected' : '' }}>Kelas 10</option>
+                <option value="11" {{ old('grade') == '11' ? 'selected' : '' }}>Kelas 11</option>
+                <option value="12" {{ old('grade') == '12' ? 'selected' : '' }}>Kelas 12</option>
             </select>
+            @error('grade')
+                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+            @enderror
         </div>
     </div>
 
     <div>
         <label for="phone" class="block text-sm font-medium text-slate-700 mb-1">No HP</label>
-        <input type="tel" id="phone" name="phone" required 
+        <input type="tel" id="phone" name="phone" required value="{{ old('phone') }}"
             class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 focus:bg-white focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-colors"
             placeholder="081234567890">
+        @error('phone')
+            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+        @enderror
     </div>
 
     <div>
-        <label for="username" class="block text-sm font-medium text-slate-700 mb-1">Username</label>
-        <input type="text" id="username" name="username" required 
+        <label for="email" class="block text-sm font-medium text-slate-700 mb-1">Email</label>
+        <input type="email" id="email" name="email" required value="{{ old('email') }}" autocomplete="username"
             class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 focus:bg-white focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-colors"
-            placeholder="johndoe123">
+            placeholder="john@example.com">
+        @error('email')
+            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+        @enderror
     </div>
 
     <div>
         <label for="password" class="block text-sm font-medium text-slate-700 mb-1">Password</label>
-        <input type="password" id="password" name="password" required 
+        <input type="password" id="password" name="password" required autocomplete="new-password"
             class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 focus:bg-white focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-colors"
             placeholder="Minimal 8 karakter">
+        @error('password')
+            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+        @enderror
+    </div>
+
+    <div>
+        <label for="password_confirmation" class="block text-sm font-medium text-slate-700 mb-1">Konfirmasi Password</label>
+        <input type="password" id="password_confirmation" name="password_confirmation" required autocomplete="new-password"
+            class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 focus:bg-white focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-colors"
+            placeholder="Ulangi password">
+        @error('password_confirmation')
+            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+        @enderror
     </div>
 
     <button type="submit" class="w-full py-3.5 px-4 mt-2 bg-primary-600 hover:bg-primary-700 text-white font-bold rounded-xl shadow-lg shadow-primary-500/30 transition-all hover:-translate-y-0.5">
