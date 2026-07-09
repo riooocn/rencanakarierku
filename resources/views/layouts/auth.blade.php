@@ -6,7 +6,7 @@
     <title>@yield('title', 'Autentikasi') - Rencana Karierku</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="antialiased font-sans text-slate-800 bg-slate-50 selection:bg-primary-500 selection:text-white h-screen flex">
+<body class="antialiased font-sans text-neutral-dark bg-neutral-light selection:bg-primary-500 selection:text-white h-screen flex">
     
     <!-- Left Sidebar: Branding (Hidden on mobile) -->
     <div class="hidden lg:flex w-1/2 bg-primary-900 relative overflow-hidden items-center justify-center">
@@ -18,8 +18,13 @@
         <div class="relative z-10 text-white px-16 max-w-lg">
             <a href="{{ url('/') }}" class="inline-flex items-center gap-3 mb-12 group">
                 <div class="w-12 h-12 rounded-xl bg-white/10 backdrop-blur flex items-center justify-center font-bold text-2xl group-hover:bg-white/20 transition-all">
-                    R
+                    <img
+                        src="{{ asset('images/logo.png') }}"
+                        alt="RencanaKarierku Logo"
+                        class="w-10 h-10 object-contain"
+                    >
                 </div>
+
                 <span class="font-bold text-2xl tracking-tight">
                     Rencana<span class="text-primary-300">Karierku</span>
                 </span>

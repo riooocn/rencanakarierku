@@ -6,7 +6,7 @@
     <title>@yield('title', 'Admin Dashboard') - Rencana Karierku</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="antialiased font-sans text-slate-800 bg-slate-50 selection:bg-primary-500 selection:text-white flex h-screen overflow-hidden">
+<body class="antialiased font-sans text-neutral-dark bg-neutral-light selection:bg-primary-500 selection:text-white flex h-screen overflow-hidden">
     
     <!-- Sidebar -->
     <aside class="w-64 bg-white border-r border-slate-200 flex flex-col hidden md:flex shrink-0">

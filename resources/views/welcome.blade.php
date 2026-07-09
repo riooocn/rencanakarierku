@@ -10,7 +10,7 @@
             Rancang Masa Depanmu
         </div>
         <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 tracking-tight max-w-4xl mx-auto leading-tight">
-            Mulai Perjalanan Karier <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-accent-500">Impianmu</span> Sejak SMA
+            Rancang Hari Ini <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-accent-500">Wujudkan</span> Esok Hari
         </h1>
         <p class="mt-6 text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
             Rencana Karierku hadir untuk membantumu menyusun perencanaan karier secara terarah. Kenali dirimu, eksplorasi peluang, dan buat keputusan terbaik.

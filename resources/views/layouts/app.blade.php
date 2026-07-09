@@ -10,7 +10,7 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="antialiased font-sans text-slate-800 bg-slate-50 selection:bg-primary-500 selection:text-white flex flex-col min-h-screen">
+<body class="antialiased font-sans text-neutral-dark bg-neutral-light selection:bg-primary-500 selection:text-white flex flex-col min-h-screen">
     
     <!-- Navigation -->
     <header class="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200/50">
@@ -18,18 +18,17 @@
             <div class="flex justify-between h-16 items-center">
                 <div class="flex items-center gap-2">
                     <!-- Logo -->
-                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center text-white font-bold text-xl">
-                        R
-                    </div>
+                    <img src="{{ asset('images/logo.png') }}" alt="RencanaKarierku Logo" class="w-8 h-8 object-contain">
+
                     <a href="{{ url('/') }}" class="font-bold text-xl tracking-tight text-slate-900">
                         Rencana<span class="text-primary-600">Karierku</span>
                     </a>
                 </div>
                 
                 <nav class="hidden md:flex gap-8">
-                    <a href="{{ url('/#asesmen') }}" class="text-sm font-medium text-slate-600 hover:text-primary-600 transition-colors">Asesmen Diri</a>
-                    <a href="{{ url('/#eksplorasi') }}" class="text-sm font-medium text-slate-600 hover:text-primary-600 transition-colors">Eksplorasi Karier</a>
-                    <a href="{{ url('/#keputusan') }}" class="text-sm font-medium text-slate-600 hover:text-primary-600 transition-colors">Keputusan Karier</a>
+                    <a href="{{ url('/') }}" class="text-sm font-medium text-slate-600 hover:text-primary-600 transition-colors">Home</a>
+                    <a href="{{ url('/#perjalananku') }}" class="text-sm font-medium text-slate-600 hover:text-primary-600 transition-colors">Perjalananku</a>
+                    <a href="{{ url('/#perjalananku') }}" class="text-sm font-medium text-slate-600 hover:text-primary-600 transition-colors">Contact</a>
                 </nav>
 
                 <div class="flex items-center gap-4">
@@ -51,7 +50,7 @@
     <footer class="bg-white border-t border-slate-200 mt-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="flex items-center gap-2 text-slate-900 font-semibold">
-                <div class="w-6 h-6 rounded-md bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center text-white font-bold text-xs">R</div>
+                <img src="{{ asset('images/logo.png') }}" alt="RencanaKarierku Logo" class="w-8 h-8 object-contain">
                 RencanaKarierku
             </div>
             <p class="text-slate-500 text-sm text-center md:text-left">
