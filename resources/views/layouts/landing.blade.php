@@ -27,8 +27,8 @@
                 
                 <nav class="hidden md:flex gap-8">
                     <a href="{{ url('/') }}" class="text-sm font-medium text-slate-600 hover:text-primary-600 transition-colors">Home</a>
-                    <a href="{{ url('/#perjalananku') }}" class="text-sm font-medium text-slate-600 hover:text-primary-600 transition-colors">Perjalananku</a>
-                    <a href="{{ url('/#perjalananku') }}" class="text-sm font-medium text-slate-600 hover:text-primary-600 transition-colors">Contact</a>
+                    <a href="{{ route('perjalananku.index') }}" class="text-sm font-medium text-slate-600 hover:text-primary-600 transition-colors">Perjalananku</a>
+                    <a href="{{ route('contact') }}" class="text-sm font-medium text-slate-600 hover:text-primary-600 transition-colors">Contact</a>
                 </nav>
 
                 <div class="flex items-center gap-4">

@@ -1,0 +1,211 @@
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-bold text-2xl text-primary-900 leading-tight">
+            {{ __('Tahap 3: Keputusan Akhir') }}
+        </h2>
+    </x-slot>
+
+    <div class="py-12 relative" x-data="keputusanApp()">
+        <div class="max-w-6xl mx-auto sm:px-6 lg:px-8 relative z-10">
+            
+            <!-- Hero Section -->
+            <div class="bg-white rounded-3xl border border-slate-100 shadow-xl overflow-hidden mb-12" x-show="!showResult">
+                <div class="bg-primary-600 px-8 py-10 text-center text-white relative">
+                    <div class="absolute inset-0 bg-gradient-to-r from-primary-700 to-primary-500 opacity-80"></div>
+                    <div class="relative z-10">
+                        <h3 class="text-3xl font-extrabold mb-4">Evaluasi & Pengambilan Keputusan</h3>
+                        <p class="text-primary-100 max-w-3xl mx-auto text-lg">
+                            Bandingkan kedua pilihan kariermu dengan minat, kapasitas, dan nilai yang kamu miliki. 
+                            Jawab 7 pertanyaan di bawah dengan menekan sel tabel yang paling sesuai, atau pilih "Lewati".
+                        </p>
+                    </div>
+                </div>
+
+                <div class="p-8 bg-slate-50 border-b border-slate-200">
+                    <h4 class="font-bold text-slate-800 text-xl mb-4 flex items-center gap-2">
+                        <svg class="w-6 h-6 text-accent-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                        Ringkasan Diriku (Berdasarkan Asesmen)
+                    </h4>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-white p-5 rounded-2xl border border-blue-100 shadow-sm">
+                            <h5 class="font-bold text-blue-900 mb-2 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-blue-500"></span> 3 Minat Teratas</h5>
+                            <ul class="text-sm text-slate-600 list-disc list-inside space-y-1">
+                                <li>Investigative</li>
+                                <li>Artistic</li>
+                                <li>Ideas</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-5 rounded-2xl border border-green-100 shadow-sm">
+                            <h5 class="font-bold text-green-900 mb-2 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-green-500"></span> Kapasitas Utama</h5>
+                            <ul class="text-sm text-slate-600 list-disc list-inside space-y-1">
+                                <li>Bidang: Ideas & Data</li>
+                                <li>Mata Pelajaran: Komputer, Matematika, B. Inggris</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-5 rounded-2xl border border-purple-100 shadow-sm">
+                            <h5 class="font-bold text-purple-900 mb-2 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-purple-500"></span> Nilai Karier</h5>
+                            <ul class="text-sm text-slate-600 list-disc list-inside space-y-1">
+                                <li>Intrinsic Rewards</li>
+                                <li>Extrinsic Rewards</li>
+                                <li>Leisure</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-8">
+                    <!-- The Interactive Question Box -->
+                    <div class="bg-accent-50 border border-accent-200 p-6 rounded-2xl mb-8 relative shadow-inner">
+                        <div class="absolute -top-3 left-6 bg-accent-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                            Pertanyaan <span x-text="step + 1"></span> dari 7
+                        </div>
+                        <h4 class="text-xl font-bold text-accent-900 mt-2 mb-4" x-text="questions[step].text"></h4>
+                        <div class="flex items-center gap-4">
+                            <p class="text-sm text-accent-700 font-medium">Pilih (klik) salah satu jawaban di tabel bawah, atau:</p>
+                            <button @click="answer('skip')" class="px-4 py-2 bg-white border border-slate-300 text-slate-600 font-semibold rounded-lg hover:bg-slate-50 transition-colors shadow-sm text-sm">
+                                Lewati Pertanyaan Ini
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- The Interactive Table -->
+                    <div class="overflow-x-auto relative">
+                        <table class="w-full text-left border-collapse min-w-[800px] border border-slate-200 rounded-xl hidden md:table">
+                            <thead>
+                                <tr>
+                                    <th class="w-1/4 p-4 bg-slate-100 border-b border-r border-slate-200 text-slate-700 font-bold align-bottom">Aspek Eksplorasi</th>
+                                    <th class="w-3/8 p-4 bg-blue-50 border-b border-r border-blue-100 text-center">
+                                        <span class="text-xs font-bold text-blue-600 uppercase tracking-wider block mb-1">Karier 1</span>
+                                        <span class="text-xl font-extrabold text-primary-900">Software Engineer</span>
+                                    </th>
+                                    <th class="w-3/8 p-4 bg-purple-50 border-b border-purple-100 text-center">
+                                        <span class="text-xs font-bold text-purple-600 uppercase tracking-wider block mb-1">Karier 2</span>
+                                        <span class="text-xl font-extrabold text-accent-900">Desainer UI/UX</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100">
+                                <template x-for="(row, index) in tableData" :key="index">
+                                    <tr :class="{ 'bg-yellow-50 ring-2 ring-yellow-400 ring-inset shadow-lg z-10 relative': questions[step].targetRow === index, 'opacity-40': questions[step].targetRow !== index && questions[step].targetRow !== -1 }">
+                                        <td class="p-4 border-r border-slate-200 font-medium text-slate-700 bg-slate-50" x-text="row.label"></td>
+                                        
+                                        <!-- Cell Karier 1 -->
+                                        <td @click="if(questions[step].targetRow === index) answer(1)" 
+                                            :class="{'cursor-pointer hover:bg-blue-100': questions[step].targetRow === index, 'bg-blue-500 text-white font-bold': selections[index] === 1}"
+                                            class="p-4 border-r border-slate-200 text-slate-800 transition-colors relative">
+                                            <span x-text="row.k1"></span>
+                                            <div x-show="selections[index] === 1" class="absolute top-2 right-2 w-6 h-6 bg-white text-blue-500 rounded-full flex items-center justify-center shadow-md">
+                                                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                                            </div>
+                                        </td>
+
+                                        <!-- Cell Karier 2 -->
+                                        <td @click="if(questions[step].targetRow === index) answer(2)" 
+                                            :class="{'cursor-pointer hover:bg-purple-100': questions[step].targetRow === index, 'bg-purple-500 text-white font-bold': selections[index] === 2}"
+                                            class="p-4 text-slate-800 transition-colors relative">
+                                            <span x-text="row.k2"></span>
+                                            <div x-show="selections[index] === 2" class="absolute top-2 right-2 w-6 h-6 bg-white text-purple-500 rounded-full flex items-center justify-center shadow-md">
+                                                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                        
+                        <div class="md:hidden p-4 bg-red-50 text-red-700 rounded-xl border border-red-200 text-center font-medium">
+                            Mohon gunakan perangkat desktop/tablet atau putar layar (landscape) untuk menggunakan fitur ini secara optimal.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Result Section -->
+            <div x-show="showResult" class="bg-white rounded-3xl border border-slate-100 shadow-2xl p-10 text-center" style="display: none;">
+                <div class="w-24 h-24 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-8 shadow-inner">
+                    <svg class="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                <h3 class="text-4xl font-extrabold text-primary-900 mb-4">Selamat! Kamu Telah Memilih</h3>
+                <p class="text-lg text-slate-600 mb-8">Berdasarkan perbandingan yang kamu lakukan, pekerjaan yang paling banyak sesuai dengan diriku adalah:</p>
+                
+                <div class="inline-block bg-gradient-to-r from-primary-600 to-accent-600 p-1 rounded-2xl mb-12 shadow-xl">
+                    <div class="bg-white px-12 py-6 rounded-xl">
+                        <h2 class="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary-700 to-accent-600" x-text="winner"></h2>
+                    </div>
+                </div>
+
+                <div class="flex justify-center gap-4">
+                    <a href="{{ route('hasilkeputusan') }}" class="inline-flex items-center justify-center px-8 py-4 bg-primary-600 text-white font-bold rounded-xl hover:bg-primary-700 transition-colors shadow-lg shadow-primary-600/30 text-lg group">
+                        Lihat Rangkuman Keseluruhan
+                        <svg class="ml-2 w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("alpine:init", () => {
+            Alpine.data("keputusanApp", () => ({
+                step: 0,
+                showResult: false,
+                winner: "",
+                scores: { 1: 0, 2: 0 },
+                selections: {}, // Maps rowIndex -> 1 or 2
+                
+                tableData: [
+                    { label: "Pendidikan Tinggi Minimal", k1: "Sarjana (S1)", k2: "Sarjana (S1)" },
+                    { label: "Jurusan yang paling sesuai", k1: "Teknik Informatika", k2: "Desain Komunikasi Visual" },
+                    { label: "Mata kuliah yang perlu dilalui", k1: "Algoritma, Basis Data", k2: "Desain Interaksi, Psikologi Pengguna" }, // index 2
+                    { label: "Keterampilan yang perlu dikuasai", k1: "Pemrograman, Logika Matematika", k2: "Figma, Wireframing" }, // index 3
+                    { label: "Pelatihan formal/pendidikan lain", k1: "Bootcamp Web Development", k2: "Kursus UI/UX Design" }, // index 4
+                    { label: "Sertifikasi yang perlu diambil", k1: "AWS Certified Developer", k2: "Google UX Design Certificate" }, // index 5
+                    { label: "Peluang di masa depan", k1: "Sangat terbuka karena semua sektor butuh digitalisasi", k2: "Sangat baik seiring berkembangnya startup digital" }, // index 6
+                    { label: "Tugas & Tanggung jawab", k1: "Membangun sistem dan aplikasi", k2: "Membuat antarmuka yang ramah pengguna" }, // index 7
+                    { label: "Informasi lain yang menarik", k1: "Bisa bekerja remote (WFH)", k2: "Sangat menghargai kreativitas" } // index 8
+                ],
+
+                questions: [
+                    { text: "Bandingkan antara mata pelajaran yang kamu kuasai dengan mata kuliah. Apakah mata kuliah di dalamnya sesuai dengan kapasitasmu?", targetRow: 2 },
+                    { text: "Bandingkan antara bidang kapasitas dengan keterampilan yang perlu dikuasai. Apakah keterampilan tersebut sesuai dengan kapasitasmu?", targetRow: 3 },
+                    { text: "Bandingkan kapasitasmu dengan pelatihan formal/pendidikan lanjut. Apakah pelatihan tersebut sesuai dengan kapasitasmu?", targetRow: 4 },
+                    { text: "Bandingkan kapasitasmu dengan sertifikasi yang perlu diambil. Apakah sertifikasi tersebut sesuai dengan kapasitasmu?", targetRow: 5 },
+                    { text: "Bandingkan antara nilai kariermu dengan peluang kariernya. Apakah peluang tersebut sesuai dengan nilai kariermu?", targetRow: 6 },
+                    { text: "Bandingkan minat, kapasitas, atau nilai kariermu dengan tugas/tanggung jawab karier. Apakah tugas tersebut sesuai dengan dirimu?", targetRow: 7 },
+                    { text: "Bandingkan minat, kapasitas, atau nilai kariermu dengan informasi lain dari karier tersebut. Apakah informasi tersebut sesuai dengan dirimu?", targetRow: 8 }
+                ],
+
+                answer(choice) {
+                    if (choice === 1 || choice === 2) {
+                        this.scores[choice]++;
+                        this.selections[this.questions[this.step].targetRow] = choice;
+                    }
+                    
+                    if (this.step < this.questions.length - 1) {
+                        this.step++;
+                    } else {
+                        this.finish();
+                    }
+                },
+
+                finish() {
+                    // Determine winner
+                    if (this.scores[1] > this.scores[2]) {
+                        this.winner = "Software Engineer";
+                    } else if (this.scores[2] > this.scores[1]) {
+                        this.winner = "Desainer UI/UX";
+                    } else {
+                        this.winner = "Software Engineer & Desainer UI/UX (Seimbang)";
+                    }
+                    this.showResult = true;
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            }));
+        });
+    </script>
+</x-app-layout>

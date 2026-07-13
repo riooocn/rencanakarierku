@@ -1,6 +1,6 @@
 @extends('layouts.auth')
 
-@section('title', 'Lengkapi Profil')
+@section('title', 'Lengkapi Profil Peserta')
 
 @section('content')
 <div class="text-center mb-8">
@@ -13,7 +13,7 @@
     <p class="mt-2 text-sm text-slate-500">Tinggal satu langkah lagi untuk memulai perencanaan karier impianmu.</p>
 </div>
 
-<form action="#" method="POST" class="space-y-4">
+<form action="{{ url('/perjalananku') }}" method="GET" class="space-y-4">
     @csrf
     
     <div>
