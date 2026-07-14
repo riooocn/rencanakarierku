@@ -46,94 +46,59 @@
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-slate-200">
-                <!-- Data Row 1 -->
-                <tr class="hover:bg-slate-50/50 transition-colors">
+                @forelse($pesertaList as $peserta)
+                <tr class="hover:bg-slate-50/50 transition-colors {{ !$peserta->is_active ? 'bg-yellow-50/20' : '' }}">
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="flex items-center">
                             <div class="flex-shrink-0 h-10 w-10 rounded-full bg-slate-200 flex items-center justify-center font-bold text-slate-500">
-                                A
+                                {{ strtoupper(substr($peserta->name, 0, 1)) }}
                             </div>
                             <div class="ml-4">
-                                <div class="text-sm font-medium text-slate-900">Andi Saputra</div>
-                                <div class="text-sm text-slate-500">budi@example.com</div>
+                                <div class="text-sm font-medium text-slate-900">{{ $peserta->name }}</div>
+                                <div class="text-sm text-slate-500">{{ $peserta->email }}</div>
                             </div>
                         </div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-slate-900">Kelas 12 IPA 1</div>
+                        <div class="text-sm text-slate-900">{{ $peserta->grade ? 'Kelas ' . $peserta->grade : '-' }}</div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                            Selesai
-                        </span>
+                        @if($peserta->is_active)
+                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                Aktif / Terverifikasi
+                            </span>
+                        @else
+                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                Menunggu Verifikasi
+                            </span>
+                        @endif
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500">
-                        04 Jul 2026
+                        {{ $peserta->created_at->format('d M Y') }}
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <a href="{{ route('admin.peserta.show', 1) }}" class="text-primary-600 hover:text-primary-900 transition-colors font-semibold">Lihat Detail</a>
-                    </td>
-                </tr>
-
-                <!-- Data Row 2 -->
-                <tr class="hover:bg-slate-50/50 transition-colors">
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-slate-200 flex items-center justify-center font-bold text-slate-500">
-                                D
-                            </div>
-                            <div class="ml-4">
-                                <div class="text-sm font-medium text-slate-900">Diana Putri</div>
-                                <div class="text-sm text-slate-500">diana@example.com</div>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-slate-900">Kelas 11 IPS 2</div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                            Dalam Proses (Eksplorasi)
-                        </span>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500">
-                        03 Jul 2026
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <a href="{{ route('admin.peserta.show', 2) }}" class="text-primary-600 hover:text-primary-900 transition-colors font-semibold">Lihat Detail</a>
+                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-3">
+                        @if($peserta->is_active)
+                            <a href="{{ route('admin.peserta.show', $peserta->id) }}" class="text-primary-600 hover:text-primary-900 transition-colors font-semibold">Lihat Detail</a>
+                        @else
+                            <form action="{{ route('admin.peserta.approve', $peserta->id) }}" method="POST" class="inline">
+                                @csrf @method('PATCH')
+                                <button type="submit" class="text-green-600 hover:text-green-900 font-semibold">Verifikasi & Aktifkan</button>
+                            </form>
+                        @endif
                     </td>
                 </tr>
-
+                @empty
+                <tr>
+                    <td colspan="5" class="px-6 py-8 text-center text-slate-500">Belum ada peserta yang terdaftar di instansi Anda.</td>
+                </tr>
+                @endforelse
             </tbody>
         </table>
     </div>
     
     <!-- Pagination -->
-    <div class="bg-white px-4 py-3 border-t border-slate-200 flex items-center justify-between sm:px-6">
-        <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
-            <div>
-                <p class="text-sm text-slate-700">
-                    Menampilkan <span class="font-medium">1</span> sampai <span class="font-medium">2</span> dari <span class="font-medium">24</span> hasil
-                </p>
-            </div>
-            <div>
-                <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
-                    <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-slate-300 bg-white text-sm font-medium text-slate-500 hover:bg-slate-50">
-                        <span class="sr-only">Previous</span>
-                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
-                        </svg>
-                    </a>
-                    <a href="#" class="relative inline-flex items-center px-4 py-2 border border-slate-300 bg-white text-sm font-medium text-slate-700 hover:bg-slate-50">1</a>
-                    <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-slate-300 bg-white text-sm font-medium text-slate-500 hover:bg-slate-50">
-                        <span class="sr-only">Next</span>
-                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-                        </svg>
-                    </a>
-                </nav>
-            </div>
-        </div>
+    <div class="bg-white px-4 py-3 border-t border-slate-200">
+        {{ $pesertaList->links() }}
     </div>
 </div>
 @endsection

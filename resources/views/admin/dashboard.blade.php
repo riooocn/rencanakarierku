@@ -15,8 +15,8 @@
             </svg>
         </div>
         <div>
-            <p class="text-sm font-medium text-slate-500 mb-1">Total Siswa Terdaftar</p>
-            <h4 class="text-2xl font-bold text-slate-900">428</h4>
+            <p class="text-sm font-medium text-slate-500 mb-1">Total Siswa Aktif</p>
+            <h4 class="text-2xl font-bold text-slate-900">{{ $pesertaCount }}</h4>
         </div>
     </div>
 
@@ -41,8 +41,8 @@
             </svg>
         </div>
         <div>
-            <p class="text-sm font-medium text-slate-500 mb-1">Sedang Proses</p>
-            <h4 class="text-2xl font-bold text-slate-900">85</h4>
+            <p class="text-sm font-medium text-slate-500 mb-1">Menunggu Verifikasi</p>
+            <h4 class="text-2xl font-bold text-slate-900">{{ $pendingPesertaCount }}</h4>
         </div>
     </div>
 
@@ -62,8 +62,8 @@
 
 <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
     <div class="flex justify-between items-center mb-6">
-        <h3 class="font-bold text-slate-900">Peserta Terbaru yang Selesai Tes</h3>
-        <a href="{{ route('admin.peserta.index') }}" class="text-sm text-primary-600 font-medium hover:underline">Lihat Semua &rarr;</a>
+        <h3 class="font-bold text-slate-900">Pendaftaran Siswa Baru (Menunggu Verifikasi)</h3>
+        <a href="{{ route('admin.peserta.index') }}" class="text-sm text-primary-600 font-medium hover:underline">Kelola Semua Siswa &rarr;</a>
     </div>
 
     <!-- Mini Table -->
@@ -71,22 +71,30 @@
         <table class="min-w-full divide-y divide-slate-100">
             <thead>
                 <tr>
-                    <th class="text-left text-xs font-semibold text-slate-500 uppercase py-3">Nama</th>
-                    <th class="text-left text-xs font-semibold text-slate-500 uppercase py-3">Kelas</th>
-                    <th class="text-left text-xs font-semibold text-slate-500 uppercase py-3">Pilihan Karier</th>
+                    <th class="text-left text-xs font-semibold text-slate-500 uppercase py-3">Nama Lengkap</th>
+                    <th class="text-left text-xs font-semibold text-slate-500 uppercase py-3">Email</th>
+                    <th class="text-left text-xs font-semibold text-slate-500 uppercase py-3">Tanggal Daftar</th>
+                    <th class="text-right text-xs font-semibold text-slate-500 uppercase py-3">Aksi</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-slate-100">
+                @forelse($pendingPeserta as $peserta)
                 <tr>
-                    <td class="py-3 text-sm font-medium text-slate-900">Andi Saputra</td>
-                    <td class="py-3 text-sm text-slate-500">Kelas 12 IPA 1</td>
-                    <td class="py-3 text-sm text-slate-900 font-semibold">Software Engineer</td>
+                    <td class="py-3 text-sm font-medium text-slate-900">{{ $peserta->name }}</td>
+                    <td class="py-3 text-sm text-slate-500">{{ $peserta->email }}</td>
+                    <td class="py-3 text-sm text-slate-900">{{ $peserta->created_at->format('d M Y') }}</td>
+                    <td class="py-3 text-right">
+                        <form action="{{ route('admin.peserta.approve', $peserta->id) }}" method="POST" class="inline">
+                            @csrf @method('PATCH')
+                            <button type="submit" class="text-sm text-green-600 hover:text-green-800 font-medium bg-green-50 px-3 py-1.5 rounded-lg transition-colors">Terima & Aktifkan</button>
+                        </form>
+                    </td>
                 </tr>
+                @empty
                 <tr>
-                    <td class="py-3 text-sm font-medium text-slate-900">Diana Putri</td>
-                    <td class="py-3 text-sm text-slate-500">Kelas 11 IPS 2</td>
-                    <td class="py-3 text-sm text-slate-900 font-semibold">Desainer Grafis</td>
+                    <td colspan="4" class="py-6 text-center text-slate-500 text-sm">Tidak ada pendaftaran siswa baru yang perlu diverifikasi saat ini.</td>
                 </tr>
+                @endforelse
             </tbody>
         </table>
     </div>

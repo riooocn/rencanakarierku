@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Institution;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -20,7 +21,14 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register-peserta');
+        $institutions = Institution::orderBy('name')->get();
+        return view('auth.register-peserta', compact('institutions'));
+    }
+
+    public function createInstansi(): View
+    {
+        $institutions = Institution::orderBy('name')->get();
+        return view('auth.register-instansi', compact('institutions'));
     }
 
     /**
@@ -34,18 +42,43 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'role' => ['required', 'string', 'in:peserta,admin'],
+            'phone' => ['required', 'string', 'max:20'],
         ]);
+
+        if ($request->filled('new_school')) {
+            $institution = Institution::firstOrCreate(['name' => $request->new_school]);
+        } else {
+            $request->validate(['school_id' => 'required|exists:institutions,id']);
+            $institution = Institution::find($request->school_id);
+        }
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => $request->role,
+            'institution_id' => $institution->id,
+            'phone' => $request->phone,
+            'grade' => $request->grade ?? null,
+            'is_active' => false,
         ]);
 
         event(new Registered($user));
 
+        if (!$user->is_active) {
+            return redirect('/login')->with('status', 'Pendaftaran berhasil. Akun Anda sedang menunggu verifikasi dari Admin Instansi atau Super Admin.');
+        }
+
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        // Redirect logic based on role
+        if ($user->role === 'superadmin') {
+            return redirect('/superadmin');
+        } elseif ($user->role === 'admin') {
+            return redirect('/admin');
+        }
+
+        return redirect('/perjalananku');
     }
 }

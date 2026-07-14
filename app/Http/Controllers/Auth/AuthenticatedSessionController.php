@@ -26,9 +26,31 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
 
+        $user = $request->user();
+
+        if ($user->role !== 'superadmin' && !$user->is_active) {
+            Auth::guard('web')->logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+            
+            $msg = $user->role === 'admin' 
+                ? 'Akun admin Anda sedang menunggu verifikasi oleh Super Admin.' 
+                : 'Akun Anda sedang menunggu verifikasi oleh Admin Instansi.';
+                
+            return redirect('/login')->withErrors([
+                'email' => $msg,
+            ]);
+        }
+
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        if ($user->role === 'superadmin') {
+            return redirect()->intended('/superadmin');
+        } elseif ($user->role === 'admin') {
+            return redirect()->intended('/admin');
+        }
+
+        return redirect()->intended('/perjalananku');
     }
 
     /**

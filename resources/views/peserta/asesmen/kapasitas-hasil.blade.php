@@ -29,37 +29,39 @@
                         </h4>
                         
                         <div class="space-y-4">
-                            <!-- People -->
-                            <div class="flex items-center justify-between p-4 bg-white rounded-2xl shadow-sm border border-slate-100">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 bg-accent-100 rounded-lg flex items-center justify-center text-accent-700">
-                                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                                        </svg>
+                            @if(isset($result) && isset($result->top_results['keterampilan']))
+                                @foreach($result->top_results['keterampilan'] as $index => $code)
+                                    @php
+                                        $detail = \App\Helpers\AssessmentHelper::getKapasitas1Detail($code);
+                                        // Optional: logic for High/Medium based on score, but we'll default to "Tinggi" for top 2
+                                    @endphp
+                                    <div class="flex items-center justify-between p-4 bg-white rounded-2xl shadow-sm border border-slate-100">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-10 h-10 {{ $index === 0 ? 'bg-accent-100 text-accent-700' : 'bg-primary-100 text-primary-700' }} rounded-lg flex items-center justify-center">
+                                                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    @if($code == '1')
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                                                    @elseif($code == '2')
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" />
+                                                    @elseif($code == '3')
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                    @else
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                                                    @endif
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <p class="font-bold text-slate-800">{{ $detail['name'] }}</p>
+                                                <p class="text-xs text-slate-500">{{ $detail['desc'] }}</p>
+                                            </div>
+                                        </div>
+                                        <span class="font-bold text-primary-600 bg-primary-100 px-3 py-1 rounded-full text-sm">Tinggi</span>
                                     </div>
-                                    <div>
-                                        <p class="font-bold text-slate-800">People</p>
-                                        <p class="text-xs text-slate-500">Kapasitas bekerja dengan orang lain</p>
-                                    </div>
-                                </div>
-                                <span class="font-bold text-primary-600 bg-primary-100 px-3 py-1 rounded-full text-sm">Tinggi</span>
-                            </div>
-
-                            <!-- Ideas -->
-                            <div class="flex items-center justify-between p-4 bg-white rounded-2xl shadow-sm border border-slate-100">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center text-primary-700">
-                                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <p class="font-bold text-slate-800">Ideas</p>
-                                        <p class="text-xs text-slate-500">Kapasitas memikirkan konsep</p>
-                                    </div>
-                                </div>
-                                <span class="font-bold text-primary-600 bg-primary-100 px-3 py-1 rounded-full text-sm">Tinggi</span>
-                            </div>
+                                @endforeach
+                            @else
+                                <div class="text-sm text-slate-500">Belum ada hasil untuk kapasitas.</div>
+                            @endif
                         </div>
                     </div>
 
@@ -71,18 +73,31 @@
                         </h4>
                         
                         <div class="space-y-3">
-                            <div class="flex items-center justify-between p-3 bg-white rounded-xl shadow-sm border border-slate-100">
-                                <span class="font-medium text-slate-800">1. Bahasa Inggris</span>
-                                <span class="text-accent-600 font-bold">5 / 5</span>
-                            </div>
-                            <div class="flex items-center justify-between p-3 bg-white rounded-xl shadow-sm border border-slate-100">
-                                <span class="font-medium text-slate-800">2. Matematika</span>
-                                <span class="text-accent-600 font-bold">4 / 5</span>
-                            </div>
-                            <div class="flex items-center justify-between p-3 bg-white rounded-xl shadow-sm border border-slate-100">
-                                <span class="font-medium text-slate-800">3. Biologi</span>
-                                <span class="text-accent-600 font-bold">4 / 5</span>
-                            </div>
+                            @if(isset($result) && isset($result->top_results['mapel']))
+                                @foreach($result->top_results['mapel'] as $index => $mapelCode)
+                                    @php
+                                        // $mapelCode is the string name itself for Mapel
+                                        $score = $result->recap_scores['mapel'][$mapelCode] ?? 0;
+                                        $scoreMeanings = [
+                                            1 => 'Sangat tidak menguasai',
+                                            2 => 'Tidak menguasai',
+                                            3 => 'Cukup menguasai',
+                                            4 => 'Menguasai',
+                                            5 => 'Sangat menguasai'
+                                        ];
+                                        $meaning = $scoreMeanings[$score] ?? 'Tidak diketahui';
+                                    @endphp
+                                    <div class="flex items-center justify-between p-3 bg-white rounded-xl shadow-sm border border-slate-100">
+                                        <span class="font-medium text-slate-800">{{ $index + 1 }}. {{ $mapelCode }}</span>
+                                        <div class="text-right">
+                                            <span class="text-accent-600 font-bold block">{{ $score }} / 5</span>
+                                            <span class="text-xs text-slate-500">{{ $meaning }}</span>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @else
+                                <div class="text-sm text-slate-500">Belum ada hasil mata pelajaran.</div>
+                            @endif
                         </div>
                     </div>
 

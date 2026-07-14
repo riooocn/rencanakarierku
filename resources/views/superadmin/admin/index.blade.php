@@ -24,62 +24,57 @@
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-slate-200">
-                
-                <!-- Admin Aktif -->
-                <tr class="hover:bg-slate-50/50">
+                @forelse($adminList as $admin)
+                <tr class="hover:bg-slate-50/50 {{ !$admin->is_active ? 'bg-yellow-50/20' : '' }}">
                     <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm font-medium text-slate-900">SMA N 1 Jakarta</div>
-                        <div class="text-xs text-slate-500">Terdaftar: 01 Jan 2026</div>
+                        <div class="text-sm font-medium text-slate-900">{{ $admin->institution->name ?? 'Instansi tidak ditemukan' }}</div>
+                        <div class="text-xs text-slate-500">Terdaftar: {{ $admin->created_at->format('d M Y') }}</div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-slate-900">Bapak Hendro</div>
-                        <div class="text-sm text-slate-500">hendro@sman1jkt.sch.id</div>
+                        <div class="text-sm text-slate-900">{{ $admin->name }}</div>
+                        <div class="text-sm text-slate-500">{{ $admin->email }}</div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                            Aktif
-                        </span>
+                        @if($admin->is_active)
+                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                Aktif
+                            </span>
+                        @else
+                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                Menunggu Verifikasi
+                            </span>
+                        @endif
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-900">
-                        428 Siswa
+                        <!-- We could load participants count dynamically if we add withCount('pesertas') in the future, for now placeholder -->
+                        -
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-3">
-                        <a href="{{ route('superadmin.admin.peserta', 1) }}" class="text-blue-600 hover:text-blue-900">Lihat Siswa</a>
-                        <form action="{{ route('superadmin.admin.deactivate', 1) }}" method="POST" class="inline">
-                            @csrf @method('PATCH')
-                            <button class="text-red-600 hover:text-red-900">Blokir</button>
-                        </form>
+                        @if($admin->is_active)
+                            <a href="{{ route('superadmin.admin.peserta', $admin->id) }}" class="text-blue-600 hover:text-blue-900">Lihat Siswa</a>
+                            <form action="{{ route('superadmin.admin.deactivate', $admin->id) }}" method="POST" class="inline">
+                                @csrf @method('PATCH')
+                                <button class="text-red-600 hover:text-red-900">Blokir</button>
+                            </form>
+                        @else
+                            <form action="{{ route('superadmin.admin.approve', $admin->id) }}" method="POST" class="inline">
+                                @csrf @method('PATCH')
+                                <button class="text-green-600 hover:text-green-900">Verifikasi & Aktifkan</button>
+                            </form>
+                        @endif
                     </td>
                 </tr>
-
-                <!-- Admin Menunggu -->
-                <tr class="hover:bg-slate-50/50 bg-yellow-50/20">
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm font-medium text-slate-900">SMA N 5 Bandung</div>
-                        <div class="text-xs text-slate-500">Terdaftar: 10 Jul 2026</div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-slate-900">Agus Setiawan</div>
-                        <div class="text-sm text-slate-500">agus@sman5bdg.sch.id</div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                            Menunggu Verifikasi
-                        </span>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-900">
-                        0 Siswa
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <form action="{{ route('superadmin.admin.approve', 2) }}" method="POST" class="inline">
-                            @csrf @method('PATCH')
-                            <button class="text-green-600 hover:text-green-900">Verifikasi & Aktifkan</button>
-                        </form>
-                    </td>
+                @empty
+                <tr>
+                    <td colspan="5" class="px-6 py-8 text-center text-slate-500">Belum ada admin instansi yang terdaftar.</td>
                 </tr>
-
+                @endforelse
             </tbody>
         </table>
+    </div>
+
+    <div class="px-6 py-4 border-t border-slate-200">
+        {{ $adminList->links() }}
     </div>
 </div>
 @endsection

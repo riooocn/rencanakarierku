@@ -55,7 +55,7 @@
         </div>
         <div>
             <p class="text-sm font-medium text-slate-500 mb-1">Admin Menunggu Verifikasi</p>
-            <h4 class="text-2xl font-bold text-slate-900">3</h4>
+            <h4 class="text-2xl font-bold text-slate-900">{{ $pendingAdminsCount }}</h4>
         </div>
     </div>
 </div>
@@ -77,26 +77,28 @@
                 </tr>
             </thead>
             <tbody class="divide-y divide-slate-100">
+                @forelse($pendingAdmins as $admin)
                 <tr>
-                    <td class="py-3 text-sm font-medium text-slate-900">SMA N 5 Bandung</td>
-                    <td class="py-3 text-sm text-slate-500">Agus Setiawan</td>
+                    <td class="py-3 text-sm font-medium text-slate-900">{{ $admin->institution->name ?? 'Instansi tidak ditemukan' }}</td>
+                    <td class="py-3 text-sm text-slate-500">{{ $admin->name }}</td>
                     <td class="py-3 text-sm">
                         <span class="px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">Menunggu</span>
                     </td>
                     <td class="py-3 text-sm text-right">
-                        <button class="text-green-600 font-medium hover:underline">Verifikasi</button>
+                        <form action="{{ route('superadmin.admin.approve', $admin->id) }}" method="POST" class="inline">
+                            @csrf
+                            @method('PATCH')
+                            <button type="submit" class="text-green-600 font-medium hover:underline">Verifikasi</button>
+                        </form>
                     </td>
                 </tr>
+                @empty
                 <tr>
-                    <td class="py-3 text-sm font-medium text-slate-900">SMK N 1 Surabaya</td>
-                    <td class="py-3 text-sm text-slate-500">Ibu Ratna</td>
-                    <td class="py-3 text-sm">
-                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">Menunggu</span>
-                    </td>
-                    <td class="py-3 text-sm text-right">
-                        <button class="text-green-600 font-medium hover:underline">Verifikasi</button>
+                    <td colspan="4" class="py-6 text-center text-sm text-slate-500">
+                        Tidak ada pendaftaran admin baru yang menunggu verifikasi.
                     </td>
                 </tr>
+                @endforelse
             </tbody>
         </table>
     </div>

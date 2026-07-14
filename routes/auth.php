@@ -19,9 +19,8 @@ Route::middleware('guest')->group(function () {
     Route::get('register/peserta', [RegisteredUserController::class, 'create'])
         ->name('register.peserta');
 
-    Route::get('register/instansi', function () {
-        return view('auth.register-instansi');
-    })->name('register.instansi');
+    Route::get('register/instansi', [RegisteredUserController::class, 'createInstansi'])
+        ->name('register.instansi');
 
     Route::post('register', [RegisteredUserController::class, 'store']);
 

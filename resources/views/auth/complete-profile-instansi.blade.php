@@ -13,7 +13,7 @@
     <p class="mt-2 text-sm text-slate-500">Tinggal satu langkah lagi untuk memulai mengelola instansi Anda.</p>
 </div>
 
-<form action="{{ url('/admin') }}" method="GET" class="space-y-4">
+<form action="{{ route('complete-profile.store') }}" method="POST" class="space-y-4">
     @csrf
     
     <div>
@@ -24,11 +24,27 @@
         <p class="mt-1 text-xs text-slate-500">Berdasarkan akun Google kamu.</p>
     </div>
 
-    <div>
-        <label for="school" class="block text-sm font-medium text-slate-700 mb-1">Nama Instansi / Sekolah</label>
-        <input type="text" id="school" name="school" required 
-            class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 focus:bg-white focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-colors"
-            placeholder="SMA N 1 Jakarta">
+    <div x-data="{ isNewSchool: false }">
+        <label for="school_id" class="block text-sm font-medium text-slate-700 mb-1">Asal Sekolah</label>
+        
+        <select id="school_id" name="school_id" x-bind:required="!isNewSchool" x-bind:disabled="isNewSchool" class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 focus:bg-white focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-colors appearance-none">
+            <option value="">Pilih Instansi</option>
+            @foreach($institutions as $inst)
+                <option value="{{ $inst->id }}" {{ old('school_id') == $inst->id ? 'selected' : '' }}>{{ $inst->name }}</option>
+            @endforeach
+        </select>
+        
+        <div class="mt-3 flex items-center">
+            <input type="checkbox" id="isNewSchool" x-model="isNewSchool" class="w-4 h-4 text-primary-600 border-slate-300 rounded focus:ring-primary-500">
+            <label for="isNewSchool" class="ml-2 text-sm text-slate-600 cursor-pointer">Daftar instansi baru</label>
+        </div>
+
+        <div x-show="isNewSchool" style="display: none;" class="mt-4">
+            <label for="new_school" class="block text-sm font-medium text-slate-700 mb-1">Ketik Nama Instansi Baru</label>
+            <input type="text" id="new_school" name="new_school" x-bind:required="isNewSchool" x-bind:disabled="!isNewSchool"
+                class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 focus:bg-white focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-colors"
+                placeholder="Misal: SMA N 1 Jakarta">
+        </div>
     </div>
 
     <div>

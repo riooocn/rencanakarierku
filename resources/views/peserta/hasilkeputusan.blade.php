@@ -10,7 +10,12 @@
             
             <div class="bg-white rounded-3xl p-8 md:p-12 shadow-2xl shadow-slate-200/50 border border-slate-100 relative overflow-hidden">
                 
-                <!-- Print Button -->
+                <!-- Print Button and Back Link -->
+                <div class="absolute top-8 left-8">
+                    <a href="{{ route('hasilkeputusan') }}" class="flex items-center gap-2 px-4 py-2 text-primary-600 font-medium hover:underline transition-colors">
+                        &larr; Kembali ke Riwayat
+                    </a>
+                </div>
                 <div class="absolute top-8 right-8">
                     <button class="flex items-center gap-2 px-4 py-2 bg-slate-100 text-slate-700 font-medium rounded-lg hover:bg-slate-200 transition-colors" onclick="window.print()">
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -36,10 +41,10 @@
                         Profil Peserta
                     </h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-slate-700">
-                        <div><strong class="inline-block w-32">Nama:</strong> Budi Santoso</div>
-                        <div><strong class="inline-block w-32">Sekolah:</strong> SMA Negeri 1 Jakarta</div>
-                        <div><strong class="inline-block w-32">Email:</strong> budi@example.com</div>
-                        <div><strong class="inline-block w-32">Tanggal Selesai:</strong> 13 Juli 2026</div>
+                        <div><strong class="inline-block w-32">Nama:</strong> {{ Auth::user()->name }}</div>
+                        <div><strong class="inline-block w-32">Sekolah:</strong> {{ Auth::user()->institution->name ?? 'Instansi' }}</div>
+                        <div><strong class="inline-block w-32">Email:</strong> {{ Auth::user()->email }}</div>
+                        <div><strong class="inline-block w-32">Tanggal Selesai:</strong> {{ $keputusan->created_at->translatedFormat('d F Y') }}</div>
                     </div>
                 </div>
 
@@ -53,24 +58,37 @@
                         <div class="bg-slate-50 p-5 rounded-2xl border border-slate-100">
                             <h4 class="font-bold text-slate-800 mb-3">Minat (RIASEC)</h4>
                             <ul class="list-disc pl-5 text-sm text-slate-600 space-y-1">
-                                <li>Investigative (Tinggi)</li>
-                                <li>Artistic (Tinggi)</li>
-                                <li>Social (Sedang)</li>
+                                @if(isset($minat) && is_array($minat->top_results))
+                                    @foreach($minat->top_results as $code)
+                                        <li>{{ \App\Helpers\AssessmentHelper::getMinatDetail($code)['name'] }}</li>
+                                    @endforeach
+                                @else
+                                    <li>Data tidak tersedia</li>
+                                @endif
                             </ul>
                         </div>
                         <div class="bg-slate-50 p-5 rounded-2xl border border-slate-100">
                             <h4 class="font-bold text-slate-800 mb-3">Kapasitas Dominan</h4>
                             <ul class="list-disc pl-5 text-sm text-slate-600 space-y-1">
-                                <li>People</li>
-                                <li>Ideas</li>
+                                @if(isset($kapasitas) && isset($kapasitas->top_results['keterampilan']))
+                                    @foreach($kapasitas->top_results['keterampilan'] as $code)
+                                        <li>{{ \App\Helpers\AssessmentHelper::getKapasitas1Detail($code)['name'] }}</li>
+                                    @endforeach
+                                @else
+                                    <li>Data tidak tersedia</li>
+                                @endif
                             </ul>
                         </div>
                         <div class="bg-slate-50 p-5 rounded-2xl border border-slate-100">
                             <h4 class="font-bold text-slate-800 mb-3">Nilai Karier Utama</h4>
                             <ul class="list-disc pl-5 text-sm text-slate-600 space-y-1">
-                                <li>Extrinsic Rewards</li>
-                                <li>Altruistic Rewards</li>
-                                <li>Leisure</li>
+                                @if(isset($nilaiKarier) && is_array($nilaiKarier->top_results))
+                                    @foreach($nilaiKarier->top_results as $code)
+                                        <li>{{ \App\Helpers\AssessmentHelper::getNilaiKarierDetail($code)['name'] }}</li>
+                                    @endforeach
+                                @else
+                                    <li>Data tidak tersedia</li>
+                                @endif
                             </ul>
                         </div>
                     </div>
@@ -92,8 +110,8 @@
                             </div>
                             <div>
                                 <p class="text-sm text-slate-500 font-medium mb-1">Profesi Terpilih:</p>
-                                <h4 class="text-3xl font-extrabold text-slate-900 mb-3">Software Engineer</h4>
-                                <p class="text-slate-700 leading-relaxed italic">"Saya memilih profesi ini karena sangat sesuai dengan minat analitis (Investigative) saya, serta keinginan saya untuk menciptakan solusi (Ideas) teknologi yang bermanfaat bagi banyak orang."</p>
+                                <h4 class="text-3xl font-extrabold text-slate-900 mb-3">{{ $keputusan->final_choice ?? 'Belum memilih' }}</h4>
+                                <p class="text-slate-700 leading-relaxed italic">"Pilihan profesi ini disimpulkan pada akhir sesi perjalanan karier berdasarkan seluruh rangkaian asesmen dan eksplorasi yang telah dilakukan."</p>
                             </div>
                         </div>
                     </div>

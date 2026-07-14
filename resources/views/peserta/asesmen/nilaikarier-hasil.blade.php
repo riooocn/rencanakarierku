@@ -20,38 +20,37 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-                    <!-- Top 1 -->
-                    <div class="relative bg-gradient-to-br from-accent-500 to-accent-600 rounded-2xl p-6 text-white text-center shadow-lg transform hover:-translate-y-2 transition-transform">
-                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 backdrop-blur-sm">
-                            <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                        </div>
-                        <h4 class="text-xl font-bold mb-2">Extrinsic Rewards</h4>
-                        <p class="text-sm text-accent-100">Menghargai penghasilan yang tinggi, status, dan keamanan finansial.</p>
-                    </div>
-
-                    <!-- Top 2 -->
-                    <div class="relative bg-white rounded-2xl p-6 text-center shadow-sm border border-slate-200 hover:-translate-y-2 transition-transform">
-                        <div class="w-16 h-16 bg-primary-50 rounded-full flex items-center justify-center mx-auto mb-4 text-primary-600">
-                            <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                            </svg>
-                        </div>
-                        <h4 class="text-xl font-bold text-slate-900 mb-2">Altruistic Rewards</h4>
-                        <p class="text-sm text-slate-500">Motivasi untuk membantu orang lain dan berkontribusi pada masyarakat.</p>
-                    </div>
-
-                    <!-- Top 3 -->
-                    <div class="relative bg-white rounded-2xl p-6 text-center shadow-sm border border-slate-200 hover:-translate-y-2 transition-transform">
-                        <div class="w-16 h-16 bg-primary-50 rounded-full flex items-center justify-center mx-auto mb-4 text-primary-600">
-                            <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                        </div>
-                        <h4 class="text-xl font-bold text-slate-900 mb-2">Leisure</h4>
-                        <p class="text-sm text-slate-500">Menginginkan keseimbangan antara kehidupan kerja dan waktu luang.</p>
-                    </div>
+                    @if(isset($result) && is_array($result->top_results))
+                        @foreach($result->top_results as $index => $code)
+                            @php
+                                $detail = \App\Helpers\AssessmentHelper::getNilaiKarierDetail($code);
+                            @endphp
+                            <!-- Top {{ $index + 1 }} -->
+                            @if($index === 0)
+                            <div class="relative bg-gradient-to-br from-accent-500 to-accent-600 rounded-2xl p-6 text-white text-center shadow-lg transform hover:-translate-y-2 transition-transform">
+                                <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 backdrop-blur-sm">
+                                    <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </div>
+                                <h4 class="text-xl font-bold mb-2">{{ $detail['name'] }}</h4>
+                                <p class="text-sm text-accent-100">{{ $detail['desc'] }}</p>
+                            </div>
+                            @else
+                            <div class="relative bg-white rounded-2xl p-6 text-center shadow-sm border border-slate-200 hover:-translate-y-2 transition-transform">
+                                <div class="w-16 h-16 bg-primary-50 rounded-full flex items-center justify-center mx-auto mb-4 text-primary-600">
+                                    <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                    </svg>
+                                </div>
+                                <h4 class="text-xl font-bold text-slate-900 mb-2">{{ $detail['name'] }}</h4>
+                                <p class="text-sm text-slate-500">{{ $detail['desc'] }}</p>
+                            </div>
+                            @endif
+                        @endforeach
+                    @else
+                        <div class="col-span-3 text-center text-slate-500">Hasil tidak ditemukan.</div>
+                    @endif
                 </div>
 
                 <div class="flex justify-between items-center pt-6 border-t border-slate-100">

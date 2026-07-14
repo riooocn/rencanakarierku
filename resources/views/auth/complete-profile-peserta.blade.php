@@ -13,7 +13,7 @@
     <p class="mt-2 text-sm text-slate-500">Tinggal satu langkah lagi untuk memulai perencanaan karier impianmu.</p>
 </div>
 
-<form action="{{ url('/perjalananku') }}" method="GET" class="space-y-4">
+<form action="{{ route('complete-profile.store') }}" method="POST" class="space-y-4">
     @csrf
     
     <div>
@@ -25,10 +25,19 @@
     </div>
 
     <div>
-        <label for="school" class="block text-sm font-medium text-slate-700 mb-1">Asal Sekolah</label>
-        <input type="text" id="school" name="school" required 
-            class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 focus:bg-white focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-colors"
-            placeholder="SMA N 1 Jakarta">
+        <label for="school_id" class="block text-sm font-medium text-slate-700 mb-1">Asal Sekolah</label>
+        @if($institutions->isEmpty())
+            <div class="w-full px-4 py-3 rounded-xl border border-red-200 bg-red-50 text-red-600 text-sm">
+                Belum ada instansi terdaftar. Silakan hubungi admin sekolah Anda.
+            </div>
+        @else
+            <select id="school_id" name="school_id" required class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 focus:bg-white focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-colors appearance-none">
+                <option value="">Pilih Instansi</option>
+                @foreach($institutions as $inst)
+                    <option value="{{ $inst->id }}" {{ old('school_id') == $inst->id ? 'selected' : '' }}>{{ $inst->name }}</option>
+                @endforeach
+            </select>
+        @endif
     </div>
 
     <div>
@@ -48,7 +57,7 @@
             placeholder="081234567890">
     </div>
 
-    <button type="submit" class="w-full py-3.5 px-4 mt-6 bg-primary-600 hover:bg-primary-700 text-white font-bold rounded-xl shadow-lg shadow-primary-500/30 transition-all hover:-translate-y-0.5">
+    <button type="submit" @if($institutions->isEmpty()) disabled @endif class="w-full py-3.5 px-4 mt-6 @if($institutions->isEmpty()) bg-slate-400 @else bg-primary-600 hover:bg-primary-700 hover:-translate-y-0.5 shadow-primary-500/30 @endif text-white font-bold rounded-xl shadow-lg transition-all">
         Simpan Profil
     </button>
 </form>

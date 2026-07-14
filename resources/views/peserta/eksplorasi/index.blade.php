@@ -41,7 +41,8 @@
             </div>
 
             <!-- Form Eksplorasi -->
-            <form action="{{ route('eksplorasi.hasil') }}" method="GET" class="space-y-8">
+            <form action="{{ route('eksplorasi.store') }}" method="POST" class="space-y-8">
+                @csrf
                 <!-- Input Nama Karier -->
                 <div class="bg-white rounded-3xl border border-slate-100 p-8 shadow-lg">
                     <h4 class="font-bold text-slate-800 text-xl mb-6">Tentukan Profesi Pilihan</h4>

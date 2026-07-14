@@ -19,33 +19,26 @@
 
                 <!-- 3 Top Scores -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-                    <!-- Rank 1 -->
-                    <div class="relative bg-primary-50 rounded-2xl p-6 border border-primary-100 flex flex-col items-center text-center group hover:bg-primary-600 transition-colors">
-                        <div class="absolute -top-4 bg-accent-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">Tertinggi</div>
-                        <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center text-primary-600 font-bold text-2xl mb-4 group-hover:text-primary-900">
-                            I
-                        </div>
-                        <h4 class="text-xl font-bold text-primary-900 mb-2 group-hover:text-white">Investigative</h4>
-                        <p class="text-sm text-slate-600 group-hover:text-primary-100">Pemikir, analitis, suka memecahkan masalah kompleks dan meneliti sains.</p>
-                    </div>
-
-                    <!-- Rank 2 -->
-                    <div class="relative bg-slate-50 rounded-2xl p-6 border border-slate-100 flex flex-col items-center text-center group hover:bg-primary-600 transition-colors">
-                        <div class="w-16 h-16 bg-white shadow-sm rounded-full flex items-center justify-center text-slate-600 font-bold text-2xl mb-4 group-hover:text-primary-900">
-                            A
-                        </div>
-                        <h4 class="text-xl font-bold text-slate-800 mb-2 group-hover:text-white">Artistic</h4>
-                        <p class="text-sm text-slate-600 group-hover:text-primary-100">Kreatif, inovatif, suka mengekspresikan diri melalui seni atau ide original.</p>
-                    </div>
-
-                    <!-- Rank 3 -->
-                    <div class="relative bg-slate-50 rounded-2xl p-6 border border-slate-100 flex flex-col items-center text-center group hover:bg-primary-600 transition-colors">
-                        <div class="w-16 h-16 bg-white shadow-sm rounded-full flex items-center justify-center text-slate-600 font-bold text-2xl mb-4 group-hover:text-primary-900">
-                            S
-                        </div>
-                        <h4 class="text-xl font-bold text-slate-800 mb-2 group-hover:text-white">Social</h4>
-                        <p class="text-sm text-slate-600 group-hover:text-primary-100">Pemberi bantuan, ramah, suka mengajar, membimbing, atau menyembuhkan orang lain.</p>
-                    </div>
+                    @if(isset($result) && is_array($result->top_results))
+                        @foreach($result->top_results as $index => $code)
+                            @php
+                                $detail = \App\Helpers\AssessmentHelper::getMinatDetail($code);
+                            @endphp
+                            <!-- Rank {{ $index + 1 }} -->
+                            <div class="relative bg-{{ $index === 0 ? 'primary-50' : 'slate-50' }} rounded-2xl p-6 border border-{{ $index === 0 ? 'primary-100' : 'slate-100' }} flex flex-col items-center text-center group hover:bg-primary-600 transition-colors">
+                                @if($index === 0)
+                                    <div class="absolute -top-4 bg-accent-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">Tertinggi</div>
+                                @endif
+                                <div class="w-16 h-16 bg-white {{ $index === 0 ? '' : 'shadow-sm' }} rounded-full flex items-center justify-center text-{{ $index === 0 ? 'primary-600' : 'slate-600' }} font-bold text-2xl mb-4 group-hover:text-primary-900">
+                                    {{ $detail['letter'] }}
+                                </div>
+                                <h4 class="text-xl font-bold text-{{ $index === 0 ? 'primary-900' : 'slate-800' }} mb-2 group-hover:text-white">{{ $detail['name'] }}</h4>
+                                <p class="text-sm text-slate-600 group-hover:text-primary-100">{{ $detail['desc'] }}</p>
+                            </div>
+                        @endforeach
+                    @else
+                        <div class="col-span-3 text-center text-slate-500">Hasil tidak ditemukan.</div>
+                    @endif
                 </div>
 
                 <div class="flex justify-between items-center pt-6 border-t border-slate-100">

@@ -30,7 +30,7 @@
 
 <form action="{{ route('register') }}" method="POST" class="space-y-4">
     @csrf
-    <input type="hidden" name="role" value="instansi">
+    <input type="hidden" name="role" value="admin">
     
     <div>
         <label for="name" class="block text-sm font-medium text-slate-700 mb-1">Nama Lengkap</label>
@@ -42,12 +42,32 @@
         @enderror
     </div>
 
-    <div>
-        <label for="school" class="block text-sm font-medium text-slate-700 mb-1">Nama Instansi / Sekolah</label>
-        <input type="text" id="school" name="school" required value="{{ old('school') }}"
-            class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 focus:bg-white focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-colors"
-            placeholder="SMA N 1 Jakarta / Instansi XYZ">
-        @error('school')
+    <div x-data="{ isNewSchool: false }">
+        <label for="school_id" class="block text-sm font-medium text-slate-700 mb-1">Nama Instansi / Sekolah</label>
+        
+        <select id="school_id" name="school_id" x-bind:required="!isNewSchool" x-bind:disabled="isNewSchool" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 focus:bg-white focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-colors appearance-none">
+            <option value="">Pilih Instansi</option>
+            @foreach($institutions as $inst)
+                <option value="{{ $inst->id }}" {{ old('school_id') == $inst->id ? 'selected' : '' }}>{{ $inst->name }}</option>
+            @endforeach
+        </select>
+        
+        <div class="mt-3 flex items-center">
+            <input type="checkbox" id="isNewSchool" x-model="isNewSchool" class="w-4 h-4 text-primary-600 border-slate-300 rounded focus:ring-primary-500">
+            <label for="isNewSchool" class="ml-2 text-sm text-slate-600 cursor-pointer">Daftar instansi baru</label>
+        </div>
+
+        <div x-show="isNewSchool" style="display: none;" class="mt-4">
+            <label for="new_school" class="block text-sm font-medium text-slate-700 mb-1">Ketik Nama Instansi Baru</label>
+            <input type="text" id="new_school" name="new_school" x-bind:required="isNewSchool" x-bind:disabled="!isNewSchool"
+                class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 focus:bg-white focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-colors"
+                placeholder="Misal: SMA N 1 Jakarta">
+        </div>
+
+        @error('school_id')
+            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+        @enderror
+        @error('new_school')
             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
         @enderror
     </div>
