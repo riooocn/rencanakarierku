@@ -45,9 +45,8 @@
                             </span>
                         @endif
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-900">
-                        <!-- We could load participants count dynamically if we add withCount('pesertas') in the future, for now placeholder -->
-                        -
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-900 font-semibold">
+                        {{ $admin->institution->peserta_count ?? 0 }} Siswa
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-3">
                         @if($admin->is_active)

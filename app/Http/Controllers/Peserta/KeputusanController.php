@@ -8,9 +8,29 @@ use Illuminate\Http\Request;
 
 class KeputusanController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('peserta.keputusan.index');
+        $user = $request->user();
+
+        $minat = \App\Models\AsesmenResult::whereHas('session', function($q) use ($user) {
+            $q->where('user_id', $user->id)->where('asesmen_type', 'minat');
+        })->latest()->first();
+
+        $kapasitas = \App\Models\AsesmenResult::whereHas('session', function($q) use ($user) {
+            $q->where('user_id', $user->id)->where('asesmen_type', 'kapasitas');
+        })->latest()->first();
+
+        $nilaiKarier = \App\Models\AsesmenResult::whereHas('session', function($q) use ($user) {
+            $q->where('user_id', $user->id)->where('asesmen_type', 'nilai_karier');
+        })->latest()->first();
+
+        $eksplorasi = \App\Models\EksplorasiKarier::where('user_id', $user->id)->get();
+        
+        if ($eksplorasi->isEmpty()) {
+            return redirect()->route('eksplorasi.index');
+        }
+
+        return view('peserta.keputusan.index', compact('minat', 'kapasitas', 'nilaiKarier', 'eksplorasi'));
     }
 
     public function store(Request $request)

@@ -22,6 +22,22 @@
                 </div>
 
                 <div class="p-8 bg-slate-50 border-b border-slate-200">
+                    @php
+                        $k1 = isset($eksplorasi) ? $eksplorasi->where('option', 1)->first() : null;
+                        $k2 = isset($eksplorasi) ? $eksplorasi->where('option', 2)->first() : null;
+                        
+                        $aspects = [
+                            ['id' => 'pendidikan', 'label' => 'Pendidikan Tinggi Minimal'],
+                            ['id' => 'jurusan', 'label' => 'Jurusan yang paling sesuai'],
+                            ['id' => 'matkul', 'label' => 'Mata kuliah yang perlu dilalui'],
+                            ['id' => 'keterampilan', 'label' => 'Keterampilan yang perlu dikuasai'],
+                            ['id' => 'pelatihan', 'label' => 'Pelatihan formal/pendidikan lain'],
+                            ['id' => 'sertifikasi', 'label' => 'Sertifikasi yang perlu diambil'],
+                            ['id' => 'peluang', 'label' => 'Peluang di masa depan'],
+                            ['id' => 'tugas', 'label' => 'Tugas & Tanggung jawab'],
+                            ['id' => 'info_lain', 'label' => 'Informasi lain yang menarik']
+                        ];
+                    @endphp
                     <h4 class="font-bold text-slate-800 text-xl mb-4 flex items-center gap-2">
                         <svg class="w-6 h-6 text-accent-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
                         Ringkasan Diriku (Berdasarkan Asesmen)
@@ -30,24 +46,37 @@
                         <div class="bg-white p-5 rounded-2xl border border-blue-100 shadow-sm">
                             <h5 class="font-bold text-blue-900 mb-2 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-blue-500"></span> 3 Minat Teratas</h5>
                             <ul class="text-sm text-slate-600 list-disc list-inside space-y-1">
-                                <li>Investigative</li>
-                                <li>Artistic</li>
-                                <li>Ideas</li>
+                                @if(isset($minat) && is_array($minat->top_results))
+                                    @foreach($minat->top_results as $code)
+                                        <li>{{ \App\Helpers\AssessmentHelper::getMinatDetail($code)['name'] }}</li>
+                                    @endforeach
+                                @else
+                                    <li>Belum ada data</li>
+                                @endif
                             </ul>
                         </div>
                         <div class="bg-white p-5 rounded-2xl border border-green-100 shadow-sm">
                             <h5 class="font-bold text-green-900 mb-2 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-green-500"></span> Kapasitas Utama</h5>
                             <ul class="text-sm text-slate-600 list-disc list-inside space-y-1">
-                                <li>Bidang: Ideas & Data</li>
-                                <li>Mata Pelajaran: Komputer, Matematika, B. Inggris</li>
+                                @if(isset($kapasitas) && isset($kapasitas->top_results['keterampilan']))
+                                    @foreach($kapasitas->top_results['keterampilan'] as $code)
+                                        <li>{{ \App\Helpers\AssessmentHelper::getKapasitas1Detail($code)['name'] }}</li>
+                                    @endforeach
+                                @else
+                                    <li>Belum ada data</li>
+                                @endif
                             </ul>
                         </div>
                         <div class="bg-white p-5 rounded-2xl border border-purple-100 shadow-sm">
                             <h5 class="font-bold text-purple-900 mb-2 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-purple-500"></span> Nilai Karier</h5>
                             <ul class="text-sm text-slate-600 list-disc list-inside space-y-1">
-                                <li>Intrinsic Rewards</li>
-                                <li>Extrinsic Rewards</li>
-                                <li>Leisure</li>
+                                @if(isset($nilaiKarier) && is_array($nilaiKarier->top_results))
+                                    @foreach($nilaiKarier->top_results as $code)
+                                        <li>{{ \App\Helpers\AssessmentHelper::getNilaiKarierDetail($code)['name'] }}</li>
+                                    @endforeach
+                                @else
+                                    <li>Belum ada data</li>
+                                @endif
                             </ul>
                         </div>
                     </div>
@@ -76,11 +105,11 @@
                                     <th class="w-1/4 p-4 bg-slate-100 border-b border-r border-slate-200 text-slate-700 font-bold align-bottom">Aspek Eksplorasi</th>
                                     <th class="w-3/8 p-4 bg-blue-50 border-b border-r border-blue-100 text-center">
                                         <span class="text-xs font-bold text-blue-600 uppercase tracking-wider block mb-1">Karier 1</span>
-                                        <span class="text-xl font-extrabold text-primary-900">Software Engineer</span>
+                                        <span class="text-xl font-extrabold text-primary-900">{{ $k1 ? $k1->career_name : 'Karier 1' }}</span>
                                     </th>
                                     <th class="w-3/8 p-4 bg-purple-50 border-b border-purple-100 text-center">
                                         <span class="text-xs font-bold text-purple-600 uppercase tracking-wider block mb-1">Karier 2</span>
-                                        <span class="text-xl font-extrabold text-accent-900">Desainer UI/UX</span>
+                                        <span class="text-xl font-extrabold text-accent-900">{{ $k2 ? $k2->career_name : 'Karier 2' }}</span>
                                     </th>
                                 </tr>
                             </thead>
@@ -164,15 +193,13 @@
                 selections: {}, // Maps rowIndex -> 1 or 2
                 
                 tableData: [
-                    { label: "Pendidikan Tinggi Minimal", k1: "Sarjana (S1)", k2: "Sarjana (S1)" },
-                    { label: "Jurusan yang paling sesuai", k1: "Teknik Informatika", k2: "Desain Komunikasi Visual" },
-                    { label: "Mata kuliah yang perlu dilalui", k1: "Algoritma, Basis Data", k2: "Desain Interaksi, Psikologi Pengguna" }, // index 2
-                    { label: "Keterampilan yang perlu dikuasai", k1: "Pemrograman, Logika Matematika", k2: "Figma, Wireframing" }, // index 3
-                    { label: "Pelatihan formal/pendidikan lain", k1: "Bootcamp Web Development", k2: "Kursus UI/UX Design" }, // index 4
-                    { label: "Sertifikasi yang perlu diambil", k1: "AWS Certified Developer", k2: "Google UX Design Certificate" }, // index 5
-                    { label: "Peluang di masa depan", k1: "Sangat terbuka karena semua sektor butuh digitalisasi", k2: "Sangat baik seiring berkembangnya startup digital" }, // index 6
-                    { label: "Tugas & Tanggung jawab", k1: "Membangun sistem dan aplikasi", k2: "Membuat antarmuka yang ramah pengguna" }, // index 7
-                    { label: "Informasi lain yang menarik", k1: "Bisa bekerja remote (WFH)", k2: "Sangat menghargai kreativitas" } // index 8
+                    @foreach($aspects as $aspect)
+                    { 
+                        label: {!! json_encode($aspect['label']) !!}, 
+                        k1: {!! json_encode($k1 ? $k1->{$aspect['id']} : '-') !!}, 
+                        k2: {!! json_encode($k2 ? $k2->{$aspect['id']} : '-') !!} 
+                    },
+                    @endforeach
                 ],
 
                 questions: [
@@ -199,13 +226,15 @@
                 },
 
                 finish() {
-                    // Determine winner
+                    let c1 = {!! json_encode($k1 ? $k1->career_name : 'Karier 1') !!};
+                    let c2 = {!! json_encode($k2 ? $k2->career_name : 'Karier 2') !!};
+
                     if (this.scores[1] > this.scores[2]) {
-                        this.winner = "Software Engineer";
+                        this.winner = c1;
                     } else if (this.scores[2] > this.scores[1]) {
-                        this.winner = "Desainer UI/UX";
+                        this.winner = c2;
                     } else {
-                        this.winner = "Software Engineer & Desainer UI/UX (Seimbang)";
+                        this.winner = c1 + " & " + c2 + " (Seimbang)";
                     }
                     this.showResult = true;
                     window.scrollTo({ top: 0, behavior: 'smooth' });

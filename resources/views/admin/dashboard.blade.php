@@ -29,7 +29,7 @@
         </div>
         <div>
             <p class="text-sm font-medium text-slate-500 mb-1">Selesai Tes</p>
-            <h4 class="text-2xl font-bold text-slate-900">312</h4>
+            <h4 class="text-2xl font-bold text-slate-900">{{ $siswaSelesaiTesCount }}</h4>
         </div>
     </div>
 

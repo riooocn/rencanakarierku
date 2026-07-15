@@ -29,9 +29,14 @@ class AdminController extends Controller
             ->take(5)
             ->get();
             
+        $siswaSelesaiTesCount = User::where('role', 'peserta')
+            ->where('institution_id', $user->institution_id)
+            ->has('keputusanKarier')
+            ->count();
+            
         // Can add more stats here
         
-        return view('admin.dashboard', compact('pesertaCount', 'pendingPesertaCount', 'pendingPeserta'));
+        return view('admin.dashboard', compact('pesertaCount', 'pendingPesertaCount', 'pendingPeserta', 'siswaSelesaiTesCount'));
     }
 
     public function peserta(Request $request)
@@ -40,7 +45,7 @@ class AdminController extends Controller
         
         $pesertaList = User::where('role', 'peserta')
             ->where('institution_id', $user->institution_id)
-            ->with(['assessmentSessions', 'eksplorasiKariers', 'keputusanKariers'])
+            ->with(['assessmentSessions', 'eksplorasiKariers', 'keputusanKarier'])
             ->orderBy('is_active', 'asc')
             ->orderBy('created_at', 'desc')
             ->paginate(15);
@@ -55,7 +60,7 @@ class AdminController extends Controller
         $peserta = User::where('role', 'peserta')
             ->where('institution_id', $user->institution_id)
             ->where('id', $id)
-            ->with(['assessmentSessions.asesmenResult', 'eksplorasiKariers', 'keputusanKariers'])
+            ->with(['assessmentSessions.result', 'eksplorasiKariers', 'keputusanKarier'])
             ->firstOrFail();
             
         return view('admin.peserta.show', compact('peserta'));

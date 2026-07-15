@@ -12,10 +12,8 @@
     <aside class="w-64 bg-slate-900 border-r border-slate-800 flex flex-col hidden md:flex shrink-0 text-white">
         <!-- Logo -->
         <div class="h-16 flex items-center px-6 border-b border-slate-800 bg-slate-950">
-            <a href="{{ url('/') }}" class="inline-flex items-center gap-2">
-                <div class="w-8 h-8 rounded-lg bg-primary-600 flex items-center justify-center font-bold text-white text-lg">
-                    R
-                </div>
+            <a href="{{ Auth::user()->role === 'superadmin' ? route('superadmin.dashboard') : route('admin.dashboard') }}" class="inline-flex items-center gap-2">
+                <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-8 h-8 object-contain">
                 <span class="font-bold text-lg tracking-tight text-white">
                     Rencana<span class="text-primary-400">Karierku</span>
                 </span>
@@ -57,8 +55,8 @@
     <div class="flex-1 flex flex-col overflow-hidden">
         <!-- Top header for mobile -->
         <header class="md:hidden h-16 bg-slate-900 border-b border-slate-800 flex items-center justify-between px-4">
-            <a href="{{ url('/') }}" class="inline-flex items-center gap-2">
-                <div class="w-8 h-8 rounded-lg bg-primary-600 flex items-center justify-center font-bold text-white text-lg">R</div>
+            <a href="{{ Auth::user()->role === 'superadmin' ? route('superadmin.dashboard') : route('admin.dashboard') }}" class="inline-flex items-center gap-2">
+                <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-8 h-8 object-contain">
             </a>
             <button class="text-slate-400 hover:text-white focus:outline-none">
                 <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -40,6 +40,7 @@
                 <tr>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Data Siswa</th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Kelas</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Tgl Lahir</th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Status Asesmen</th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Tanggal Tes</th>
                     <th scope="col" class="relative px-6 py-3 text-right text-xs font-semibold text-slate-500 uppercase tracking-wider">Aksi</th>
@@ -60,7 +61,10 @@
                         </div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-slate-900">{{ $peserta->grade ? 'Kelas ' . $peserta->grade : '-' }}</div>
+                        <div class="text-sm text-slate-900">{{ $peserta->grade ? (is_numeric($peserta->grade) ? 'Kelas ' . $peserta->grade : $peserta->grade) : '-' }}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm text-slate-900">{{ $peserta->tanggal_lahir ? \Carbon\Carbon::parse($peserta->tanggal_lahir)->format('d M Y') : '-' }}</div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
                         @if($peserta->is_active)
@@ -89,7 +93,7 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="5" class="px-6 py-8 text-center text-slate-500">Belum ada peserta yang terdaftar di instansi Anda.</td>
+                    <td colspan="6" class="px-6 py-8 text-center text-slate-500">Belum ada peserta yang terdaftar di instansi Anda.</td>
                 </tr>
                 @endforelse
             </tbody>

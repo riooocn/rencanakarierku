@@ -16,7 +16,7 @@
         </div>
         <div>
             <p class="text-sm font-medium text-slate-500 mb-1">Total Instansi/Sekolah</p>
-            <h4 class="text-2xl font-bold text-slate-900">45</h4>
+            <h4 class="text-2xl font-bold text-slate-900">{{ number_format($institutionCount) }}</h4>
         </div>
     </div>
 
@@ -29,7 +29,7 @@
         </div>
         <div>
             <p class="text-sm font-medium text-slate-500 mb-1">Total Siswa Terdaftar</p>
-            <h4 class="text-2xl font-bold text-slate-900">12,500</h4>
+            <h4 class="text-2xl font-bold text-slate-900">{{ number_format($pesertaCount) }}</h4>
         </div>
     </div>
 
@@ -42,7 +42,7 @@
         </div>
         <div>
             <p class="text-sm font-medium text-slate-500 mb-1">Siswa Selesai Tes</p>
-            <h4 class="text-2xl font-bold text-slate-900">9,840</h4>
+            <h4 class="text-2xl font-bold text-slate-900">{{ number_format($siswaSelesaiTesCount) }}</h4>
         </div>
     </div>
 

@@ -22,25 +22,47 @@
                 <div class="p-0">
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse min-w-[800px]">
+                            @php
+                                $k1 = $eksplorasi->where('option', 1)->first();
+                                $k2 = $eksplorasi->where('option', 2)->first();
+                                
+                                $aspects = [
+                                    ['id' => 'pendidikan', 'label' => 'Pendidikan Tinggi Minimal'],
+                                    ['id' => 'jurusan', 'label' => 'Jurusan yang paling sesuai'],
+                                    ['id' => 'matkul', 'label' => 'Mata kuliah yang perlu dilalui'],
+                                    ['id' => 'keterampilan', 'label' => 'Keterampilan yang perlu dikuasai'],
+                                    ['id' => 'pelatihan', 'label' => 'Pelatihan formal/pendidikan lain'],
+                                    ['id' => 'sertifikasi', 'label' => 'Sertifikasi yang perlu diambil'],
+                                    ['id' => 'peluang', 'label' => 'Peluang di masa depan'],
+                                    ['id' => 'tugas', 'label' => 'Tugas & Tanggung jawab'],
+                                    ['id' => 'info_lain', 'label' => 'Informasi lain yang menarik']
+                                ];
+                            @endphp
                             <thead>
                                 <tr>
                                     <th class="w-1/4 p-6 bg-slate-50 border-b border-r border-slate-200 text-slate-500 font-semibold align-bottom">Aspek Eksplorasi</th>
                                     <th class="w-3/8 p-6 bg-blue-50/50 border-b border-r border-slate-200">
                                         <div class="text-center">
                                             <span class="inline-block px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-bold mb-3 uppercase tracking-wider">Karier Pilihan 1</span>
-                                            <h4 class="text-2xl font-extrabold text-primary-800">Software Engineer</h4>
+                                            <h4 class="text-2xl font-extrabold text-primary-800">{{ $k1 ? $k1->career_name : 'Karier 1' }}</h4>
                                         </div>
                                     </th>
                                     <th class="w-3/8 p-6 bg-purple-50/50 border-b border-slate-200">
                                         <div class="text-center">
                                             <span class="inline-block px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-bold mb-3 uppercase tracking-wider">Karier Pilihan 2</span>
-                                            <h4 class="text-2xl font-extrabold text-accent-800">Desainer UI/UX</h4>
+                                            <h4 class="text-2xl font-extrabold text-accent-800">{{ $k2 ? $k2->career_name : 'Karier 2' }}</h4>
                                         </div>
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-slate-100" id="comparison-body">
-                                <!-- Populated by JS -->
+                            <tbody class="divide-y divide-slate-100">
+                                @foreach($aspects as $aspect)
+                                <tr class="hover:bg-slate-50 transition-colors">
+                                    <td class="p-6 border-r border-slate-200 text-slate-700 font-medium bg-slate-50/50">{{ $aspect['label'] }}</td>
+                                    <td class="p-6 border-r border-slate-200 text-slate-800">{{ $k1 ? $k1->{$aspect['id']} : '-' }}</td>
+                                    <td class="p-6 text-slate-800">{{ $k2 ? $k2->{$aspect['id']} : '-' }}</td>
+                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -67,61 +89,5 @@
         </div>
     </div>
 
-    <script>
-        // Mock data to demonstrate the table layout based on the submitted form
-        const urlParams = new URLSearchParams(window.location.search);
-        
-        // If data exists in URL, use it, else use mock data
-        const karier1Name = urlParams.get('karier1') || 'Software Engineer';
-        const karier2Name = urlParams.get('karier2') || 'Desainer UI/UX';
-
-        const aspects = [
-            { id: "pendidikan", label: "Pendidikan Tinggi Minimal" },
-            { id: "jurusan", label: "Jurusan yang paling sesuai" },
-            { id: "matkul", label: "Mata kuliah yang perlu dilalui" },
-            { id: "keterampilan", label: "Keterampilan yang perlu dikuasai" },
-            { id: "pelatihan", label: "Pelatihan formal/pendidikan lain" },
-            { id: "sertifikasi", label: "Sertifikasi yang perlu diambil" },
-            { id: "peluang", label: "Peluang di masa depan" },
-            { id: "tugas", label: "Tugas & Tanggung jawab" },
-            { id: "info_lain", label: "Informasi lain yang menarik" }
-        ];
-
-        const dummyK1 = [
-            "Sarjana (S1)", "Teknik Informatika", "Algoritma, Basis Data, Struktur Data", 
-            "Pemrograman, Logika Matematika", "Bootcamp Web Development", 
-            "AWS Certified Developer, Google Cloud Engineer", "Sangat terbuka karena semua sektor butuh digitalisasi",
-            "Membangun sistem dan aplikasi", "Bisa bekerja remote dari mana saja (WFH)"
-        ];
-
-        const dummyK2 = [
-            "Sarjana (S1)", "Desain Komunikasi Visual / Sistem Informasi", "Desain Interaksi, Psikologi Pengguna", 
-            "Figma, Wireframing, Pemahaman UX", "Kursus UI/UX Design", 
-            "Google UX Design Certificate", "Sangat baik seiring berkembangnya startup digital",
-            "Membuat antarmuka yang ramah pengguna", "Sangat menghargai kreativitas"
-        ];
-
-        let tbody = '';
-        aspects.forEach((aspect, index) => {
-            const v1 = urlParams.get('k1_' + aspect.id) || dummyK1[index];
-            const v2 = urlParams.get('k2_' + aspect.id) || dummyK2[index];
-            
-            tbody += `
-                <tr class="hover:bg-slate-50 transition-colors">
-                    <td class="p-6 border-r border-slate-200 text-slate-700 font-medium bg-slate-50/50">${aspect.label}</td>
-                    <td class="p-6 border-r border-slate-200 text-slate-800">${v1}</td>
-                    <td class="p-6 text-slate-800">${v2}</td>
-                </tr>
-            `;
-        });
-        
-        document.getElementById('comparison-body').innerHTML = tbody;
-
-        // Update headers if custom names provided
-        if (urlParams.has('karier1')) {
-            const h4s = document.querySelectorAll('thead h4');
-            h4s[0].textContent = karier1Name;
-            h4s[1].textContent = karier2Name;
-        }
-    </script>
+    <!-- Data rendered by Blade -->
 </x-app-layout>

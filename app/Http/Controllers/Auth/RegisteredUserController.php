@@ -44,6 +44,8 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'role' => ['required', 'string', 'in:peserta,admin'],
             'phone' => ['required', 'string', 'max:20'],
+            'tanggal_lahir' => ['required', 'date'],
+            'jenis_kelamin' => ['required', 'in:Laki-laki,Perempuan'],
         ]);
 
         if ($request->filled('new_school')) {
@@ -51,6 +53,15 @@ class RegisteredUserController extends Controller
         } else {
             $request->validate(['school_id' => 'required|exists:institutions,id']);
             $institution = Institution::find($request->school_id);
+        }
+
+        if ($request->role === 'admin') {
+            $adminCount = User::where('institution_id', $institution->id)
+                              ->where('role', 'admin')
+                              ->count();
+            if ($adminCount >= 3) {
+                return back()->withErrors(['school_id' => 'Instansi ini sudah mencapai batas maksimal 3 admin.'])->withInput();
+            }
         }
 
         $user = User::create([
@@ -61,6 +72,8 @@ class RegisteredUserController extends Controller
             'institution_id' => $institution->id,
             'phone' => $request->phone,
             'grade' => $request->grade ?? null,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'jenis_kelamin' => $request->jenis_kelamin,
             'is_active' => false,
         ]);
 

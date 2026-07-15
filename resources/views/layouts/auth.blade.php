@@ -40,9 +40,7 @@
             <!-- Mobile Logo -->
             <div class="flex lg:hidden justify-center mb-8">
                 <a href="{{ url('/') }}" class="inline-flex items-center gap-2">
-                    <div class="w-10 h-10 rounded-lg bg-primary-600 flex items-center justify-center font-bold text-xl text-white">
-                        R
-                    </div>
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-10 h-10 object-contain">
                     <span class="font-bold text-2xl tracking-tight text-slate-900">
                         Rencana<span class="text-primary-600">Karierku</span>
                     </span>

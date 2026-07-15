@@ -40,11 +40,13 @@
                         <span class="bg-primary-600 text-white w-6 h-6 rounded-full inline-flex items-center justify-center text-sm mr-2">1</span>
                         Profil Peserta
                     </h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-slate-700">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-slate-700">
                         <div><strong class="inline-block w-32">Nama:</strong> {{ Auth::user()->name }}</div>
-                        <div><strong class="inline-block w-32">Sekolah:</strong> {{ Auth::user()->institution->name ?? 'Instansi' }}</div>
+                        <div><strong class="inline-block w-32">Asal Sekolah:</strong> {{ Auth::user()->institution->name ?? '-' }}</div>
+                        <div><strong class="inline-block w-32">Kelas:</strong> {{ Auth::user()->grade ? (is_numeric(Auth::user()->grade) ? 'Kelas ' . Auth::user()->grade : Auth::user()->grade) : '-' }}</div>
                         <div><strong class="inline-block w-32">Email:</strong> {{ Auth::user()->email }}</div>
-                        <div><strong class="inline-block w-32">Tanggal Selesai:</strong> {{ $keputusan->created_at->translatedFormat('d F Y') }}</div>
+                        <div><strong class="inline-block w-32">Tanggal Lahir:</strong> {{ Auth::user()->tanggal_lahir ? \Carbon\Carbon::parse(Auth::user()->tanggal_lahir)->format('d M Y') : '-' }}</div>
+                        <div><strong class="inline-block w-32">Jenis Kelamin:</strong> {{ Auth::user()->jenis_kelamin ?? '-' }}</div>
                     </div>
                 </div>
 

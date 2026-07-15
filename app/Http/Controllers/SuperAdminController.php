@@ -13,7 +13,10 @@ class SuperAdminController extends Controller
     {
         $adminCount = User::where('role', 'admin')->count();
         $pesertaCount = User::where('role', 'peserta')->count();
-        $institutionCount = Institution::count();
+        $siswaSelesaiTesCount = User::where('role', 'peserta')->has('keputusanKarier')->count();
+        $institutionCount = Institution::whereHas('users', function ($q) {
+            $q->where('role', 'admin');
+        })->count();
         
         $pendingAdmins = User::where('role', 'admin')
             ->where('is_active', false)
@@ -24,13 +27,17 @@ class SuperAdminController extends Controller
             
         $pendingAdminsCount = User::where('role', 'admin')->where('is_active', false)->count();
         
-        return view('superadmin.dashboard', compact('adminCount', 'pesertaCount', 'institutionCount', 'pendingAdmins', 'pendingAdminsCount'));
+        return view('superadmin.dashboard', compact('adminCount', 'pesertaCount', 'siswaSelesaiTesCount', 'institutionCount', 'pendingAdmins', 'pendingAdminsCount'));
     }
 
     public function adminList()
     {
         $adminList = User::where('role', 'admin')
-            ->with('institution')
+            ->with(['institution' => function ($query) {
+                $query->withCount(['users as peserta_count' => function ($q) {
+                    $q->where('role', 'peserta');
+                }]);
+            }])
             ->orderBy('is_active', 'asc')
             ->orderBy('created_at', 'desc')
             ->paginate(15);
@@ -62,7 +69,7 @@ class SuperAdminController extends Controller
         
         $pesertaList = User::where('role', 'peserta')
             ->where('institution_id', $admin->institution_id)
-            ->with(['assessmentSessions', 'eksplorasiKariers', 'keputusanKariers'])
+            ->with(['assessmentSessions', 'eksplorasiKariers', 'keputusanKarier'])
             ->paginate(15);
             
         return view('superadmin.peserta.index', compact('pesertaList', 'admin'));
@@ -71,7 +78,7 @@ class SuperAdminController extends Controller
     public function pesertaList()
     {
         $pesertaList = User::where('role', 'peserta')
-            ->with(['institution', 'assessmentSessions', 'eksplorasiKariers', 'keputusanKariers'])
+            ->with(['institution', 'assessmentSessions', 'eksplorasiKariers', 'keputusanKarier'])
             ->paginate(20);
             
         return view('superadmin.peserta.index', compact('pesertaList'));
@@ -81,7 +88,7 @@ class SuperAdminController extends Controller
     {
         $peserta = User::where('role', 'peserta')
             ->where('id', $id)
-            ->with(['institution', 'assessmentSessions.asesmenResult', 'eksplorasiKariers', 'keputusanKariers'])
+            ->with(['institution', 'assessmentSessions.result', 'eksplorasiKariers', 'keputusanKarier'])
             ->firstOrFail();
             
         return view('superadmin.peserta.show', compact('peserta'));
