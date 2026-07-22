@@ -60,7 +60,8 @@
                             <ul class="text-sm text-slate-600 list-disc list-inside space-y-1">
                                 @if(isset($kapasitas) && isset($kapasitas->top_results['keterampilan']))
                                     @foreach($kapasitas->top_results['keterampilan'] as $code)
-                                        <li>{{ \App\Helpers\AssessmentHelper::getKapasitas1Detail($code)['name'] }}</li>
+                                        @php $capDetail = \App\Helpers\AssessmentHelper::getKapasitas1Detail($code); @endphp
+                                        <li title="{{ $capDetail['desc'] }}" class="cursor-help border-b border-dashed border-slate-300 w-fit pb-0.5 hover:text-green-700 transition-colors">{{ $capDetail['name'] }}</li>
                                     @endforeach
                                 @else
                                     <li>Belum ada data</li>
@@ -89,11 +90,19 @@
                             Pertanyaan <span x-text="step + 1"></span> dari 7
                         </div>
                         <h4 class="text-xl font-bold text-accent-900 mt-2 mb-4" x-text="questions[step].text"></h4>
-                        <div class="flex items-center gap-4">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
                             <p class="text-sm text-accent-700 font-medium">Pilih (klik) salah satu jawaban di tabel bawah, atau:</p>
-                            <button @click="answer('skip')" class="px-4 py-2 bg-white border border-slate-300 text-slate-600 font-semibold rounded-lg hover:bg-slate-50 transition-colors shadow-sm text-sm">
-                                Lewati Pertanyaan Ini
-                            </button>
+                            <div class="flex gap-2">
+                                <button x-show="step > 0" @click="step--" class="px-4 py-2 bg-white border border-slate-300 text-slate-600 font-semibold rounded-lg hover:bg-slate-50 transition-colors shadow-sm text-sm">
+                                    &larr; Kembali
+                                </button>
+                                <button @click="answer('skip')" class="px-4 py-2 bg-white border border-slate-300 text-slate-600 font-semibold rounded-lg hover:bg-slate-50 transition-colors shadow-sm text-sm">
+                                    Lewati Pertanyaan Ini
+                                </button>
+                                <button x-show="step === questions.length - 1" @click="finish()" class="px-4 py-2 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors shadow-sm text-sm">
+                                    Selesai & Lihat Hasil
+                                </button>
+                            </div>
                         </div>
                     </div>
 
@@ -220,8 +229,6 @@
                     
                     if (this.step < this.questions.length - 1) {
                         this.step++;
-                    } else {
-                        this.finish();
                     }
                 },
 

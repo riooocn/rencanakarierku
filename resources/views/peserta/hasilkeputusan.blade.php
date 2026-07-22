@@ -74,7 +74,8 @@
                             <ul class="list-disc pl-5 text-sm text-slate-600 space-y-1">
                                 @if(isset($kapasitas) && isset($kapasitas->top_results['keterampilan']))
                                     @foreach($kapasitas->top_results['keterampilan'] as $code)
-                                        <li>{{ \App\Helpers\AssessmentHelper::getKapasitas1Detail($code)['name'] }}</li>
+                                        @php $capDetail = \App\Helpers\AssessmentHelper::getKapasitas1Detail($code); @endphp
+                                        <li title="{{ $capDetail['desc'] }}" class="cursor-help border-b border-dashed border-slate-300 w-fit pb-0.5 hover:text-slate-800 transition-colors">{{ $capDetail['name'] }}</li>
                                     @endforeach
                                 @else
                                     <li>Data tidak tersedia</li>

@@ -34,6 +34,8 @@ class EksplorasiController extends Controller
                 'user_id' => $user->id,
                 'option' => 1,
                 'career_name' => $request->karier1,
+                'created_at' => now(),
+                'updated_at' => now(),
             ];
             foreach ($fields as $f) {
                 $data1[$f] = $request->input('k1_'.$f);
@@ -43,6 +45,8 @@ class EksplorasiController extends Controller
                 'user_id' => $user->id,
                 'option' => 2,
                 'career_name' => $request->karier2,
+                'created_at' => now(),
+                'updated_at' => now(),
             ];
             foreach ($fields as $f) {
                 $data2[$f] = $request->input('k2_'.$f);

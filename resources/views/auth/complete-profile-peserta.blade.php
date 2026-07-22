@@ -18,9 +18,9 @@
     
     <div>
         <label for="name" class="block text-sm font-medium text-slate-700 mb-1">Nama Lengkap</label>
-        <input type="text" id="name" name="name" required value="{{ old('name', 'Budi Santoso') }}"
+        <input type="text" id="name" name="name" required value="{{ old('name', auth()->user()->name) }}"
             class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 focus:bg-white focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-colors"
-            placeholder="John Doe">
+            placeholder="{{ auth()->user()->name }}">
         <p class="mt-1 text-xs text-slate-500">Berdasarkan akun Google kamu.</p>
     </div>
 

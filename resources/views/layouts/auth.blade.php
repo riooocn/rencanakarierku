@@ -57,5 +57,6 @@
         </div>
     </div>
 
+    <x-flash-messages />
 </body>
 </html>

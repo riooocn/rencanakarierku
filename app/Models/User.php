@@ -24,6 +24,7 @@ class User extends Authenticatable
         'is_active',
         'tanggal_lahir',
         'jenis_kelamin',
+        'google_id',
     ];
 
     protected $hidden = [
@@ -58,5 +59,10 @@ class User extends Authenticatable
     public function keputusanKarier(): HasOne
     {
         return $this->hasOne(KeputusanKarier::class);
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new \App\Notifications\CustomResetPassword($token));
     }
 }

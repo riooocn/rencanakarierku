@@ -103,10 +103,7 @@
 
                 </div>
 
-                <div class="flex justify-between items-center pt-6 border-t border-slate-100">
-                    <a href="{{ route('asesmen.minat.hasil') }}" class="text-primary-600 font-medium hover:text-primary-800 transition-colors">
-                        &larr; Kembali
-                    </a>
+                <div class="flex justify-end items-center pt-6 border-t border-slate-100">
                     <a href="{{ route('asesmen.nilaikarier') }}" class="inline-flex items-center justify-center px-6 py-3 bg-primary-600 text-white font-semibold rounded-xl hover:bg-primary-700 transition-colors shadow-lg shadow-primary-600/30">
                         Lanjut Tes Nilai Karier
                         <svg class="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

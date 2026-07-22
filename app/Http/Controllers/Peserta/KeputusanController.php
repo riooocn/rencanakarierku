@@ -27,7 +27,7 @@ class KeputusanController extends Controller
         $eksplorasi = \App\Models\EksplorasiKarier::where('user_id', $user->id)->get();
         
         if ($eksplorasi->isEmpty()) {
-            return redirect()->route('eksplorasi.index');
+            return redirect()->route('eksplorasi.index')->with('error', 'Anda harus melakukan eksplorasi karier terlebih dahulu.');
         }
 
         return view('peserta.keputusan.index', compact('minat', 'kapasitas', 'nilaiKarier', 'eksplorasi'));
@@ -48,6 +48,6 @@ class KeputusanController extends Controller
             'highlight_answers' => [],
         ]);
 
-        return redirect()->route('hasilkeputusan');
+        return redirect()->route('hasilkeputusan')->with('success', 'Keputusan karier Anda berhasil disimpan.');
     }
 }

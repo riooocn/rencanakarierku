@@ -224,23 +224,23 @@
                                     <p class="font-semibold text-gray-800 mb-3">1. Pendidikan Agama dan Budi Pekerti</p>
                                     <div class="flex flex-wrap gap-4">
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[1]" value="1" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[1]" value="1" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">1</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[1]" value="2" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[1]" value="2" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">2</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[1]" value="3" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[1]" value="3" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">3</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[1]" value="4" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[1]" value="4" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">4</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[1]" value="5" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[1]" value="5" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">5</span>
                                         </label>
                                     </div>
@@ -249,23 +249,23 @@
                                     <p class="font-semibold text-gray-800 mb-3">2. Pendidikan Pancasila dan Kewarganegaraan</p>
                                     <div class="flex flex-wrap gap-4">
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[2]" value="1" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[2]" value="1" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">1</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[2]" value="2" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[2]" value="2" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">2</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[2]" value="3" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[2]" value="3" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">3</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[2]" value="4" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[2]" value="4" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">4</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[2]" value="5" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[2]" value="5" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">5</span>
                                         </label>
                                     </div>
@@ -274,23 +274,23 @@
                                     <p class="font-semibold text-gray-800 mb-3">3. Bahasa Indonesia</p>
                                     <div class="flex flex-wrap gap-4">
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[3]" value="1" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[3]" value="1" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">1</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[3]" value="2" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[3]" value="2" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">2</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[3]" value="3" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[3]" value="3" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">3</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[3]" value="4" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[3]" value="4" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">4</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[3]" value="5" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[3]" value="5" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">5</span>
                                         </label>
                                     </div>
@@ -299,23 +299,23 @@
                                     <p class="font-semibold text-gray-800 mb-3">4. Matematika</p>
                                     <div class="flex flex-wrap gap-4">
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[4]" value="1" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[4]" value="1" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">1</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[4]" value="2" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[4]" value="2" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">2</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[4]" value="3" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[4]" value="3" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">3</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[4]" value="4" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[4]" value="4" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">4</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[4]" value="5" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[4]" value="5" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">5</span>
                                         </label>
                                     </div>
@@ -324,23 +324,23 @@
                                     <p class="font-semibold text-gray-800 mb-3">5. Sejarah</p>
                                     <div class="flex flex-wrap gap-4">
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[5]" value="1" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[5]" value="1" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">1</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[5]" value="2" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[5]" value="2" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">2</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[5]" value="3" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[5]" value="3" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">3</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[5]" value="4" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[5]" value="4" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">4</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[5]" value="5" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[5]" value="5" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">5</span>
                                         </label>
                                     </div>
@@ -349,23 +349,23 @@
                                     <p class="font-semibold text-gray-800 mb-3">6. Bahasa Inggris</p>
                                     <div class="flex flex-wrap gap-4">
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[6]" value="1" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[6]" value="1" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">1</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[6]" value="2" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[6]" value="2" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">2</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[6]" value="3" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[6]" value="3" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">3</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[6]" value="4" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[6]" value="4" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">4</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[6]" value="5" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[6]" value="5" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">5</span>
                                         </label>
                                     </div>
@@ -374,23 +374,23 @@
                                     <p class="font-semibold text-gray-800 mb-3">7. Seni Budaya</p>
                                     <div class="flex flex-wrap gap-4">
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[7]" value="1" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[7]" value="1" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">1</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[7]" value="2" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[7]" value="2" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">2</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[7]" value="3" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[7]" value="3" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">3</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[7]" value="4" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[7]" value="4" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">4</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[7]" value="5" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[7]" value="5" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">5</span>
                                         </label>
                                     </div>
@@ -399,23 +399,23 @@
                                     <p class="font-semibold text-gray-800 mb-3">8. Pendidikan Jasmani, Olahraga dan Kesehatan</p>
                                     <div class="flex flex-wrap gap-4">
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[8]" value="1" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[8]" value="1" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">1</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[8]" value="2" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[8]" value="2" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">2</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[8]" value="3" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[8]" value="3" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">3</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[8]" value="4" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[8]" value="4" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">4</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[8]" value="5" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[8]" value="5" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">5</span>
                                         </label>
                                     </div>
@@ -424,23 +424,23 @@
                                     <p class="font-semibold text-gray-800 mb-3">9. Komputer</p>
                                     <div class="flex flex-wrap gap-4">
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[9]" value="1" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[9]" value="1" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">1</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[9]" value="2" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[9]" value="2" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">2</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[9]" value="3" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[9]" value="3" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">3</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[9]" value="4" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[9]" value="4" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">4</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[9]" value="5" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[9]" value="5" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">5</span>
                                         </label>
                                     </div>
@@ -449,23 +449,23 @@
                                     <p class="font-semibold text-gray-800 mb-3">10. Bahasa Mandarin</p>
                                     <div class="flex flex-wrap gap-4">
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[10]" value="1" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[10]" value="1" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">1</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[10]" value="2" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[10]" value="2" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">2</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[10]" value="3" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[10]" value="3" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">3</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[10]" value="4" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[10]" value="4" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">4</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[10]" value="5" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[10]" value="5" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">5</span>
                                         </label>
                                     </div>
@@ -474,23 +474,23 @@
                                     <p class="font-semibold text-gray-800 mb-3">11. Bahasa Daerah</p>
                                     <div class="flex flex-wrap gap-4">
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[11]" value="1" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[11]" value="1" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">1</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[11]" value="2" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[11]" value="2" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">2</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[11]" value="3" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[11]" value="3" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">3</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[11]" value="4" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[11]" value="4" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">4</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[11]" value="5" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[11]" value="5" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">5</span>
                                         </label>
                                     </div>
@@ -499,23 +499,23 @@
                                     <p class="font-semibold text-gray-800 mb-3">12. Biologi</p>
                                     <div class="flex flex-wrap gap-4">
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[12]" value="1" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[12]" value="1" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">1</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[12]" value="2" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[12]" value="2" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">2</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[12]" value="3" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[12]" value="3" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">3</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[12]" value="4" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[12]" value="4" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">4</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[12]" value="5" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[12]" value="5" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">5</span>
                                         </label>
                                     </div>
@@ -524,23 +524,23 @@
                                     <p class="font-semibold text-gray-800 mb-3">13. Fisika</p>
                                     <div class="flex flex-wrap gap-4">
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[13]" value="1" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[13]" value="1" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">1</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[13]" value="2" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[13]" value="2" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">2</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[13]" value="3" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[13]" value="3" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">3</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[13]" value="4" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[13]" value="4" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">4</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[13]" value="5" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[13]" value="5" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">5</span>
                                         </label>
                                     </div>
@@ -549,23 +549,23 @@
                                     <p class="font-semibold text-gray-800 mb-3">14. Kimia</p>
                                     <div class="flex flex-wrap gap-4">
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[14]" value="1" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[14]" value="1" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">1</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[14]" value="2" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[14]" value="2" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">2</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[14]" value="3" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[14]" value="3" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">3</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[14]" value="4" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[14]" value="4" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">4</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[14]" value="5" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[14]" value="5" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">5</span>
                                         </label>
                                     </div>
@@ -574,23 +574,23 @@
                                     <p class="font-semibold text-gray-800 mb-3">15. Ekonomi</p>
                                     <div class="flex flex-wrap gap-4">
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[15]" value="1" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[15]" value="1" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">1</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[15]" value="2" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[15]" value="2" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">2</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[15]" value="3" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[15]" value="3" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">3</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[15]" value="4" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[15]" value="4" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">4</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[15]" value="5" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[15]" value="5" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">5</span>
                                         </label>
                                     </div>
@@ -599,23 +599,23 @@
                                     <p class="font-semibold text-gray-800 mb-3">16. Geografi</p>
                                     <div class="flex flex-wrap gap-4">
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[16]" value="1" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[16]" value="1" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">1</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[16]" value="2" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[16]" value="2" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">2</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[16]" value="3" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[16]" value="3" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">3</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[16]" value="4" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[16]" value="4" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">4</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[16]" value="5" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[16]" value="5" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">5</span>
                                         </label>
                                     </div>
@@ -624,19 +624,19 @@
                                     <p class="font-semibold text-gray-800 mb-3">17. Sosiologi</p>
                                     <div class="flex flex-wrap gap-4">
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[17]" value="1" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[17]" value="1" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">1</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[17]" value="2" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[17]" value="2" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">2</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[17]" value="3" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[17]" value="3" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">3</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">
-                                            <input type="radio" name="mapel[17]" value="4" class="text-primary-600 focus:ring-primary-500 w-5 h-5">
+                                            <input type="radio" name="mapel[17]" value="4" class="text-primary-600 focus:ring-primary-500 w-5 h-5" required>
                                             <span class="text-sm text-gray-600 group-hover:text-primary-600">4</span>
                                         </label>
                                         <label class="flex items-center gap-2 cursor-pointer group">

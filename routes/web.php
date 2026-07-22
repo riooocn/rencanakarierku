@@ -5,37 +5,53 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
-Route::get('/complete-profile/peserta', function () {
-    $institutions = \App\Models\Institution::orderBy('name')->get();
-    return view('auth.complete-profile-peserta', compact('institutions'));
-})->name('complete-profile-peserta');
 
-Route::get('/complete-profile/instansi', function () {
-    $institutions = \App\Models\Institution::orderBy('name')->get();
-    return view('auth.complete-profile-instansi', compact('institutions'));
-})->name('complete-profile-instansi');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    $user = \Illuminate\Support\Facades\Auth::user();
+    if ($user->role === 'superadmin') {
+        return redirect('/superadmin');
+    } elseif ($user->role === 'admin') {
+        return redirect('/admin');
+    }
+    return redirect('/perjalananku');
+})->middleware(['auth'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+
+
+    Route::get('/complete-profile/peserta', function () {
+        $user = auth()->user();
+        if ($user->institution_id || $user->role !== 'peserta') return redirect()->route('dashboard');
+        
+        $institutions = \App\Models\Institution::orderBy('name')->get();
+        return view('auth.complete-profile-peserta', compact('institutions'));
+    })->name('complete-profile-peserta');
+
+    Route::get('/complete-profile/instansi', function () {
+        $user = auth()->user();
+        if ($user->institution_id || $user->role !== 'admin') return redirect()->route('dashboard');
+
+        $institutions = \App\Models\Institution::orderBy('name')->get();
+        return view('auth.complete-profile-instansi', compact('institutions'));
+    })->name('complete-profile-instansi');
+
+    Route::post('/complete-profile', [\App\Http\Controllers\Auth\ProfileCompletionController::class, 'store'])
+        ->name('complete-profile.store');
 });
 
 require __DIR__.'/auth.php';
 
-Route::get('/complete-profile', function () {
-    return view('auth.complete-profile');
-})->name('complete-profile');
 
 // Peserta (Siswa) Route
 Route::prefix('perjalananku')->middleware(['auth', 'role:peserta'])->group(function () {
@@ -75,6 +91,7 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/', [\App\Http\Controllers\AdminController::class, 'index'])->name('admin.dashboard');
     
     Route::get('/peserta', [\App\Http\Controllers\AdminController::class, 'peserta'])->name('admin.peserta.index');
+    Route::get('/peserta/export', [\App\Http\Controllers\AdminController::class, 'exportExcel'])->name('admin.peserta.export');
     Route::get('/peserta/{id}', [\App\Http\Controllers\AdminController::class, 'pesertaDetail'])->name('admin.peserta.show');
     Route::patch('/peserta/{id}/approve', [\App\Http\Controllers\AdminController::class, 'pesertaApprove'])->name('admin.peserta.approve');
 });
@@ -88,6 +105,7 @@ Route::prefix('superadmin')->middleware(['auth', 'role:superadmin'])->group(func
     Route::get('/admin/{admin_id}/peserta', [\App\Http\Controllers\SuperAdminController::class, 'adminPeserta'])->name('superadmin.admin.peserta');
     
     Route::get('/peserta', [\App\Http\Controllers\SuperAdminController::class, 'pesertaList'])->name('superadmin.peserta.index');
+    Route::get('/peserta/export', [\App\Http\Controllers\SuperAdminController::class, 'exportExcel'])->name('superadmin.peserta.export');
     
     Route::get('/peserta/{id}', [\App\Http\Controllers\SuperAdminController::class, 'pesertaDetail'])->name('superadmin.peserta.show');
     

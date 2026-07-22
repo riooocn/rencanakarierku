@@ -950,3 +950,101 @@ Peserta akan menjawab dengan cara menekan sel pada tabel karier 1 atau karier 2 
 - **Tampilan Akhir:** Sistem memunculkan teks: *"Berdasarkan perbandingan yang aku lakukan, pekerjaan yang paling banyak sesuai dengan diriku: **[Nama Karier Pemenang]**."*
 *(Catatan: Jika jumlah highlight seimbang, sistem akan menampilkan kedua karier tersebut).*
 Peserta kemudian dapat mengunduh hasil akhir ini dalam bentuk PDF.
+
+
+Penjelasan minat kerja
+Realistic: Kamu dengan minat pekerjaan realistic lebih senang dengan pekerjaan yang menggunakan tangan, perkakas, atau pun mesin. Sering kali pekerjaan tersebut berkaitan dengan tanaman, hewan, maupun materi nyata, seperti kayu, perkakas, dan mesin. Kamu yang memiliki minat ini menyukai pekerjaan yang melibatkan pemecahan masalah secara langsung pada benda nyata dan terkadang bekerja di luar ruangan adalah hal yang menyenangkan untukmu.
+Contoh pekerjaan yang sesuai: pilot, insinyur teknik sipil, ilmuwan konservasi, ahli/pengelola hutan, insinyur transportasi
+
+Investigative
+Kamu dengan minat pekerjaan investigative lebih senang bekerja dengan ide, mencari tahu sesuatu secara ilmiah, dan melakukan penelitian. Sering kali pekerjaan tersebut membutuhkan banyak pemikiran. Kamu yang memiliki minat ini menyukai pekerjaan yang melibatkan pencarian fakta dan pemecahan masalah secara abstrak.
+Contoh pekerjaan yang sesuai: ahli kimia, dokter hewan, insinyur sistem komputer, analis riset pasar, ahli gizi
+
+Artistic
+Kamu dengan minat pekerjaan artistic senang dengan pekerjaan yang membebaskan kamu untuk mengekspresikan diri dan menjadi kreatif. Sering kali pekerjaan tersebut berkaitan dengan seni pertunjukan, tulisan, maupun visual. Kamu yang memiliki minat ini menyukai pekerjaan yang berkaitan dengan bentuk, desain, dan pola serta tidak suka mengikuti aturan.
+Contoh pekerjaan yang sesuai: musisi dan penyanyi, desainer grafis, jurnalis dan reporter, desainer video game, arsitek
+Social
+Kamu dengan minat pekerjaan social senang dengan pekerjaan yang dapat membantu, merawat, maupun mengajari orang lain. Sering kali pekerjaan ini membutuhkan kamu untuk mendampingi atau menyediakan layanan bagi orang lain.
+Contoh pekerjaan yang sesuai: perawat, trainer, guru, konselor, terapis
+
+Enterprising
+Kamu dengan minat pekerjaan enterprising senang dengan pekerjaan yang berkaitan dengan menjual, mengatur, serta memengaruhi lingkungan sosialmu dan umumnya berkaitan dengan bisnis. Sering kali pekerjaan di bidang ini membutuhkan kamu untuk mengawasi orang, memimpin proyek, dan membuat keputusan.
+Contoh pekerjaan yang sesuai: polisi, spesialis hubungan masyarakat, manajer keuangan, pengacara, produser dan sutradara
+
+Conventional
+Kamu dengan minat pekerjaan conventional senang dengan pekerjaan yang teratur dan melakukan pengolahan data secara sistematis serta dengan standar yang jelas dan sering kali berkaitan dengan bisnis. Kamu dengan minat pekerjaan di bidang ini senang mengikuti aturan dan memperhatikan detail.
+Contoh pekerjaan yang sesuai: pengembang web, akuntan, aktuaris, analis keamanan informasi, analis anggaran keuangan 
+
+Ketika kursor digeser ke pekerjaan, akan muncul pop up keterangan:
+Pilot: Ketika kamu bekerja sebagai pilot, kamu bertugas untuk mengemudikan pesawat maupun helikopter, memeriksa pesawat sebelum keberangkatan, memantau pengoperasian mesin, bahan bakar, serta fungsi sistem pesawat, dan termasuk melakukan perhitungan kecepatan mengudara dengan berbagai pertimbangan. 
+
+Insinyur teknik sipil: Ketika kamu bekerja sebagai insinyur teknik sipil, kamu bertugas untuk mengelola, mengarahkan, dan memantau kegiatan konstruksi, termasuk memastikan pemeliharaan lokasi proyek, keselamatan, dan mengikuti peraturan pemerintah, melakukan perhitungan terkait spesifikasi desain bangunan, dan merancang sistem atau struktur terkait bangunan dengan menggambar atau menggunakan komputer.
+
+Ilmuwan konservasi: Kamu yang memilih profesi ilmuwan konservasi perlu merencanakan dan menerapkan secara langsung prinsip ilmu agronomi, ilmu tanah, kehutanan, atau pertanian untuk melakukan konservasi. Selain itu, kamu juga perlu memantau proyek secara langsung, memberikan solusi pada pengguna lahan konservasi.
+
+Ahli/pengelola hutan: Ketika kamu menjadi seorang ahli/pengelola hutan, kamu bertugas untuk merencanakan dan mengawasi proyek hutan sesuai aturan pemerintah serta menentukan metode pengelolaan hutan dengan limbah dan kerusakan hutan yang minim.
+
+Insinyur transportasi: Ketika menjadi insinyur transportasi, kamu perlu merencanakan serta memeriksa rancangan, desain, atau biaya untuk memastikan kelengkapan, akurasi, atau kesesuaian standar proyek sistem transportasi dan berunding dengan kontraktor, perusahaan utilitas atau instansi pemerintah untuk membahas perencanaan proyek.
+
+Ahli kimia: Apabila kamu memilih menjadi ahli kimia, kamu perlu melakukan praktik dan analisis senyawa dengan menggunakan teknik tertentu, baik secara kuantitatif dan kualitatif, melakukan kendali mutu, memelihara dan menyiapkan instrumen serta bahan laboratorium, memastikan prosedur penelitian yang tepat, serta memecahkan masalah malfungsi yang terjadi.
+
+Dokter hewan: Ketika kamu memilih profesi dokter hewan, kamu bertugas untuk memeriksa penyakit hewan, mengumpulkan jaringan tubuh (termasuk feses, darah, urin atau cairan lainnya) untuk diperiksa, merawat (termasuk melakukan operasi) serta meresepkan obat bagi hewan yang terluka, dan menggunakan peralatan yang mendukung pemeriksaan atau perawatan terhadap hewan.
+
+Insinyur sistem komputer: Kamu yang bekerja sebagai insinyur sistem komputer bertugas untuk mengembangkan rekayasa perangkat lunak, mengidentifikasi data sistem, perangkat keras maupun komponen perangkat lunak untuk memenuhi kebutuhan pelanggan, berkomunikasi dengan rekan kerja/klien untuk memahami persyaratan sistem tertentu, dan memverifikasi stabilitas, keamanan, maupun aspek lain terkait sistem komputer.
+
+Analis riset pasar: Apabila kamu menjadi analis riset pasar, kamu merancang metode dan prosedur penelitian terhadap pasar, mengumpulkan data serta menganalisis data untuk mengidentifikasi opini konsumen, pasar potensial, maupun strategi pemasaran, berkolaborasi dengan profesional lainnya yang berkaitan (ahli statistik, lembaga survei, dll), mengevaluasi penelitian, dan menyiapkan serta menyampaikan laporan dari temuan.
+
+Ahli gizi: Seorang ahli gizi perlu mengkaji kebutuhan gizi dan diet, menerapkan rencana diet, dan memberikan konseling maupun saran pada pasien dan keluarga, melakukan evaluasi tes laboratorium untuk menyusun rekomendasi gizi, serta menggabungkan preferensi budaya, etnis, atau agama dalam mengembangkan rencana gizi.
+
+Musisi dan penyanyi: Kamu yang ingin menjadi musisi atau penyanyi perlu mampu tampil secara langsung di hadapan penonton, menerapkan pengetahuan tentang musik untuk memodifikasi musik agar minat penonton tetap bertahan, memainkan instrumen musik tertentu, dan bernyanyi solo atau sebagai anggota grup.
+
+Desainer grafis: Apabila kamu seorang desainer grafis, kamu perlu berunding dengan klien untuk menentukan desain, membuat konsep dan desain grafis untuk ilustrasi produk  dengan menentukan ukuran, gaya, atau bahan berdasarkan prinsip tata letak dan konsep desain estetika, serta menggunakan perangkat lunak untuk menghasilkan gambar.
+
+Analis berita, jurnalis dan reporter: Ketika kamu menjadi analis berita, jurnalis maupun reporter, kamu perlu menentukan topik yang akan diberitakan, memeriksa isi berita, menganalisis, dan menginterpretasikan berita, menuliskan dan mengembangkan skrip berita, serta mengkoordinasi dan menjadi anchor dalam siaran berita.
+
+Desainer video game: Kamu yang berprofesi sebagai desainer video game perlu merancang fitur, alur cerita dan misi, mekanisme permainan, dan biografi karakter, mengumpulkan umpan balik dan melakukan tinjauan desain selama pengembangan game, serta menyeimbangkan dan menyesuaikan pengalaman gameplay agar produk sukses. 
+
+Arsitek: Arsitek memiliki tugas untuk menyiapkan gambar skala dan desain arsitektur yang mencakup unsur estetika dari struktur atau detail kontruksi (termasuk bahan, warna, peralatan, perkiraan biaya, dan waktu konstruksi), serta berkonsultasi dengan klien untuk mendiskusikan gambar arsitektur.
+
+Perawat: Jika kamu menjadi perawat, kamu perlu mencatat secara terperinci mengenai kesehatan pasien, mengembangkan rencana perawatan sesuai standar perawatan, memberikan informasi kesehatan kepada pasien, menganalisis dan menerjemahkan riwayat sakit pasien, dan mengobati pasien.
+
+Trainer: Jika kamu menjadi trainer, kamu perlu melakukan survei atau wawancara untuk mengetahui kebutuhan klien, menawarkan program pelatihan sesuai kebutuhan, menyajikan pelatihan dengan berbagai bentuk (ceramah, diskusi, video, dll), membuat dan mengembangkan manual dan materi pelatihan, serta mengevaluasi pelatihan. 
+
+Guru: Jika kamu menjadi guru, kamu perlu mempersiapkan tujuan belajar berdasarkan kurikulum dan dikomunikasikan pada siswa, menyesuaikan metode dan materi pengajaran sesuai kebutuhan dan minat siswa, mendorong dan mempersiapkan siswa untuk belajar di tingkat selanjutnya, serta menegakkan aturan dan menjaga ketertiban kelas.
+
+Konselor: Ketika kamu menjadi konselor, kamu perlu melakukan asesmen/tes pada klien, mendorong klien mengungkapkan perasaannya, mendiskusikan dan membantu klien untuk mengembangkan diri, melakukan konseling individu maupun kelompok, serta menjaga kerahasiaan data klien, mempersiapkan dan menjaga catatan intervensi klien.
+
+Terapis: Apabila kamu memilih menjadi terapis, kamu perlu memotivasi, melindungi dan memberikan terapi pada pasien, baik secara manual maupun dengan teknologi tertentu, membawa pasien ke dan dari area terapi dengan kursi roda, mencatat perawatan yang diberikan dan peralatan yang digunakan, serta membersihkan area kerja dan alat terapi.
+
+Polisi: Ketika kamu menjadi polisi, kamu perlu menjaga keamanan publik, menanggapi keadaan darurat serta memberikan bantuan pada korban kecelakaan, mengidentifikasi, mengejar dan menangkap tersangka, meninjau fakta insiden untuk menentukan tindakan kriminal atau pelanggaran undang-undang, serta membuat catatan dokumentasi insiden.
+
+Spesialis hubungan masyarakat: Kamu yang berprofesi sebagai spesialis hubungan masyarakat perlu merencanakan dan mengomunikasikan program untuk mempertahankan persepsi publik, menulis siaran pers dan menanggapi media luar, memasang dan memperbarui konten di situs web atau media sosial, serta bekerjasama dengan publik.
+
+Manajer keuangan: Kamu yang memilih berprofesi sebagai manajer keuangan memiliki tugas untuk memeliharan hubungan dengan klien serta memberikan bantuan terhadap masalah keuangan klien, mengawasi dan mengevaluasi arus keuangan untuk merencanakan anggaran, merencanakan, mengarahkan, atau mengoordinasikan aktivitas keuangan di kantor pusat, cabang, bahkan juga merekrut staf keuangan.
+
+Pengacara: Pengacara memiliki tugas untuk menganalisis kasus, memberitahu klien mengenai tanggung jawab, tuntutan hukum, hak dan kewajiban hukum, melakukan debat dan bertanya pada saksi selama persidangan, menafsirkan hukum atau keputusan pada klien, dan memberikan bukti untuk membela klien atau menuntut terdakwa.
+
+Produser dan sutradara: Apabila kamu menjadi produser atau sutradara, kamu perlu merencanakan secara detail pergerakan aktor, pergerakan kamera dan suara untuk setiap adegan, berkomunikasi dengan aktor terkait akting yang diperlukan, melakukan siaran langsung, rekaman film atau program televisi, melakukan penelitian terkait topik yang akan diproduksi serta meninjau kesesuaian standar produksi dan penyiaran.
+
+Pengembang web: Apabila kamu menjadi pengembang web, kamu perlu merancang atau memelihara situs web dengan menggunakan koding atau aplikasi yang membantu, menyimpan cadangan file dari situs web ke direktori lokal untuk pemulihan instan ketika terjadi masalah, memilih bahasa pemrograman serta alat atau aplikasi desain, serta mengevaluasi koding agar memenuhi standar, valid, dan dapat berjalan dengan baik.
+
+Akuntan dan auditor: Ketika kamu menjadi akuntan atau auditor, kamu perlu menyiapkan laporan audit secara rinci, melaporkan hasil audit dan merekomendasikan aktivitas keuangan, mengumpulkan dan menganalisis data untuk mendeteksi kesalahan dalam keuangan (kontrol yang kurang, penipuan, dll), memeriksa buku rekening dan sistem akuntansi agar efektif dan efisien, serta mengawasi dan menentukan ruang lingkup audit.
+
+Aktuaris: Aktuaris memiliki tugas untuk merancang, meninjau, dan membantu mengelola rencana asuransi dan dana pensiun, menentukan kesehatan keuangan, dan menghitung premi serta memberikan saran pada klien terkait keuangannya, membantu menentukan kebijakan dan menjelasan masalah teknis terkait polis keuangan, dan menganalisis informasi statistik mengenai tingkat kematian, kecelakaan, sakit, cacat, dan pensiun.
+
+Analis keamanan informasi: Kamu yang ingin berprofesi menjadi analis keamanan informasi memiliki tugas untuk mengembangkan rencana perlindungan informasi komputer, memantau perkembangan virus komputer untuk menentukan pembaharuan sistem perlindungan, mengenkripsi atau memasang firewall untuk menyembunyikan informasi rahasia untuk mencegah kebocoran data, melakukan uji coba dan penilaian risiko pemrosesan data, serta memodifikasi keamanan komputer.
+
+Analis anggaran keuangan: Ketika kamu menjadi analis anggaran keuangan, kamu perlu meringkas anggaran, memeriksa perkiraan anggara dan kesesuaiannya dengan peraturan, menentukan persetujuan atau penolakan terhadap anggaran, menganalisis laporan anggaran serta akuntansi bulanan untuk mengontrol pengeluaran, serta memberikan saran terhadap analisis biaya dan persiapan anggaran.
+
+Keterangan Kapasitas:
+People
+Kamu dengan kapasitas di bidang pekerjaan people berarti kamu memiliki kemampuan atau keterampilan di bidang yang dapat bekerja dengan orang atau membantu orang lain. Bidang pekerjaan ini mementingkan kemajuan orang lain/masyarakat.
+
+Data
+Kamu dengan kapasitas di bidang pekerjaan data berarti kamu memiliki kemampuan atau keterampilan di bidang yang dapat bekerja dengan data dan angka. Kamu juga memiliki kapasitas dalam mengolah informasi, mengikuti aturan atau prosedur.
+
+Things
+Kamu dengan kapasitas di bidang pekerjaan things berarti kamu memiliki kemampuan atau keterampilan di pekerjaan yang berkaitan dengan benda. Kamu juga memiliki kapasitas dalam menggunakan perkakas, peralatan, maupun mesin.
+
+Ideas
+Kamu dengan kapasitas di bidang pekerjaan ideas berarti kamu memiliki kemampuan atau keterampilan di pekerjaan yang berkaitan dengan ide, konsep ataupun tema. Kamu juga memiliki kapasitas untuk membuat suatu penemuan atau kreasi.

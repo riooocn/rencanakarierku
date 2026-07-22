@@ -45,12 +45,12 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         if ($user->role === 'superadmin') {
-            return redirect()->intended('/superadmin');
+            return redirect()->intended('/superadmin')->with('success', 'Berhasil masuk ke dalam sistem.');
         } elseif ($user->role === 'admin') {
-            return redirect()->intended('/admin');
+            return redirect()->intended('/admin')->with('success', 'Berhasil masuk ke dalam sistem.');
         }
 
-        return redirect()->intended('/perjalananku');
+        return redirect()->intended('/perjalananku')->with('success', 'Berhasil masuk ke dalam sistem.');
     }
 
     /**
@@ -64,6 +64,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/')->with('success', 'Anda telah berhasil keluar.');
     }
 }

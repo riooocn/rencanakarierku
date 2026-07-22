@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Models\Institution;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\PesertaExport;
 
 class SuperAdminController extends Controller
 {
@@ -92,5 +94,11 @@ class SuperAdminController extends Controller
             ->firstOrFail();
             
         return view('superadmin.peserta.show', compact('peserta'));
+    }
+
+    public function exportExcel(Request $request)
+    {
+        $institutionId = $request->query('institution_id');
+        return Excel::download(new PesertaExport($institutionId), 'data_peserta_keseluruhan.xlsx');
     }
 }

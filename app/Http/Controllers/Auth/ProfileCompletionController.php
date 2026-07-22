@@ -47,10 +47,12 @@ class ProfileCompletionController extends Controller
 
         $user->save();
 
+        // Removed auto-logout to keep them logged in but restricted by middleware
+
         if ($user->role === 'admin') {
-            return redirect('/admin');
+            return redirect('/admin')->with('success', 'Profil berhasil dilengkapi.');
         }
 
-        return redirect('/perjalananku');
+        return redirect('/perjalananku')->with('success', 'Profil berhasil dilengkapi.');
     }
 }

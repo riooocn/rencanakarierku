@@ -19,6 +19,8 @@ class CheckRole
             return redirect('/login');
         }
 
+        $user = $request->user();
+
         if (! in_array($request->user()->role, $roles)) {
             // Redirect based on current role if they don't have access
             $role = $request->user()->role;

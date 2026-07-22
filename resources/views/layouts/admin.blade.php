@@ -116,5 +116,6 @@
         </main>
     </div>
 
+    <x-flash-messages />
 </body>
 </html>

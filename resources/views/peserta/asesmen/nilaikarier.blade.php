@@ -35,21 +35,21 @@
                         
                         <!-- Pengantar (Step 0) -->
                         <div x-show="step === 0" class="mb-8" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform translate-x-4" x-transition:enter-end="opacity-100 transform translate-x-0">
-                            <div class="bg-primary-50 p-6 rounded-2xl border border-primary-100 mb-6">
+                            <div class="bg-primary-50 p-6 rounded-2xl border border-primary-100 mb-8">
                                 <h3 class="text-lg font-bold text-primary-900 mb-3">Pengantar Asesmen Nilai Karier</h3>
                                 <p class="text-sm text-gray-700 mb-3">
-                                    Terdapat 5 kategori nilai karier: Leisure, Extrinsic rewards, Intrinsic rewards, Altruistic rewards, dan Social rewards.
+                                    Terdapat 5 kategori nilai karier yang akan diukur: <strong>Leisure, Extrinsic Rewards, Intrinsic Rewards, Altruistic Rewards, dan Social Rewards</strong>.
                                 </p>
-                                <p class="text-sm text-gray-700 font-medium">
-                                    Pilih 1 jawaban skala dari setiap pernyataan berikut:
+                                <p class="text-sm text-gray-700 font-medium mt-4 mb-4">
+                                    Setelah menekan tombol "Mulai Asesmen", kamu akan diberikan beberapa pernyataan. Isilah kotak pilihan yang tersedia di setiap pernyataan dengan angka 1 sampai 5 berdasarkan pedoman skala berikut:
                                 </p>
-                            </div>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-8">
-                                <div class="bg-white p-3 rounded-xl border border-gray-100 shadow-sm"><span class="font-bold text-primary-600">1</span> = Sangat tidak penting</div>
-                                <div class="bg-white p-3 rounded-xl border border-gray-100 shadow-sm"><span class="font-bold text-primary-600">2</span> = Tidak penting</div>
-                                <div class="bg-white p-3 rounded-xl border border-gray-100 shadow-sm"><span class="font-bold text-primary-600">3</span> = Ragu-ragu</div>
-                                <div class="bg-white p-3 rounded-xl border border-gray-100 shadow-sm"><span class="font-bold text-primary-600">4</span> = Penting / Menguasai</div>
-                                <div class="bg-white p-3 rounded-xl border border-gray-100 shadow-sm md:col-span-2"><span class="font-bold text-primary-600">5</span> = Sangat penting / Sangat menguasai</div>
+                                <div class="flex flex-col gap-3">
+                                    <div class="bg-white p-3 rounded-xl border border-gray-100 shadow-sm"><span class="font-bold text-primary-600">1</span> = Sangat tidak penting</div>
+                                    <div class="bg-white p-3 rounded-xl border border-gray-100 shadow-sm"><span class="font-bold text-primary-600">2</span> = Tidak penting</div>
+                                    <div class="bg-white p-3 rounded-xl border border-gray-100 shadow-sm"><span class="font-bold text-primary-600">3</span> = Ragu-ragu</div>
+                                    <div class="bg-white p-3 rounded-xl border border-gray-100 shadow-sm"><span class="font-bold text-primary-600">4</span> = Penting</div>
+                                    <div class="bg-white p-3 rounded-xl border border-gray-100 shadow-sm"><span class="font-bold text-primary-600">5</span> = Sangat penting</div>
+                                </div>
                             </div>
                             <div class="flex justify-center">
                                 <button type="button" @click="step = 1" class="px-8 py-3 bg-primary-600 text-white font-bold rounded-xl hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all shadow-sm hover:-translate-y-0.5 text-lg">
@@ -658,13 +658,14 @@
 
                             <button type="button" 
                                     x-show="step < totalSteps" 
-                                    @click="step++" 
+                                    @click="document.querySelector('input[name=\'nilaikarier[' + step + ']\']:checked') ? step++ : alert('Silahkan pilih jawaban terlebih dahulu.')" 
                                     class="px-6 py-2.5 bg-primary-600 text-white font-semibold rounded-xl hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all shadow-sm hover:-translate-y-0.5">
                                 Selanjutnya
                             </button>
 
                             <button type="submit" 
-                                    x-show="step === totalSteps" 
+                                    x-show="step === totalSteps"
+                                    @click.prevent="document.querySelector('input[name=\'nilaikarier[' + step + ']\']:checked') ? $el.closest('form').submit() : alert('Silahkan pilih jawaban terlebih dahulu.')"
                                     class="px-6 py-2.5 bg-accent-500 text-white font-bold rounded-xl hover:bg-accent-600 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 transition-all shadow-sm hover:-translate-y-0.5" style="display: none;">
                                 Selesai & Lihat Hasil
                             </button>

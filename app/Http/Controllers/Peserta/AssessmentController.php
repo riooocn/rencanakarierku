@@ -68,7 +68,7 @@ class AssessmentController extends Controller
             ]);
         });
 
-        return redirect()->route('asesmen.minat.hasil');
+        return redirect()->route('asesmen.minat.hasil')->with('success', 'Asesmen Minat berhasil disimpan.');
     }
 
     public function minatHasil(Request $request)
@@ -170,7 +170,7 @@ class AssessmentController extends Controller
             ]);
         });
 
-        return redirect()->route('asesmen.kapasitas.hasil');
+        return redirect()->route('asesmen.kapasitas.hasil')->with('success', 'Asesmen Kapasitas berhasil disimpan.');
     }
 
     public function kapasitasHasil(Request $request)
@@ -254,7 +254,7 @@ class AssessmentController extends Controller
             ]);
         });
 
-        return redirect()->route('asesmen.nilaikarier.hasil');
+        return redirect()->route('asesmen.nilaikarier.hasil')->with('success', 'Asesmen Nilai Karier berhasil disimpan.');
     }
 
     public function nilaiKarierHasil(Request $request)

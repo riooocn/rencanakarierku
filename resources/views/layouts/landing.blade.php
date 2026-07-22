@@ -33,5 +33,9 @@
         </div>
     </footer>
 
+    <!-- Scripts -->
+    @stack('scripts')
+    
+    <x-flash-messages />
 </body>
 </html>

@@ -87,11 +87,11 @@ class RegisteredUserController extends Controller
 
         // Redirect logic based on role
         if ($user->role === 'superadmin') {
-            return redirect('/superadmin');
+            return redirect('/superadmin')->with('success', 'Pendaftaran berhasil!');
         } elseif ($user->role === 'admin') {
-            return redirect('/admin');
+            return redirect('/admin')->with('success', 'Pendaftaran berhasil!');
         }
 
-        return redirect('/perjalananku');
+        return redirect('/perjalananku')->with('success', 'Pendaftaran berhasil!');
     }
 }

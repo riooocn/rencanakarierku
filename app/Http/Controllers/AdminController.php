@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\PesertaExport;
 
 class AdminController extends Controller
 {
@@ -78,5 +80,13 @@ class AdminController extends Controller
         $peserta->save();
 
         return redirect()->back()->with('success', 'Akun peserta berhasil diverifikasi.');
+    }
+
+    public function exportExcel(Request $request)
+    {
+        $user = $request->user();
+        $institutionId = $user->institution_id;
+        
+        return Excel::download(new PesertaExport($institutionId), 'data_peserta_instansi.xlsx');
     }
 }
