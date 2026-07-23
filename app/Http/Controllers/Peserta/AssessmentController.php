@@ -85,8 +85,15 @@ class AssessmentController extends Controller
         }
 
         $result = AsesmenResult::where('session_id', $session->id)->first();
+        
+        $latestKapasitas = AssessmentSession::where('user_id', $user->id)
+            ->where('asesmen_type', 'kapasitas')
+            ->where('status', 'completed')
+            ->latest()
+            ->first();
+        $isKapasitasUpToDate = $latestKapasitas && $latestKapasitas->created_at >= $session->created_at;
 
-        return view('peserta.asesmen.minat-hasil', compact('result'));
+        return view('peserta.asesmen.minat-hasil', compact('result', 'isKapasitasUpToDate'));
     }
 
 
@@ -187,8 +194,15 @@ class AssessmentController extends Controller
         }
 
         $result = AsesmenResult::where('session_id', $session->id)->first();
+        
+        $latestNilaiKarier = AssessmentSession::where('user_id', $user->id)
+            ->where('asesmen_type', 'nilai_karier')
+            ->where('status', 'completed')
+            ->latest()
+            ->first();
+        $isNilaiKarierUpToDate = $latestNilaiKarier && $latestNilaiKarier->created_at >= $session->created_at;
 
-        return view('peserta.asesmen.kapasitas-hasil', compact('result'));
+        return view('peserta.asesmen.kapasitas-hasil', compact('result', 'isNilaiKarierUpToDate'));
     }
 
 
@@ -271,7 +285,10 @@ class AssessmentController extends Controller
         }
 
         $result = AsesmenResult::where('session_id', $session->id)->first();
+        
+        $latestEksplorasi = \App\Models\EksplorasiKarier::where('user_id', $user->id)->latest('created_at')->first();
+        $isEksplorasiUpToDate = $latestEksplorasi && $latestEksplorasi->created_at >= $session->created_at;
 
-        return view('peserta.asesmen.nilaikarier-hasil', compact('result'));
+        return view('peserta.asesmen.nilaikarier-hasil', compact('result', 'isEksplorasiUpToDate'));
     }
 }

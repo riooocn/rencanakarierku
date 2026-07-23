@@ -26,7 +26,9 @@
                 </div>
                 <div class="flex-1 relative w-full max-w-md mx-auto md:max-w-none">
                     <div class="absolute inset-0 bg-gradient-to-tr from-primary-500 to-accent-500 rounded-[2.5rem] transform rotate-3 scale-105 opacity-20 blur-xl"></div>
-                    <img src="{{ asset('images/career_journey_road.png') }}" alt="Career Journey Road to Star" class="relative rounded-[2rem] shadow-2xl object-cover w-full h-64 md:h-80 border-[6px] border-white/80 backdrop-blur-sm">
+                    <div class="relative rounded-[2rem] shadow-2xl overflow-hidden border-[6px] border-white/80 backdrop-blur-sm aspect-video">
+                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/KN7eC6U6WG4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="absolute inset-0 w-full h-full"></iframe>
+                    </div>
                 </div>
             </div>
 
@@ -40,16 +42,25 @@
                     </div>
                     <h3 class="text-2xl font-bold text-primary-900 mb-3">1. Asesmen Diri</h3>
                     <p class="text-slate-600 mb-6 line-clamp-3">Kenali dirimu lebih dalam melalui tiga tes psikologi yang dirancang khusus: Tes Minat (RIASEC), Kapasitas, dan Nilai Karier.</p>
-                    <a href="{{ route('asesmen.minat') }}" class="inline-flex items-center justify-center w-full px-4 py-3 bg-primary-600 text-white font-semibold rounded-xl hover:bg-primary-700 transition-colors shadow-md">
-                        Mulai Tes
-                        <svg class="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                        </svg>
-                    </a>
+                    @if($asesmenCompleted)
+                        <a href="{{ $asesmenLink }}" class="inline-flex items-center justify-center w-full px-4 py-3 bg-primary-600 text-white font-semibold rounded-xl hover:bg-primary-700 transition-colors shadow-md">
+                            Lihat Hasil Asesmen
+                            <svg class="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </a>
+                    @else
+                        <a href="{{ $asesmenLink }}" class="inline-flex items-center justify-center w-full px-4 py-3 bg-primary-600 text-white font-semibold rounded-xl hover:bg-primary-700 transition-colors shadow-md">
+                            {{ $asesmenText }}
+                            <svg class="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </a>
+                    @endif
                 </div>
 
                 <!-- Tahap 2: Eksplorasi -->
-                <div class="bg-white/70 backdrop-blur-xl border border-white/40 shadow-xl shadow-slate-200/50 rounded-3xl p-8 hover:-translate-y-2 transition-all duration-300 group opacity-75">
+                <div class="bg-white/70 backdrop-blur-xl border border-white/40 shadow-xl shadow-slate-200/50 rounded-3xl p-8 hover:-translate-y-2 transition-all duration-300 group {{ $asesmenCompleted ? '' : 'opacity-75' }}">
                     <div class="w-14 h-14 bg-accent-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-accent-500/30">
                         <svg class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -57,13 +68,31 @@
                     </div>
                     <h3 class="text-2xl font-bold text-primary-900 mb-3">2. Eksplorasi Karier</h3>
                     <p class="text-slate-600 mb-6 line-clamp-3">Cari tahu tentang berbagai profesi yang relevan dengan hasil asesmenmu dan pelajari apa yang dibutuhkan untuk mencapainya.</p>
-                    <button disabled class="inline-flex items-center justify-center w-full px-4 py-3 bg-slate-200 text-slate-500 font-semibold rounded-xl cursor-not-allowed">
-                        Terkunci
-                    </button>
+                    @if($asesmenCompleted)
+                        @if($isEksplorasiUpToDate)
+                            <a href="{{ route('eksplorasi.hasil') }}" class="inline-flex items-center justify-center w-full px-4 py-3 bg-accent-600 text-white font-semibold rounded-xl hover:bg-accent-700 transition-colors shadow-md">
+                                Lihat Hasil Eksplorasi
+                                <svg class="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                </svg>
+                            </a>
+                        @else
+                            <a href="{{ route('eksplorasi.index') }}" class="inline-flex items-center justify-center w-full px-4 py-3 bg-accent-600 text-white font-semibold rounded-xl hover:bg-accent-700 transition-colors shadow-md">
+                                Mulai Eksplorasi
+                                <svg class="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                </svg>
+                            </a>
+                        @endif
+                    @else
+                        <button disabled class="inline-flex items-center justify-center w-full px-4 py-3 bg-slate-200 text-slate-500 font-semibold rounded-xl cursor-not-allowed">
+                            Terkunci
+                        </button>
+                    @endif
                 </div>
 
                 <!-- Tahap 3: Keputusan -->
-                <div class="bg-white/70 backdrop-blur-xl border border-white/40 shadow-xl shadow-slate-200/50 rounded-3xl p-8 hover:-translate-y-2 transition-all duration-300 group opacity-75">
+                <div class="bg-white/70 backdrop-blur-xl border border-white/40 shadow-xl shadow-slate-200/50 rounded-3xl p-8 hover:-translate-y-2 transition-all duration-300 group {{ $isEksplorasiUpToDate ? '' : 'opacity-75' }}">
                     <div class="w-14 h-14 bg-green-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-green-500/30">
                         <svg class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -71,11 +100,44 @@
                     </div>
                     <h3 class="text-2xl font-bold text-primary-900 mb-3">3. Keputusan Akhir</h3>
                     <p class="text-slate-600 mb-6 line-clamp-3">Mantapkan pilihanmu dengan menentukan profesi impian masa depan dan buat rencana tindakan nyata.</p>
-                    <button disabled class="inline-flex items-center justify-center w-full px-4 py-3 bg-slate-200 text-slate-500 font-semibold rounded-xl cursor-not-allowed">
-                        Terkunci
-                    </button>
+                    @if($isEksplorasiUpToDate)
+                        @if($isKeputusanUpToDate)
+                            <a href="{{ route('hasilkeputusan') }}" class="inline-flex items-center justify-center w-full px-4 py-3 bg-green-600 text-white font-semibold rounded-xl hover:bg-green-700 transition-colors shadow-md">
+                                Lihat Hasil Keputusan
+                                <svg class="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                </svg>
+                            </a>
+                        @else
+                            <a href="{{ route('keputusan.index') }}" class="inline-flex items-center justify-center w-full px-4 py-3 bg-green-600 text-white font-semibold rounded-xl hover:bg-green-700 transition-colors shadow-md">
+                                Buat Keputusan
+                                <svg class="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                </svg>
+                            </a>
+                        @endif
+                    @else
+                        <button disabled class="inline-flex items-center justify-center w-full px-4 py-3 bg-slate-200 text-slate-500 font-semibold rounded-xl cursor-not-allowed">
+                            Terkunci
+                        </button>
+                    @endif
                 </div>
             </div>
+
+            @if($isKeputusanUpToDate)
+            <div class="mt-12 text-center">
+                <div class="inline-block bg-white/70 backdrop-blur-xl border border-white/40 shadow-xl shadow-slate-200/50 rounded-3xl p-8 max-w-2xl mx-auto">
+                    <h3 class="text-xl font-bold text-primary-900 mb-2">Ingin Memulai Perjalanan Baru?</h3>
+                    <p class="text-slate-600 mb-6">Jika kamu ingin mengulang tes dan eksplorasi dari awal untuk mendapatkan rekomendasi karier yang baru, kamu dapat memulai ulang seluruh perjalananmu.</p>
+                    <a href="{{ route('asesmen.minat') }}" class="inline-flex items-center justify-center px-6 py-3 bg-white border-2 border-primary-600 text-primary-600 font-bold rounded-xl hover:bg-primary-50 transition-colors shadow-sm">
+                        <svg class="mr-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                        </svg>
+                        Mulai Ulang Seluruh Perjalanan
+                    </a>
+                </div>
+            </div>
+            @endif
 
         </div>
     </div>

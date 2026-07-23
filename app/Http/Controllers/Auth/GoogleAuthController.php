@@ -38,7 +38,7 @@ class GoogleAuthController extends Controller
                     'google_id' => $googleUser->getId(),
                     'role' => $role,
                     'password' => null,
-                    'is_active' => false,
+                    'status' => 'pending',
                 ]);
             } elseif (!$user->google_id) {
                 $user->update(['google_id' => $googleUser->getId()]);
@@ -51,12 +51,17 @@ class GoogleAuthController extends Controller
                 return redirect()->route('complete-profile-' . $user->role);
             }
 
-            // Jika role admin atau peserta tapi belum aktif
-            if ($user->role !== 'superadmin' && !$user->is_active) {
+            // Restrict login if status is not active (except superadmin)
+            if ($user->role !== 'superadmin' && $user->status !== 'active') {
                 Auth::guard('web')->logout();
                 $request->session()->invalidate();
                 $request->session()->regenerateToken();
-                return redirect('/login')->with('status', 'Akun Anda sedang menunggu verifikasi.');
+                
+                if ($user->status === 'inactive') {
+                    return redirect('/login')->with('account_inactive', true);
+                }
+                
+                return redirect('/login')->with('account_pending', 'Akun Anda sedang menunggu verifikasi.');
             }
 
             if ($user->role === 'superadmin') {

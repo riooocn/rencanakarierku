@@ -69,7 +69,21 @@
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold text-slate-700 mb-1">Asal Sekolah / Instansi</label>
-                                <input type="text" x-model="school" required placeholder="Contoh: SMA N 1 Jakarta" class="w-full rounded-xl border-slate-300 focus:ring-primary-500 focus:border-primary-500 py-3 px-4 bg-slate-50">
+                                <template x-if="!isUnregistered">
+                                    <select x-model="school" required class="w-full rounded-xl border-slate-300 focus:ring-primary-500 focus:border-primary-500 py-3 px-4 bg-slate-50 appearance-none">
+                                        <option value="">-- Pilih Instansi --</option>
+                                        @foreach($institutions as $inst)
+                                            <option value="{{ $inst->name }}">{{ $inst->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </template>
+                                <template x-if="isUnregistered">
+                                    <input type="text" x-model="customSchool" required placeholder="Tuliskan nama instansi..." class="w-full rounded-xl border-slate-300 focus:ring-primary-500 focus:border-primary-500 py-3 px-4 bg-slate-50">
+                                </template>
+                                <div class="mt-2 flex items-center">
+                                    <input type="checkbox" id="unregistered" x-model="isUnregistered" @change="school = ''; customSchool = ''" class="rounded border-slate-300 text-primary-600 focus:ring-primary-500 h-4 w-4">
+                                    <label for="unregistered" class="ml-2 text-sm text-slate-600">Instansi belum terdaftar</label>
+                                </div>
                             </div>
                         </div>
 
@@ -110,15 +124,18 @@
         Alpine.data("contactForm", () => ({
             name: '',
             school: '',
+            customSchool: '',
+            isUnregistered: false,
             subject: '',
             message: '',
 
             sendWA() {
                 const targetNumber = '6281914945188';
+                const finalSchool = this.isUnregistered ? this.customSchool : this.school;
                 
                 // Constructing the message text
                 let text = `Halo Tim Rencana Karierku,%0A%0A`;
-                text += `Perkenalkan saya *${this.name}* dari *${this.school}*.%0A`;
+                text += `Perkenalkan saya *${this.name}* dari *${finalSchool}*.%0A`;
                 text += `Keperluan: ${this.subject}%0A%0A`;
                 text += `${this.message}`;
 

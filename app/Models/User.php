@@ -21,7 +21,7 @@ class User extends Authenticatable
         'role',
         'grade',
         'phone',
-        'is_active',
+        'status',
         'tanggal_lahir',
         'jenis_kelamin',
         'google_id',
@@ -37,7 +37,6 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
-            'is_active' => 'boolean',
         ];
     }
 

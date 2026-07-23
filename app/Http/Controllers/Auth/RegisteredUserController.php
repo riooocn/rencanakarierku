@@ -21,7 +21,10 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        $institutions = Institution::orderBy('name')->get();
+        $institutions = Institution::whereHas('users', function ($q) {
+            $q->where('role', 'admin')->where('status', 'active');
+        })->orderBy('name')->get();
+        
         return view('auth.register-peserta', compact('institutions'));
     }
 
@@ -74,13 +77,23 @@ class RegisteredUserController extends Controller
             'grade' => $request->grade ?? null,
             'tanggal_lahir' => $request->tanggal_lahir,
             'jenis_kelamin' => $request->jenis_kelamin,
-            'is_active' => false,
+            'status' => 'pending',
         ]);
 
         event(new Registered($user));
 
-        if (!$user->is_active) {
-            return redirect('/login')->with('status', 'Pendaftaran berhasil. Akun Anda sedang menunggu verifikasi dari Admin Instansi atau Super Admin.');
+        if ($user->status === 'pending') {
+            if ($user->role === 'admin') {
+                $targetNumber = '6281914945188';
+                $waText = "Halo Tim Rencana Karierku,\n\nPerkenalkan saya {$user->name} dari {$institution->name} \nNo telp: {$user->phone}\n\nMohon untuk konfirmasi akun admin untuk instansi {$institution->name} segera. Saya sedang menunggu agar akun dapat diverifikasi.";
+                $waUrl = 'https://wa.me/' . $targetNumber . '?text=' . rawurlencode($waText);
+
+                return redirect('/login')->with([
+                    'account_pending' => 'Pendaftaran Admin berhasil. Silakan tekan tombol WhatsApp untuk konfirmasi akun Anda ke Super Admin.',
+                    'login_wa_redirect' => $waUrl
+                ]);
+            }
+            return redirect('/login')->with('account_pending', 'Pendaftaran berhasil. Akun Anda sedang menunggu verifikasi dari Admin Instansi.');
         }
 
         Auth::login($user);

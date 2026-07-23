@@ -4,10 +4,8 @@
 
 @section('content')
 <div class="text-center mb-8">
-    <div class="inline-flex justify-center items-center w-16 h-16 rounded-full bg-primary-100 text-primary-600 mb-4">
-        <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-        </svg>
+    <div class="inline-flex justify-center items-center w-16 h-16 mb-4">
+        <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-16 h-16 object-contain">
     </div>
     <h2 class="text-2xl font-bold text-slate-900">Lengkapi Profilmu</h2>
     <p class="mt-2 text-sm text-slate-500">Tinggal satu langkah lagi untuk memulai perencanaan karier impianmu.</p>

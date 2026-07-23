@@ -28,18 +28,32 @@ class AuthenticatedSessionController extends Controller
 
         $user = $request->user();
 
-        if ($user->role !== 'superadmin' && !$user->is_active) {
+        if ($user->role !== 'superadmin' && $user->status !== 'active') {
+            $status = $user->status;
+            $role = $user->role;
+            
             Auth::guard('web')->logout();
             $request->session()->invalidate();
             $request->session()->regenerateToken();
             
-            $msg = $user->role === 'admin' 
+            if ($status === 'inactive') {
+                return redirect('/login')->with('account_inactive', true);
+            }
+            
+            $msg = $role === 'admin' 
                 ? 'Akun admin Anda sedang menunggu verifikasi oleh Super Admin.' 
                 : 'Akun Anda sedang menunggu verifikasi oleh Admin Instansi.';
                 
-            return redirect('/login')->withErrors([
-                'email' => $msg,
-            ]);
+            $redirectData = ['account_pending' => $msg];
+            
+            if ($role === 'admin') {
+                $institutionName = $user->institution ? $user->institution->name : 'Instansi';
+                $targetNumber = '6281914945188';
+                $waText = "Halo Tim Rencana Karierku,\n\nPerkenalkan saya {$user->name} dari {$institutionName} \nNo telp: {$user->phone}\n\nMohon untuk konfirmasi akun admin untuk instansi {$institutionName} segera. Saya sedang menunggu agar akun dapat diverifikasi.";
+                $redirectData['login_wa_redirect'] = 'https://wa.me/' . $targetNumber . '?text=' . rawurlencode($waText);
+            }
+                
+            return redirect('/login')->with($redirectData);
         }
 
         $request->session()->regenerate();

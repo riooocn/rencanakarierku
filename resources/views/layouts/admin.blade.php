@@ -6,10 +6,10 @@
     <title>@yield('title', 'Admin Dashboard') - Rencana Karierku</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="antialiased font-sans text-neutral-dark bg-neutral-light selection:bg-primary-500 selection:text-white flex h-screen overflow-hidden">
+<body class="antialiased font-sans text-neutral-dark bg-neutral-light selection:bg-primary-500 selection:text-white flex h-screen overflow-hidden print:overflow-visible print:h-auto">
     
     <!-- Sidebar -->
-    <aside class="w-64 bg-white border-r border-slate-200 flex flex-col hidden md:flex shrink-0">
+    <aside class="w-64 bg-white border-r border-slate-200 flex flex-col hidden md:flex shrink-0 print:hidden">
         <!-- Logo -->
         <div class="h-16 flex items-center px-6 border-b border-slate-200">
             <a href="{{ Auth::user()->role === 'superadmin' ? route('superadmin.dashboard') : route('admin.dashboard') }}" class="inline-flex items-center gap-2">
@@ -88,9 +88,9 @@
     </aside>
 
     <!-- Main Content -->
-    <div class="flex-1 flex flex-col overflow-hidden">
+    <div class="flex-1 flex flex-col overflow-hidden print:overflow-visible print:h-auto">
         <!-- Top header for mobile -->
-        <header class="md:hidden h-16 bg-white border-b border-slate-200 flex items-center justify-between px-4">
+        <header class="md:hidden h-16 bg-white border-b border-slate-200 flex items-center justify-between px-4 print:hidden">
             <a href="{{ Auth::user()->role === 'superadmin' ? route('superadmin.dashboard') : route('admin.dashboard') }}" class="inline-flex items-center gap-2">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-8 h-8 object-contain">
             </a>
@@ -104,7 +104,7 @@
         <!-- Page Content -->
         <main class="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
             <div class="max-w-7xl mx-auto">
-                <div class="mb-6 md:mb-8">
+                <div class="mb-6 md:mb-8 print:hidden">
                     <h1 class="text-2xl md:text-3xl font-bold text-slate-900">@yield('page_title')</h1>
                     @hasSection('page_description')
                         <p class="mt-1 text-sm md:text-base text-slate-500">@yield('page_description')</p>

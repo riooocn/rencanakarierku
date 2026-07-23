@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Institution;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileCompletionController extends Controller
 {
@@ -47,10 +49,41 @@ class ProfileCompletionController extends Controller
 
         $user->save();
 
-        // Removed auto-logout to keep them logged in but restricted by middleware
-
         if ($user->role === 'admin') {
+            if ($user->status === 'pending' || $user->status === 'inactive') {
+                $status = $user->status;
+                Auth::guard('web')->logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+                
+                if ($status === 'inactive') {
+                    return redirect('/login')->with('account_inactive', true);
+                }
+
+                $targetNumber = '6281914945188';
+                $waText = "Halo Tim Rencana Karierku,\n\nPerkenalkan saya {$user->name} dari {$institution->name} \nNo telp: {$user->phone}\n\nMohon untuk konfirmasi akun admin untuk instansi {$institution->name} segera. Saya sedang menunggu agar akun dapat diverifikasi.";
+                $waUrl = 'https://wa.me/' . $targetNumber . '?text=' . rawurlencode($waText);
+
+                return redirect('/login')->with([
+                    'account_pending' => 'Pendaftaran Admin berhasil. Silakan tekan tombol WhatsApp untuk konfirmasi akun Anda ke Super Admin.',
+                    'login_wa_redirect' => $waUrl
+                ]);
+            }
             return redirect('/admin')->with('success', 'Profil berhasil dilengkapi.');
+        }
+
+        // For peserta
+        if ($user->status === 'pending' || $user->status === 'inactive') {
+            $status = $user->status;
+            Auth::guard('web')->logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+            
+            if ($status === 'inactive') {
+                return redirect('/login')->with('account_inactive', true);
+            }
+            
+            return redirect('/login')->with('account_pending', 'Pendaftaran berhasil. Akun Anda sedang menunggu verifikasi dari Admin Instansi.');
         }
 
         return redirect('/perjalananku')->with('success', 'Profil berhasil dilengkapi.');

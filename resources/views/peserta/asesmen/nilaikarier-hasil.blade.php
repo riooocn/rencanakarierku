@@ -55,8 +55,8 @@
 
                 <div class="flex justify-end items-center pt-6 border-t border-slate-100">
                     <!-- Lanjut ke Tahap 2: Eksplorasi -->
-                    <a href="{{ route('eksplorasi.index') }}" class="inline-flex items-center justify-center px-6 py-3 bg-primary-600 text-white font-semibold rounded-xl hover:bg-primary-700 transition-colors shadow-lg shadow-primary-600/30 group">
-                        Lanjut ke Eksplorasi Karier
+                    <a href="{{ $isEksplorasiUpToDate ? route('eksplorasi.hasil') : route('eksplorasi.index') }}" class="inline-flex items-center justify-center px-6 py-3 bg-primary-600 text-white font-semibold rounded-xl hover:bg-primary-700 transition-colors shadow-lg shadow-primary-600/30 group">
+                        {{ $isEksplorasiUpToDate ? 'Lihat Hasil Eksplorasi' : 'Lanjut ke Eksplorasi Karier' }}
                         <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                         </svg>

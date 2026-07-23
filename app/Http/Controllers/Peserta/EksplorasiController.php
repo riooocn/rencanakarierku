@@ -65,6 +65,10 @@ class EksplorasiController extends Controller
             return redirect()->route('eksplorasi.index');
         }
 
-        return view('peserta.eksplorasi.hasil', compact('eksplorasi'));
+        $latestEksplorasi = $eksplorasi->max('created_at');
+        $latestKeputusan = \App\Models\KeputusanKarier::where('user_id', $request->user()->id)->latest('created_at')->first();
+        $isKeputusanUpToDate = $latestKeputusan && $latestKeputusan->created_at >= $latestEksplorasi;
+
+        return view('peserta.eksplorasi.hasil', compact('eksplorasi', 'isKeputusanUpToDate'));
     }
 }

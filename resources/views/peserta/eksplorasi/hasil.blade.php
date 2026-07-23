@@ -78,9 +78,9 @@
                     Edit Data Eksplorasi
                 </a>
                 
-                <a href="{{ route('keputusan.index') }}" class="inline-flex items-center justify-center px-8 py-4 bg-primary-600 text-white font-bold rounded-xl hover:bg-primary-700 transition-colors shadow-lg shadow-primary-600/30 text-lg group">
-                    Lanjut Tahap Pengambilan Keputusan
-                    <svg class="ml-2 w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <a href="{{ $isKeputusanUpToDate ? route('hasilkeputusan') : route('keputusan.index') }}" class="inline-flex items-center justify-center px-8 py-4 bg-primary-600 text-white font-bold rounded-xl hover:bg-primary-700 transition-colors shadow-lg shadow-primary-600/30 text-lg group">
+                    {{ $isKeputusanUpToDate ? 'Lihat Hasil Keputusan' : 'Lanjut Tahap Pengambilan Keputusan' }}
+                    <svg class="ml-3 w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
                 </a>

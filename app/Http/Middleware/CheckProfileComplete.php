@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class CheckProfileComplete
@@ -30,12 +31,22 @@ class CheckProfileComplete
                 }
             } else {
                 // Profile is complete, but account might not be active (verified)
-                if (! $user->is_active) {
-                    if (! $request->routeIs('home', 'contact', 'logout')) {
+                if ($user->status !== 'active') {
+                    if (! $request->routeIs('home', 'contact', 'logout', 'login')) {
+                        $status = $user->status;
                         $msg = $user->role === 'admin' 
                             ? 'Akun admin Anda sedang menunggu verifikasi oleh Super Admin.' 
                             : 'Akun Anda sedang menunggu verifikasi oleh Admin Instansi.';
-                        return redirect()->route('home')->with('error', $msg);
+                        
+                        Auth::guard('web')->logout();
+                        $request->session()->invalidate();
+                        $request->session()->regenerateToken();
+
+                        if ($status === 'inactive') {
+                            return redirect('/login')->with('account_inactive', true);
+                        } else {
+                            return redirect('/login')->with('account_pending', $msg);
+                        }
                     }
                 }
             }

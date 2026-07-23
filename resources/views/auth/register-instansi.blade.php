@@ -64,18 +64,19 @@
         </div>
     </div>
 
-    <div x-data="{ isNewSchool: false }">
-        <label for="school_id" class="block text-sm font-medium text-slate-700 mb-1">Nama Instansi / Sekolah</label>
-        
-        <select id="school_id" name="school_id" x-bind:required="!isNewSchool" x-bind:disabled="isNewSchool" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 focus:bg-white focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-colors appearance-none">
-            <option value="">Pilih Instansi</option>
-            @foreach($institutions as $inst)
-                <option value="{{ $inst->id }}" {{ old('school_id') == $inst->id ? 'selected' : '' }}>{{ $inst->name }}</option>
-            @endforeach
-        </select>
+    <div x-data="{ isNewSchool: {{ old('new_school') ? 'true' : 'false' }} }">
+        <div x-show="!isNewSchool" x-transition>
+            <label for="school_id" class="block text-sm font-medium text-slate-700 mb-1">Nama Instansi / Sekolah</label>
+            <select id="school_id" name="school_id" x-bind:required="!isNewSchool" x-bind:disabled="isNewSchool" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 focus:bg-white focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-colors appearance-none">
+                <option value="">Pilih Instansi</option>
+                @foreach($institutions as $inst)
+                    <option value="{{ $inst->id }}" {{ old('school_id') == $inst->id ? 'selected' : '' }}>{{ $inst->name }}</option>
+                @endforeach
+            </select>
+        </div>
         
         <div class="mt-3 flex items-center">
-            <input type="checkbox" id="isNewSchool" x-model="isNewSchool" class="w-4 h-4 text-primary-600 border-slate-300 rounded focus:ring-primary-500">
+            <input type="checkbox" id="isNewSchool" x-model="isNewSchool" @change="if(isNewSchool) document.getElementById('school_id').value = ''" class="w-4 h-4 text-primary-600 border-slate-300 rounded focus:ring-primary-500">
             <label for="isNewSchool" class="ml-2 text-sm text-slate-600 cursor-pointer">Daftar instansi baru</label>
         </div>
 
