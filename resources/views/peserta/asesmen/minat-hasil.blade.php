@@ -89,7 +89,10 @@
                                 </div>
                                 
                                 <div class="mt-4 space-y-3">
-                                    <h4 class="font-bold text-slate-800 text-sm border-b border-slate-100 pb-2">Rekomendasi Profesi:</h4>
+                                    <div class="border-b border-slate-100 pb-2">
+                                        <h4 class="font-bold text-slate-800 text-sm">Rekomendasi Profesi:</h4>
+                                        <p class="text-xs text-slate-500 mt-1">Itu merupakan contoh rekomendasi pekerjaan, kamu dapat menemukan pekerjaan yang serupa.</p>
+                                    </div>
                                     <div class="grid grid-cols-1 gap-3 max-h-60 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-slate-200 scrollbar-track-transparent">
                                         <template x-if="activeDetail.jobs && activeDetail.jobs.length > 0">
                                             <template x-for="job in activeDetail.jobs" :key="job.name">

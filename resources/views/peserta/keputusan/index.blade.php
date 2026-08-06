@@ -44,11 +44,15 @@
                     </h4>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div class="bg-white p-5 rounded-2xl border border-blue-100 shadow-sm">
-                            <h5 class="font-bold text-blue-900 mb-2 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-blue-500"></span> 3 Minat Teratas</h5>
-                            <ul class="text-sm text-slate-600 list-disc list-inside space-y-1">
+                            <h5 class="font-bold text-blue-900 mb-3 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-blue-500"></span> 3 Minat Teratas</h5>
+                            <ul class="text-sm space-y-2">
                                 @if(isset($minat) && is_array($minat->top_results))
                                     @foreach($minat->top_results as $code)
-                                        <li>{{ \App\Helpers\AssessmentHelper::getMinatDetail($code)['name'] }}</li>
+                                        @php $minatDetail = \App\Helpers\AssessmentHelper::getMinatDetail($code); @endphp
+                                        <li @click="showDetail(`{{ $minatDetail['name'] }}`, `{{ addslashes($minatDetail['long_desc']) }}`)" class="cursor-pointer group flex items-center justify-between p-2 rounded-lg bg-slate-50 border border-slate-100 hover:bg-blue-50 hover:border-blue-200 transition-colors">
+                                            <span class="font-medium text-slate-700 group-hover:text-blue-700">{{ $minatDetail['name'] }}</span>
+                                            <svg class="w-4 h-4 text-slate-400 group-hover:text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                        </li>
                                     @endforeach
                                 @else
                                     <li>Belum ada data</li>
@@ -56,12 +60,15 @@
                             </ul>
                         </div>
                         <div class="bg-white p-5 rounded-2xl border border-green-100 shadow-sm">
-                            <h5 class="font-bold text-green-900 mb-2 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-green-500"></span> Kapasitas Utama</h5>
-                            <ul class="text-sm text-slate-600 list-disc list-inside space-y-1">
+                            <h5 class="font-bold text-green-900 mb-3 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-green-500"></span> Kapasitas Utama</h5>
+                            <ul class="text-sm space-y-2">
                                 @if(isset($kapasitas) && isset($kapasitas->top_results['keterampilan']))
                                     @foreach($kapasitas->top_results['keterampilan'] as $code)
                                         @php $capDetail = \App\Helpers\AssessmentHelper::getKapasitas1Detail($code); @endphp
-                                        <li title="{{ $capDetail['desc'] }}" class="cursor-help border-b border-dashed border-slate-300 w-fit pb-0.5 hover:text-green-700 transition-colors">{{ $capDetail['name'] }}</li>
+                                        <li @click="showDetail(`{{ $capDetail['name'] }}`, `{{ addslashes($capDetail['desc']) }}`)" class="cursor-pointer group flex items-center justify-between p-2 rounded-lg bg-slate-50 border border-slate-100 hover:bg-green-50 hover:border-green-200 transition-colors">
+                                            <span class="font-medium text-slate-700 group-hover:text-green-700">{{ $capDetail['name'] }}</span>
+                                            <svg class="w-4 h-4 text-slate-400 group-hover:text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                        </li>
                                     @endforeach
                                 @else
                                     <li>Belum ada data</li>
@@ -69,11 +76,15 @@
                             </ul>
                         </div>
                         <div class="bg-white p-5 rounded-2xl border border-purple-100 shadow-sm">
-                            <h5 class="font-bold text-purple-900 mb-2 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-purple-500"></span> Nilai Karier</h5>
-                            <ul class="text-sm text-slate-600 list-disc list-inside space-y-1">
+                            <h5 class="font-bold text-purple-900 mb-3 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-purple-500"></span> Nilai Karier</h5>
+                            <ul class="text-sm space-y-2">
                                 @if(isset($nilaiKarier) && is_array($nilaiKarier->top_results))
                                     @foreach($nilaiKarier->top_results as $code)
-                                        <li>{{ \App\Helpers\AssessmentHelper::getNilaiKarierDetail($code)['name'] }}</li>
+                                        @php $nkDetail = \App\Helpers\AssessmentHelper::getNilaiKarierDetail($code); @endphp
+                                        <li @click="showDetail(`{{ $nkDetail['name'] }}`, `{{ addslashes($nkDetail['long_desc']) }}`)" class="cursor-pointer group flex items-center justify-between p-2 rounded-lg bg-slate-50 border border-slate-100 hover:bg-purple-50 hover:border-purple-200 transition-colors">
+                                            <span class="font-medium text-slate-700 group-hover:text-purple-700">{{ $nkDetail['name'] }}</span>
+                                            <svg class="w-4 h-4 text-slate-400 group-hover:text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                        </li>
                                     @endforeach
                                 @else
                                     <li>Belum ada data</li>
@@ -113,12 +124,12 @@
                                 <tr>
                                     <th class="w-1/4 p-4 bg-slate-100 border-b border-r border-slate-200 text-slate-700 font-bold align-bottom">Aspek Eksplorasi</th>
                                     <th class="w-3/8 p-4 bg-blue-50 border-b border-r border-blue-100 text-center">
-                                        <span class="text-xs font-bold text-blue-600 uppercase tracking-wider block mb-1">Karier 1</span>
-                                        <span class="text-xl font-extrabold text-primary-900">{{ $k1 ? $k1->career_name : 'Karier 1' }}</span>
+                                        <span class="text-xs font-bold text-blue-600 uppercase tracking-wider block mb-1">Profesi Pilihan 1</span>
+                                        <span class="text-xl font-extrabold text-primary-900">{{ $k1 ? $k1->career_name : 'Profesi Pilihan 1' }}</span>
                                     </th>
                                     <th class="w-3/8 p-4 bg-purple-50 border-b border-purple-100 text-center">
-                                        <span class="text-xs font-bold text-purple-600 uppercase tracking-wider block mb-1">Karier 2</span>
-                                        <span class="text-xl font-extrabold text-accent-900">{{ $k2 ? $k2->career_name : 'Karier 2' }}</span>
+                                        <span class="text-xs font-bold text-purple-600 uppercase tracking-wider block mb-1">Profesi Pilihan 2</span>
+                                        <span class="text-xl font-extrabold text-accent-900">{{ $k2 ? $k2->career_name : 'Profesi Pilihan 2' }}</span>
                                     </th>
                                 </tr>
                             </thead>
@@ -187,6 +198,32 @@
                         </button>
                     </form>
                 </div>
+                </div>
+            </div>
+
+            <!-- Global Detail Modal -->
+            <div x-show="detailModalOpen" style="display: none;" class="fixed inset-0 z-[100] overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                <div class="flex items-center justify-center min-h-screen p-4 text-center sm:p-0">
+                    <div x-show="detailModalOpen" @click="detailModalOpen = false" x-transition.opacity class="fixed inset-0 bg-slate-900/75 backdrop-blur-sm transition-opacity" aria-hidden="true"></div>
+
+                    <div x-show="detailModalOpen" x-transition class="inline-block align-bottom bg-white rounded-3xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-xl sm:w-full relative z-[101]">
+                        <div class="bg-white px-6 pt-6 pb-6">
+                            <div class="sm:flex sm:items-start">
+                                <div class="mt-3 text-center sm:mt-0 sm:text-left w-full">
+                                    <h3 class="text-2xl leading-6 font-bold text-primary-900" id="modal-title" x-text="activeDetail.title"></h3>
+                                    <div class="mt-4 mb-2">
+                                        <p class="text-sm text-slate-600 leading-relaxed text-justify" x-text="activeDetail.desc"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-slate-50 px-6 py-4 flex flex-row-reverse border-t border-slate-100">
+                            <button @click="detailModalOpen = false" type="button" class="w-full inline-flex justify-center rounded-xl border border-transparent shadow-sm px-6 py-2 bg-primary-600 text-base font-semibold text-white hover:bg-primary-700 sm:ml-3 sm:w-auto sm:text-sm transition-colors cursor-pointer">
+                                Tutup
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -200,6 +237,13 @@
                 winner: "",
                 scores: { 1: 0, 2: 0 },
                 selections: {}, // Maps rowIndex -> 1 or 2
+                detailModalOpen: false,
+                activeDetail: { title: '', desc: '' },
+                
+                showDetail(title, desc) {
+                    this.activeDetail = { title, desc };
+                    this.detailModalOpen = true;
+                },
                 
                 tableData: [
                     @foreach($aspects as $aspect)
@@ -213,7 +257,7 @@
 
                 questions: [
                     { text: "Bandingkan antara mata pelajaran yang kamu kuasai dengan mata kuliah. Apakah mata kuliah di dalamnya sesuai dengan kapasitasmu?", targetRow: 2 },
-                    { text: "Bandingkan antara bidang kapasitas dengan keterampilan yang perlu dikuasai. Apakah keterampilan tersebut sesuai dengan kapasitasmu?", targetRow: 3 },
+                    { text: "Bandingkan antara bidang kapasitas dengan keterampilan yang perlu dikuasai. Tandai keterampilan yang sesuai dengan kapasitasmu.", targetRow: 3 },
                     { text: "Bandingkan kapasitasmu dengan pelatihan formal/pendidikan lanjut. Apakah pelatihan tersebut sesuai dengan kapasitasmu?", targetRow: 4 },
                     { text: "Bandingkan kapasitasmu dengan sertifikasi yang perlu diambil. Apakah sertifikasi tersebut sesuai dengan kapasitasmu?", targetRow: 5 },
                     { text: "Bandingkan antara nilai kariermu dengan peluang kariernya. Apakah peluang tersebut sesuai dengan nilai kariermu?", targetRow: 6 },
@@ -233,8 +277,8 @@
                 },
 
                 finish() {
-                    let c1 = {!! json_encode($k1 ? $k1->career_name : 'Karier 1') !!};
-                    let c2 = {!! json_encode($k2 ? $k2->career_name : 'Karier 2') !!};
+                    let c1 = {!! json_encode($k1 ? $k1->career_name : 'Profesi Pilihan 1') !!};
+                    let c2 = {!! json_encode($k2 ? $k2->career_name : 'Profesi Pilihan 2') !!};
 
                     if (this.scores[1] > this.scores[2]) {
                         this.winner = c1;

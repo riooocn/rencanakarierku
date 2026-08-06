@@ -32,7 +32,14 @@ class SuperAdminController extends Controller
             
         $pendingAdminsCount = User::where('role', 'admin')->where('status', 'pending')->count();
         
-        return view('superadmin.dashboard', compact('adminCount', 'pesertaCount', 'siswaSelesaiTesCount', 'institutionCount', 'pendingAdmins', 'pendingAdminsCount'));
+        // Count accounts expiring within 30 days
+        $soonExpiringCount = User::where('status', 'active')
+            ->whereNotNull('expires_at')
+            ->where('expires_at', '<=', now()->addDays(30))
+            ->where('expires_at', '>', now())
+            ->count();
+        
+        return view('superadmin.dashboard', compact('adminCount', 'pesertaCount', 'siswaSelesaiTesCount', 'institutionCount', 'pendingAdmins', 'pendingAdminsCount', 'soonExpiringCount'));
     }
 
     public function adminList(Request $request)
@@ -68,9 +75,44 @@ class SuperAdminController extends Controller
     {
         $admin = User::where('role', 'admin')->findOrFail($id);
         $admin->status = 'active';
+        $admin->activated_at = now();
         $admin->save();
         
         return redirect()->back()->with('success', 'Akun admin berhasil diverifikasi.');
+    }
+
+    public function setAdminDuration(Request $request, $id)
+    {
+        $request->validate([
+            'duration' => 'required|in:3,6,12',
+        ]);
+
+        $admin = User::where('role', 'admin')->findOrFail($id);
+        
+        if ($admin->status !== 'active') {
+            return redirect()->back()->with('error', 'Durasi hanya bisa diatur untuk akun yang aktif.');
+        }
+
+        $duration = (int) $request->duration;
+        $activatedAt = $admin->activated_at ?? now();
+        
+        $admin->activated_at = $activatedAt;
+        $admin->activation_duration_months = $duration;
+        $admin->expires_at = $activatedAt->copy()->addMonths($duration);
+        $admin->save();
+
+        return redirect()->back()->with('success', "Durasi aktif admin berhasil diatur ke {$duration} bulan.");
+    }
+
+    public function removeAdminDuration($id)
+    {
+        $admin = User::where('role', 'admin')->findOrFail($id);
+        
+        $admin->activation_duration_months = null;
+        $admin->expires_at = null;
+        $admin->save();
+
+        return redirect()->back()->with('success', 'Durasi aktif admin dihapus. Akun berlaku tanpa batas waktu.');
     }
 
     public function adminDeactivate($id)
@@ -92,6 +134,39 @@ class SuperAdminController extends Controller
         }
 
         return redirect()->back()->with('error', 'Hanya admin dengan status menunggu verifikasi yang dapat ditolak.');
+    }
+
+    public function adminBulkAction(Request $request)
+    {
+        $request->validate([
+            'action' => 'required|in:approve,activate,deactivate,reject',
+            'selected_ids' => 'required|array',
+            'selected_ids.*' => 'exists:users,id',
+        ]);
+
+        $action = $request->action;
+        $ids = $request->selected_ids;
+
+        $admins = User::where('role', 'admin')->whereIn('id', $ids)->get();
+        $count = 0;
+
+        foreach ($admins as $admin) {
+            if ($action === 'approve' || $action === 'activate') {
+                $admin->status = 'active';
+                $admin->activated_at = $admin->activated_at ?? now();
+                $admin->save();
+                $count++;
+            } elseif ($action === 'deactivate') {
+                $admin->status = 'inactive';
+                $admin->save();
+                $count++;
+            } elseif ($action === 'reject' && $admin->status === 'pending') {
+                $admin->delete();
+                $count++;
+            }
+        }
+
+        return redirect()->back()->with('success', "Aksi massal berhasil diterapkan ke {$count} admin.");
     }
 
     public function adminPeserta($admin_id)
@@ -175,9 +250,44 @@ class SuperAdminController extends Controller
     {
         $peserta = User::where('role', 'peserta')->findOrFail($id);
         $peserta->status = 'active';
+        $peserta->activated_at = now();
         $peserta->save();
         
         return redirect()->back()->with('success', 'Akun peserta berhasil diverifikasi.');
+    }
+
+    public function setPesertaDuration(Request $request, $id)
+    {
+        $request->validate([
+            'duration' => 'required|in:3,6,12',
+        ]);
+
+        $peserta = User::where('role', 'peserta')->findOrFail($id);
+        
+        if ($peserta->status !== 'active') {
+            return redirect()->back()->with('error', 'Durasi hanya bisa diatur untuk akun yang aktif.');
+        }
+
+        $duration = (int) $request->duration;
+        $activatedAt = $peserta->activated_at ?? now();
+        
+        $peserta->activated_at = $activatedAt;
+        $peserta->activation_duration_months = $duration;
+        $peserta->expires_at = $activatedAt->copy()->addMonths($duration);
+        $peserta->save();
+
+        return redirect()->back()->with('success', "Durasi aktif peserta berhasil diatur ke {$duration} bulan.");
+    }
+
+    public function removePesertaDuration($id)
+    {
+        $peserta = User::where('role', 'peserta')->findOrFail($id);
+        
+        $peserta->activation_duration_months = null;
+        $peserta->expires_at = null;
+        $peserta->save();
+
+        return redirect()->back()->with('success', 'Durasi aktif peserta dihapus. Akun berlaku tanpa batas waktu.');
     }
 
     public function pesertaDeactivate($id)
@@ -199,6 +309,39 @@ class SuperAdminController extends Controller
         }
 
         return redirect()->back()->with('error', 'Hanya peserta dengan status menunggu verifikasi yang dapat ditolak.');
+    }
+
+    public function pesertaBulkAction(Request $request)
+    {
+        $request->validate([
+            'action' => 'required|in:approve,activate,deactivate,reject',
+            'selected_ids' => 'required|array',
+            'selected_ids.*' => 'exists:users,id',
+        ]);
+
+        $action = $request->action;
+        $ids = $request->selected_ids;
+
+        $pesertas = User::where('role', 'peserta')->whereIn('id', $ids)->get();
+        $count = 0;
+
+        foreach ($pesertas as $peserta) {
+            if ($action === 'approve' || $action === 'activate') {
+                $peserta->status = 'active';
+                $peserta->activated_at = $peserta->activated_at ?? now();
+                $peserta->save();
+                $count++;
+            } elseif ($action === 'deactivate') {
+                $peserta->status = 'inactive';
+                $peserta->save();
+                $count++;
+            } elseif ($action === 'reject' && $peserta->status === 'pending') {
+                $peserta->delete();
+                $count++;
+            }
+        }
+
+        return redirect()->back()->with('success', "Aksi massal berhasil diterapkan ke {$count} peserta.");
     }
 
     public function exportExcel(Request $request)

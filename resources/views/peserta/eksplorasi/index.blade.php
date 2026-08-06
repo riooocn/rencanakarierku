@@ -48,11 +48,11 @@
                     <h4 class="font-bold text-slate-800 text-xl mb-6">Tentukan Profesi Pilihan</h4>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div>
-                            <label class="block font-semibold text-slate-700 mb-2">Pilihan Karier 1</label>
+                            <label class="block font-semibold text-slate-700 mb-2">Profesi Pilihan 1</label>
                             <input type="text" name="karier1" x-model="karier1" placeholder="Contoh: Software Engineer" required class="w-full rounded-xl border-slate-300 focus:ring-primary-500 focus:border-primary-500 py-3 px-4 bg-slate-50">
                         </div>
                         <div>
-                            <label class="block font-semibold text-slate-700 mb-2">Pilihan Karier 2</label>
+                            <label class="block font-semibold text-slate-700 mb-2">Profesi Pilihan 2</label>
                             <input type="text" name="karier2" x-model="karier2" placeholder="Contoh: Desainer UI/UX" required class="w-full rounded-xl border-slate-300 focus:ring-primary-500 focus:border-primary-500 py-3 px-4 bg-slate-50">
                         </div>
                     </div>
@@ -67,13 +67,13 @@
                     <div class="p-6 md:p-0">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-0 md:divide-x divide-slate-100">
                             <div class="p-6 md:p-8 bg-blue-50/50 md:bg-blue-50/30 rounded-2xl md:rounded-none border border-blue-100 md:border-none">
-                                <h5 class="text-lg font-bold text-primary-700 mb-6" x-text="karier1 || 'Karier 1'"></h5>
+                                <h5 class="text-lg font-bold text-primary-700 mb-6" x-text="karier1 || 'Profesi Pilihan 1'"></h5>
                                 <div class="space-y-6" id="col-karier-1">
                                     <!-- Populated by JS for Karier 1 -->
                                 </div>
                             </div>
                             <div class="p-6 md:p-8 bg-purple-50/50 md:bg-purple-50/30 rounded-2xl md:rounded-none border border-purple-100 md:border-none">
-                                <h5 class="text-lg font-bold text-accent-700 mb-6" x-text="karier2 || 'Karier 2'"></h5>
+                                <h5 class="text-lg font-bold text-accent-700 mb-6" x-text="karier2 || 'Profesi Pilihan 2'"></h5>
                                 <div class="space-y-6" id="col-karier-2">
                                     <!-- Populated by JS for Karier 2 -->
                                 </div>

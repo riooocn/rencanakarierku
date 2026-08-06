@@ -123,6 +123,7 @@ class AdminController extends Controller
             ->findOrFail($id);
             
         $peserta->status = 'active';
+        $peserta->activated_at = now();
         $peserta->save();
 
         return redirect()->back()->with('success', 'Akun peserta berhasil diverifikasi.');
@@ -156,6 +157,45 @@ class AdminController extends Controller
         }
 
         return redirect()->back()->with('error', 'Hanya peserta dengan status menunggu verifikasi yang dapat ditolak.');
+    }
+
+    public function pesertaBulkAction(Request $request)
+    {
+        $user = $request->user();
+        
+        $request->validate([
+            'action' => 'required|in:approve,activate,deactivate,reject',
+            'selected_ids' => 'required|array',
+            'selected_ids.*' => 'exists:users,id',
+        ]);
+
+        $action = $request->action;
+        $ids = $request->selected_ids;
+
+        $pesertas = User::where('role', 'peserta')
+            ->where('institution_id', $user->institution_id)
+            ->whereIn('id', $ids)
+            ->get();
+            
+        $count = 0;
+
+        foreach ($pesertas as $peserta) {
+            if ($action === 'approve' || $action === 'activate') {
+                $peserta->status = 'active';
+                $peserta->activated_at = $peserta->activated_at ?? now();
+                $peserta->save();
+                $count++;
+            } elseif ($action === 'deactivate') {
+                $peserta->status = 'inactive';
+                $peserta->save();
+                $count++;
+            } elseif ($action === 'reject' && $peserta->status === 'pending') {
+                $peserta->delete();
+                $count++;
+            }
+        }
+
+        return redirect()->back()->with('success', "Aksi massal berhasil diterapkan ke {$count} peserta.");
     }
 
     public function exportExcel(Request $request)

@@ -95,19 +95,19 @@ class AssessmentHelper
         $map = [
             '1' => [
                 'name' => 'People',
-                'desc' => 'Kapasitas bekerja dengan orang lain',
+                'desc' => 'Kamu dengan kapasitas di bidang pekerjaan people menunjukkan bahwa kamu memiliki keterampilan interpersonal yang baik dan senang membantu, berinteraksi, ataupun melayani orang lain.',
             ],
             '2' => [
                 'name' => 'Data',
-                'desc' => 'Kapasitas bekerja dengan angka dan informasi',
+                'desc' => 'Kamu dengan kapasitas di bidang pekerjaan data mempunyai kemampuan dalam hal pencatatan, pengumpulan, serta analisis data dan informasi.',
             ],
             '3' => [
                 'name' => 'Things',
-                'desc' => 'Kapasitas bekerja dengan alat atau objek',
+                'desc' => 'Kamu dengan kapasitas di bidang pekerjaan things berarti kamu memiliki kemampuan untuk merawat, memperbaiki, maupun mengoperasikan mesin dan peralatan.',
             ],
             '4' => [
                 'name' => 'Ideas',
-                'desc' => 'Kapasitas memikirkan konsep dan kreativitas',
+                'desc' => 'Kamu dengan kapasitas di bidang pekerjaan ideas berarti kamu memiliki kemampuan atau keterampilan di pekerjaan yang berkaitan dengan ide, konsep ataupun tema. Kamu juga memiliki kapasitas untuk membuat suatu penemuan atau kreasi.',
             ],
         ];
 
@@ -120,25 +120,30 @@ class AssessmentHelper
             '1' => [
                 'name' => 'Leisure',
                 'desc' => 'Menginginkan keseimbangan antara kehidupan kerja dan waktu luang.',
+                'long_desc' => 'Kamu dengan nilai kerja leisure lebih senang karier yang memberikan waktu untuk kamu berkumpul dengan keluarga atau menjalani kehidupan personal. Kamu mengharapkan pekerjaan yang dapat dilakukan jarak jauh atau fleksibel, sehingga kamu dapat menghabiskan waktu untuk keluarga dan teman.',
             ],
             '2' => [
                 'name' => 'Extrinsic Rewards',
                 'desc' => 'Menghargai penghasilan yang tinggi, status, dan keamanan finansial.',
+                'long_desc' => 'Kamu dengan nilai kerja extrinsic rewards menyukai pekerjaan dengan adanya imbalan yang diberikan oleh orang lain. Penghargaan tersebut dapat berupa gaji, harta benda, maupun prestise/kehormatan.',
             ],
             '3' => [
                 'name' => 'Intrinsic Rewards',
                 'desc' => 'Termotivasi oleh kepuasan batin dari pekerjaan itu sendiri.',
+                'long_desc' => 'Apabila kamu memiliki nilai kerja intrinsic rewards, kamu menganggap hal penting dari pekerjaan adalah adanya imbalan dari dalam diri sebagai motivasi kamu bekerja. Imbalan tersebut dapat berupa pekerjaan yang terasa menantang dan adanya peningkatan keterampilan atau pengembangan diri.',
             ],
             '4' => [
                 'name' => 'Altruistic Rewards',
                 'desc' => 'Motivasi untuk membantu orang lain dan berkontribusi pada masyarakat.',
+                'long_desc' => 'Apabila kamu memiliki nilai kerja altruistic rewards, artinya kamu mementingkan bekerja untuk membantu orang lain. Kamu lebih mengutamakan pekerjaan yang dapat menolong orang lain dibandingkan mementingkan diri sendiri.',
             ],
             '5' => [
                 'name' => 'Social Rewards',
                 'desc' => 'Menghargai interaksi sosial dan lingkungan kerja yang bersahabat.',
+                'long_desc' => 'Kamu dengan nilai karier social rewards lebih menyukai pekerjaan yang dapat berelasi dengan orang lain dalam waktu lama. Kamu senang apabila pekerjaanmu dapat membuatmu terhubung dengan beragam kelompok sosial.',
             ],
         ];
 
-        return $map[$code] ?? ['name' => 'Unknown', 'desc' => 'Tidak diketahui.'];
+        return $map[$code] ?? ['name' => 'Unknown', 'desc' => 'Tidak diketahui.', 'long_desc' => 'Tidak diketahui.'];
     }
 }

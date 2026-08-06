@@ -10,7 +10,20 @@
         </div>
     </x-slot>
 
-    <div class="py-12 relative">
+    @php
+        $detailsData = [];
+        if(isset($result) && is_array($result->top_results)) {
+            foreach($result->top_results as $code) {
+                $detailsData[$code] = \App\Helpers\AssessmentHelper::getNilaiKarierDetail($code);
+            }
+        }
+    @endphp
+
+    <script>
+        window.nilaiKarierDetailsData = {!! json_encode($detailsData) !!};
+    </script>
+
+    <div class="py-12 relative" x-data="{ openDetail: false, activeDetail: {} }">
         <div class="max-w-5xl mx-auto sm:px-6 lg:px-8 relative z-10 space-y-8">
             
             <div class="bg-white/80 backdrop-blur-xl border border-white shadow-xl shadow-slate-200/50 rounded-3xl p-8 md:p-10">
@@ -27,24 +40,34 @@
                             @endphp
                             <!-- Top {{ $index + 1 }} -->
                             @if($index === 0)
-                            <div class="relative bg-gradient-to-br from-accent-500 to-accent-600 rounded-2xl p-6 text-white text-center shadow-lg transform hover:-translate-y-2 transition-transform">
-                                <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 backdrop-blur-sm">
-                                    <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg>
-                                </div>
-                                <h4 class="text-xl font-bold mb-2">{{ $detail['name'] }}</h4>
-                                <p class="text-sm text-accent-100">{{ $detail['desc'] }}</p>
-                            </div>
-                            @else
-                            <div class="relative bg-white rounded-2xl p-6 text-center shadow-sm border border-slate-200 hover:-translate-y-2 transition-transform">
-                                <div class="w-16 h-16 bg-primary-50 rounded-full flex items-center justify-center mx-auto mb-4 text-primary-600">
+                            <div @click="activeDetail = window.nilaiKarierDetailsData['{{ $code }}']; openDetail = true" 
+                                 class="relative bg-white rounded-2xl p-6 text-center shadow-sm border border-slate-200 hover:-translate-y-2 transition-colors cursor-pointer group hover:bg-accent-500 hover:border-accent-600">
+                                <div class="w-16 h-16 bg-primary-50 rounded-full flex items-center justify-center mx-auto mb-4 text-primary-600 group-hover:bg-white/20 group-hover:text-white transition-colors">
                                     <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                                     </svg>
                                 </div>
-                                <h4 class="text-xl font-bold text-slate-900 mb-2">{{ $detail['name'] }}</h4>
-                                <p class="text-sm text-slate-500">{{ $detail['desc'] }}</p>
+                                <h4 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-white transition-colors">{{ $detail['name'] }}</h4>
+                                <p class="text-sm text-slate-500 group-hover:text-accent-100 transition-colors">{{ $detail['desc'] }}</p>
+                                
+                                <button class="mt-4 text-xs font-bold text-accent-600 group-hover:text-white underline hover:no-underline transition-colors">
+                                    Detail &gt;
+                                </button>
+                            </div>
+                            @else
+                            <div @click="activeDetail = window.nilaiKarierDetailsData['{{ $code }}']; openDetail = true" 
+                                 class="relative bg-white rounded-2xl p-6 text-center shadow-sm border border-slate-200 hover:-translate-y-2 transition-colors cursor-pointer group hover:bg-accent-500 hover:border-accent-600">
+                                <div class="w-16 h-16 bg-primary-50 rounded-full flex items-center justify-center mx-auto mb-4 text-primary-600 group-hover:bg-white/20 group-hover:text-white transition-colors">
+                                    <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                    </svg>
+                                </div>
+                                <h4 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-white transition-colors">{{ $detail['name'] }}</h4>
+                                <p class="text-sm text-slate-500 group-hover:text-accent-100 transition-colors">{{ $detail['desc'] }}</p>
+                                
+                                <button class="mt-4 text-xs font-bold text-accent-600 group-hover:text-white underline hover:no-underline transition-colors">
+                                    Detail &gt;
+                                </button>
                             </div>
                             @endif
                         @endforeach
@@ -64,6 +87,31 @@
                 </div>
             </div>
 
+        </div>
+
+        <!-- Global Modal -->
+        <div x-show="openDetail" style="display: none;" class="fixed inset-0 z-[100] overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+            <div class="flex items-center justify-center min-h-screen p-4 text-center sm:p-0">
+                <div x-show="openDetail" @click="openDetail = false" x-transition.opacity class="fixed inset-0 bg-slate-900/75 backdrop-blur-sm transition-opacity" aria-hidden="true"></div>
+
+                <div x-show="openDetail" x-transition class="inline-block align-bottom bg-white rounded-3xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-xl sm:w-full relative z-[101]">
+                    <div class="bg-white px-6 pt-6 pb-6">
+                        <div class="sm:flex sm:items-start">
+                            <div class="mt-3 text-center sm:mt-0 sm:text-left w-full">
+                                <h3 class="text-2xl leading-6 font-bold text-primary-900" id="modal-title" x-text="activeDetail.name"></h3>
+                                <div class="mt-4 mb-2">
+                                    <p class="text-sm text-slate-600 leading-relaxed text-justify" x-text="activeDetail.long_desc || 'Penjelasan tidak tersedia.'"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-slate-50 px-6 py-4 flex flex-row-reverse border-t border-slate-100">
+                        <button @click="openDetail = false" type="button" class="w-full inline-flex justify-center rounded-xl border border-transparent shadow-sm px-6 py-2 bg-primary-600 text-base font-semibold text-white hover:bg-primary-700 sm:ml-3 sm:w-auto sm:text-sm transition-colors cursor-pointer">
+                            Tutup
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </x-app-layout>

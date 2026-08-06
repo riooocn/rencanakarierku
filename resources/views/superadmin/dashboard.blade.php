@@ -5,7 +5,7 @@
 @section('page_description', 'Ikhtisar statistik dari seluruh instansi dan peserta terdaftar.')
 
 @section('content')
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-8">
     
     <!-- Card 1 -->
     <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center">
@@ -56,6 +56,20 @@
         <div>
             <p class="text-sm font-medium text-slate-500 mb-1">Admin Menunggu Verifikasi</p>
             <h4 class="text-2xl font-bold text-slate-900">{{ $pendingAdminsCount }}</h4>
+        </div>
+    </div>
+
+    <!-- Card 5 - Akun Segera Expired -->
+    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center">
+        <div class="w-14 h-14 rounded-xl bg-amber-50 flex justify-center items-center text-amber-600 mr-4">
+            <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+        </div>
+        <div>
+            <p class="text-sm font-medium text-slate-500 mb-1">Akun Segera Expired</p>
+            <h4 class="text-2xl font-bold text-slate-900">{{ $soonExpiringCount }}</h4>
+            <p class="text-xs text-slate-400">Dalam 30 hari ke depan</p>
         </div>
     </div>
 </div>

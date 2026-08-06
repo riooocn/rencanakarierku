@@ -36,7 +36,7 @@ Route::middleware('auth')->group(function () {
         if ($user->institution_id || $user->role !== 'peserta') return redirect()->route('dashboard');
         
         $institutions = \App\Models\Institution::whereHas('users', function ($q) {
-            $q->where('role', 'admin')->where('is_active', true);
+            $q->where('role', 'admin')->where('status', 'active');
         })->orderBy('name')->get();
         return view('auth.complete-profile-peserta', compact('institutions'));
     })->name('complete-profile-peserta');
@@ -84,7 +84,7 @@ Route::prefix('perjalananku')->middleware(['auth', 'role:peserta'])->group(funct
             $asesmenText = 'Lanjut ke Tes Nilai Karier';
             $isAsesmenIncomplete = true;
         } else {
-            $asesmenLink = route('asesmen.nilaikarier.hasil');
+            $asesmenLink = route('asesmen.minat.hasil');
             $asesmenText = 'Lihat Hasil Asesmen';
         }
 
@@ -138,6 +138,7 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/', [\App\Http\Controllers\AdminController::class, 'index'])->name('admin.dashboard');
     
     Route::get('/peserta', [\App\Http\Controllers\AdminController::class, 'peserta'])->name('admin.peserta.index');
+    Route::post('/peserta/bulk-action', [\App\Http\Controllers\AdminController::class, 'pesertaBulkAction'])->name('admin.peserta.bulk-action');
     Route::get('/peserta/export', [\App\Http\Controllers\AdminController::class, 'exportExcel'])->name('admin.peserta.export');
     Route::get('/peserta/{id}', [\App\Http\Controllers\AdminController::class, 'pesertaDetail'])->name('admin.peserta.show');
     Route::get('/peserta/{id}/history/{history_id}', [\App\Http\Controllers\AdminController::class, 'pesertaHistoryDetail'])->name('admin.peserta.history.show');
@@ -151,14 +152,18 @@ Route::prefix('superadmin')->middleware(['auth', 'role:superadmin'])->group(func
     Route::get('/', [\App\Http\Controllers\SuperAdminController::class, 'index'])->name('superadmin.dashboard');
     
     Route::get('/admin', [\App\Http\Controllers\SuperAdminController::class, 'adminList'])->name('superadmin.admin.index');
+    Route::post('/admin/bulk-action', [\App\Http\Controllers\SuperAdminController::class, 'adminBulkAction'])->name('superadmin.admin.bulk-action');
     
     Route::patch('/admin/{id}/approve', [\App\Http\Controllers\SuperAdminController::class, 'adminApprove'])->name('superadmin.admin.approve');
     Route::patch('/admin/{id}/deactivate', [\App\Http\Controllers\SuperAdminController::class, 'adminDeactivate'])->name('superadmin.admin.deactivate');
     Route::delete('/admin/{id}/reject', [\App\Http\Controllers\SuperAdminController::class, 'adminReject'])->name('superadmin.admin.reject');
+    Route::patch('/admin/{id}/set-duration', [\App\Http\Controllers\SuperAdminController::class, 'setAdminDuration'])->name('superadmin.admin.set-duration');
+    Route::patch('/admin/{id}/remove-duration', [\App\Http\Controllers\SuperAdminController::class, 'removeAdminDuration'])->name('superadmin.admin.remove-duration');
     
     Route::get('/admin/{admin_id}/peserta', [\App\Http\Controllers\SuperAdminController::class, 'adminPeserta'])->name('superadmin.admin.peserta');
     
     Route::get('/peserta', [\App\Http\Controllers\SuperAdminController::class, 'pesertaList'])->name('superadmin.peserta.index');
+    Route::post('/peserta/bulk-action', [\App\Http\Controllers\SuperAdminController::class, 'pesertaBulkAction'])->name('superadmin.peserta.bulk-action');
     Route::get('/peserta/export', [\App\Http\Controllers\SuperAdminController::class, 'exportExcel'])->name('superadmin.peserta.export');
     
     Route::get('/peserta/{id}', [\App\Http\Controllers\SuperAdminController::class, 'pesertaDetail'])->name('superadmin.peserta.show');
@@ -166,4 +171,6 @@ Route::prefix('superadmin')->middleware(['auth', 'role:superadmin'])->group(func
     Route::patch('/peserta/{id}/approve', [\App\Http\Controllers\SuperAdminController::class, 'pesertaApprove'])->name('superadmin.peserta.approve');
     Route::patch('/peserta/{id}/deactivate', [\App\Http\Controllers\SuperAdminController::class, 'pesertaDeactivate'])->name('superadmin.peserta.deactivate');
     Route::delete('/peserta/{id}/reject', [\App\Http\Controllers\SuperAdminController::class, 'pesertaReject'])->name('superadmin.peserta.reject');
+    Route::patch('/peserta/{id}/set-duration', [\App\Http\Controllers\SuperAdminController::class, 'setPesertaDuration'])->name('superadmin.peserta.set-duration');
+    Route::patch('/peserta/{id}/remove-duration', [\App\Http\Controllers\SuperAdminController::class, 'removePesertaDuration'])->name('superadmin.peserta.remove-duration');
 });

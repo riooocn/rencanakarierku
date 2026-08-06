@@ -1048,3 +1048,20 @@ Kamu dengan kapasitas di bidang pekerjaan things berarti kamu memiliki kemampuan
 
 Ideas
 Kamu dengan kapasitas di bidang pekerjaan ideas berarti kamu memiliki kemampuan atau keterampilan di pekerjaan yang berkaitan dengan ide, konsep ataupun tema. Kamu juga memiliki kapasitas untuk membuat suatu penemuan atau kreasi.
+
+KETERANGAN NILAI KARIR DETAIL
+
+Leisure
+Kamu dengan nilai kerja leisure lebih senang karier yang memberikan waktu untuk kamu berkumpul dengan keluarga atau menjalani kehidupan personal. Kamu mengharapkan pekerjaan yang dapat dilakukan jarak jauh atau fleksibel, sehingga kamu dapat menghabiskan waktu untuk keluarga dan teman.
+
+Extrinsic rewards
+Kamu dengan nilai kerja extrinsic rewards menyukai pekerjaan dengan adanya imbalan yang diberikan oleh orang lain. Penghargaan tersebut dapat berupa gaji, harta benda, maupun prestise/kehormatan.
+
+Intrinsic rewards
+Apabila kamu memiliki nilai kerja intrinsic rewards, kamu menganggap hal penting dari pekerjaan adalah adanya imbalan dari dalam diri sebagai motivasi kamu bekerja. Imbalan tersebut dapat berupa pekerjaan yang terasa menantang dan adanya peningkatan keterampilan atau pengembangan diri.
+
+Altruistic rewards
+Apabila kamu memiliki nilai kerja altruistic rewards, artinya kamu mementingkan bekerja untuk membantu orang lain. Kamu lebih mengutamakan pekerjaan yang dapat menolong orang lain dibandingkan mementingkan diri sendiri.
+
+Social rewards
+Kamu dengan nilai karier social rewards lebih menyukai pekerjaan yang dapat berelasi dengan orang lain dalam waktu lama. Kamu senang apabila pekerjaanmu dapat membuatmu terhubung dengan beragam kelompok sosial.

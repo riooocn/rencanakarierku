@@ -22,6 +22,9 @@ class User extends Authenticatable
         'grade',
         'phone',
         'status',
+        'activated_at',
+        'activation_duration_months',
+        'expires_at',
         'tanggal_lahir',
         'jenis_kelamin',
         'google_id',
@@ -36,8 +39,50 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
+            'activated_at' => 'datetime',
+            'expires_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Check if this account has expired.
+     */
+    public function isExpired(): bool
+    {
+        return $this->expires_at !== null && $this->expires_at->isPast();
+    }
+
+    /**
+     * Get remaining days until expiration.
+     * Returns null if no expiry set.
+     */
+    public function getRemainingDaysAttribute(): ?int
+    {
+        if ($this->expires_at === null) {
+            return null;
+        }
+
+        $days = (int) now()->diffInDays($this->expires_at, false);
+        return max($days, 0);
+    }
+
+    /**
+     * Get formatted expiry date string.
+     */
+    public function getExpiresAtFormattedAttribute(): ?string
+    {
+        return $this->expires_at?->format('d M Y');
+    }
+
+    /**
+     * Get duration label.
+     */
+    public function getDurationLabelAttribute(): ?string
+    {
+        return $this->activation_duration_months
+            ? $this->activation_duration_months . ' Bulan'
+            : null;
     }
 
     public function institution(): BelongsTo
