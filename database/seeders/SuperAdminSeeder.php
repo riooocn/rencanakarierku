@@ -25,7 +25,7 @@ class SuperAdminSeeder extends Seeder
                 'role' => 'superadmin',
                 'institution_id' => $institution->id,
                 'phone' => '080000000000',
-                'is_active' => true,
+                'status' => 'active',
             ]
         );
     }

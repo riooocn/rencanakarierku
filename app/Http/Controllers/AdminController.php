@@ -9,6 +9,7 @@ use App\Models\KeputusanKarier;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\PesertaExport;
+use App\Exports\PesertaAdminExport;
 
 class AdminController extends Controller
 {
@@ -203,6 +204,6 @@ class AdminController extends Controller
         $user = $request->user();
         $institutionId = $user->institution_id;
         
-        return Excel::download(new PesertaExport($institutionId), 'data_peserta_instansi.xlsx');
+        return Excel::download(new PesertaAdminExport($institutionId), 'summary_peserta_instansi.xlsx');
     }
 }
