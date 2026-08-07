@@ -9,6 +9,22 @@ use Illuminate\Support\Facades\DB;
 
 class EksplorasiController extends Controller
 {
+    public function intro()
+    {
+        return view('peserta.eksplorasi.intro');
+    }
+
+    public function rencana()
+    {
+        return view('peserta.eksplorasi.rencana');
+    }
+
+    public function ulangi(Request $request)
+    {
+        $request->session()->put('test_type', 'eksplorasi_saja');
+        return redirect()->route('eksplorasi.index');
+    }
+
     public function index()
     {
         return view('peserta.eksplorasi.index');
@@ -25,8 +41,7 @@ class EksplorasiController extends Controller
         $user = $request->user();
         
         DB::transaction(function () use ($user, $request) {
-            // Hapus data eksplorasi lama jika ada (retake)
-            EksplorasiKarier::where('user_id', $user->id)->delete();
+            // Data lama tidak dihapus agar tersimpan di riwayat
 
             $fields = ['pendidikan', 'jurusan', 'matkul', 'keterampilan', 'pelatihan', 'sertifikasi', 'peluang', 'tugas', 'info_lain'];
 
@@ -60,7 +75,13 @@ class EksplorasiController extends Controller
 
     public function hasil(Request $request)
     {
-        $eksplorasi = EksplorasiKarier::where('user_id', $request->user()->id)->get();
+        // Hanya ambil 2 data eksplorasi terbaru
+        $eksplorasi = EksplorasiKarier::where('user_id', $request->user()->id)
+                        ->orderBy('id', 'desc')
+                        ->take(2)
+                        ->get()
+                        ->sortBy('option'); // Sort agar option 1 di atas
+
         if ($eksplorasi->isEmpty()) {
             return redirect()->route('eksplorasi.index');
         }
@@ -69,6 +90,6 @@ class EksplorasiController extends Controller
         $latestKeputusan = \App\Models\KeputusanKarier::where('user_id', $request->user()->id)->latest('created_at')->first();
         $isKeputusanUpToDate = $latestKeputusan && $latestKeputusan->created_at >= $latestEksplorasi;
 
-        return view('peserta.eksplorasi.hasil', compact('eksplorasi', 'isKeputusanUpToDate'));
+        return view('peserta.eksplorasi.hasil', compact('eksplorasi', 'isKeputusanUpToDate', 'latestKeputusan'));
     }
 }

@@ -96,16 +96,21 @@ class PesertaExport implements FromCollection, WithHeadings, WithMapping
         $types = ['minat', 'kapasitas_1', 'kapasitas_2', 'nilai_karier'];
         $sessionIds = [];
         
-        foreach ($types as $type) {
-            $session = AssessmentSession::where('user_id', $user->id)
-                ->where('asesmen_type', $type)
-                ->where('status', 'completed')
-                ->where('completed_at', '<=', $timestamp)
-                ->orderBy('completed_at', 'desc')
-                ->first();
-            
-            if ($session) {
-                $sessionIds[] = $session->id;
+        // If test_type is eksplorasi_saja, we skip loading assessments
+        if ($keputusan->test_type === 'eksplorasi_saja') {
+            $sessionIds = [];
+        } else {
+            foreach ($types as $type) {
+                $session = AssessmentSession::where('user_id', $user->id)
+                    ->where('asesmen_type', $type)
+                    ->where('status', 'completed')
+                    ->where('completed_at', '<=', $timestamp)
+                    ->orderBy('completed_at', 'desc')
+                    ->first();
+                
+                if ($session) {
+                    $sessionIds[] = $session->id;
+                }
             }
         }
 
@@ -117,7 +122,7 @@ class PesertaExport implements FromCollection, WithHeadings, WithMapping
 
         $row = [
             $this->rowNumber,
-            $timestamp ? $timestamp->timezone('Asia/Jakarta')->format('Y-m-d H:i:s') : '-',
+            $timestamp ? $timestamp->copy()->timezone('Asia/Jakarta')->format('Y-m-d H:i:s') : '-',
             $user->name,
             $user->email,
             $user->institution ? $user->institution->name : '-',
@@ -128,6 +133,12 @@ class PesertaExport implements FromCollection, WithHeadings, WithMapping
         // Map answers
         foreach ($this->questions as $q) {
             $type = $q->asesmen_type;
+            
+            if ($keputusan->test_type === 'eksplorasi_saja') {
+                $row[] = "";
+                continue;
+            }
+
             $answer = $answers->get($q->id);
             
             if ($type === 'minat' || $type === 'kapasitas_1') {
@@ -139,11 +150,17 @@ class PesertaExport implements FromCollection, WithHeadings, WithMapping
             }
         }
         
+        $lastKeputusan = KeputusanKarier::where('user_id', $user->id)
+            ->where('created_at', '<', $timestamp)
+            ->latest('created_at')
+            ->first();
+        $previousKeputusanTime = $lastKeputusan ? $lastKeputusan->created_at : null;
+
         // Fetch Eksplorasi Karier
         $eksplorasi = EksplorasiKarier::where('user_id', $user->id)
-            ->where(function($q) use ($timestamp) {
-                $q->whereNull('created_at')
-                  ->orWhere('created_at', '<=', $timestamp);
+            ->where('created_at', '<=', $timestamp)
+            ->when($previousKeputusanTime, function($q) use ($previousKeputusanTime) {
+                return $q->where('created_at', '>', $previousKeputusanTime);
             })
             ->orderBy('id', 'desc')
             ->take(2)

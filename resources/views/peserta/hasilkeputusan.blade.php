@@ -164,8 +164,11 @@
                     </div>
                 </div>
 
-                <div class="text-center pt-8 border-t border-slate-100">
+                <div class="text-center pt-8 border-t border-slate-100 flex flex-col items-center gap-4">
                     <p class="text-slate-500 font-medium italic">"Masa depanmu diciptakan oleh apa yang kamu lakukan hari ini, bukan besok."</p>
+                    <a href="{{ route('hasilkeputusan') }}" class="inline-flex items-center justify-center px-6 py-3 bg-primary-100 text-primary-700 font-bold rounded-xl hover:bg-primary-200 transition-colors shadow-sm print:hidden">
+                        Lihat Semua Riwayat Perjalanan
+                    </a>
                 </div>
             </div>
 

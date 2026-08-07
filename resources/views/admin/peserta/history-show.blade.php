@@ -64,7 +64,7 @@
             </div>
             <div class="text-slate-500 flex items-center gap-4 text-sm mt-4">
                 <span><strong class="font-medium">Tanggal Daftar:</strong> {{ $peserta->created_at->format('d M Y') }}</span>
-                <span><strong class="font-medium">Status Tes:</strong> {!! $peserta->keputusanKarier ? '<span class="text-green-600 font-medium">Selesai</span>' : '<span class="text-yellow-600 font-medium">Belum Selesai</span>' !!}</span>
+                <span><strong class="font-medium">Status Tes:</strong> {!! $keputusan->id !== 'incomplete' ? '<span class="text-green-600 font-medium">Selesai</span>' : '<span class="text-yellow-600 font-medium">Belum Selesai</span>' !!}</span>
             </div>
         </div>
     </div>
@@ -78,9 +78,9 @@
         
         <div class="bg-primary-50 p-6 rounded-2xl border-l-4 border-primary-600 shadow-sm">
             <p class="text-sm text-slate-500 font-medium mb-1">Profesi Terpilih:</p>
-            <h4 class="text-2xl font-extrabold text-slate-900 mb-3">{{ $peserta->keputusanKarier->final_choice ?? 'Belum ada keputusan' }}</h4>
-            @if($peserta->keputusanKarier)
-                <p class="text-slate-700 italic">Tanggal Pengambilan Keputusan: {{ $peserta->keputusanKarier->created_at->format('d M Y, H:i') }}</p>
+            <h4 class="text-2xl font-extrabold text-slate-900 mb-3">{{ $keputusan->final_choice ?? 'Belum ada keputusan' }}</h4>
+            @if($keputusan->id !== 'incomplete')
+                <p class="text-slate-700 italic">Tanggal Pengambilan Keputusan: {{ $keputusan->created_at->format('d M Y, H:i') }}</p>
             @endif
         </div>
     </div>

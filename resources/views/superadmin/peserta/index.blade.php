@@ -99,7 +99,7 @@
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
                         <span class="inline-flex items-center justify-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800">
-                            {{ $siswa->assessmentSessions ? $siswa->assessmentSessions->count() : 0 }} / 3
+                            {{ $siswa->keputusanKariers ? $siswa->keputusanKariers->where('test_type', 'full_test')->where('id', '!=', 'incomplete')->count() : 0 }}
                         </span>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-center">

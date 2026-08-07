@@ -13,8 +13,22 @@ use Illuminate\Support\Facades\DB;
 class AssessmentController extends Controller
 {
     // MINAT
-    public function minat()
+    public function minat(Request $request)
     {
+        $user = $request->user();
+        
+        // Limit check
+        $fullTestCount = AssessmentSession::where('user_id', $user->id)
+            ->where('asesmen_type', 'minat')
+            ->where('status', 'completed')
+            ->count();
+
+        if ($fullTestCount >= 3) {
+            return redirect()->route('perjalananku.index')->with('error', 'Batas maksimal untuk memulai ulang seluruh perjalanan tes (3 kali) telah tercapai.');
+        }
+
+        $request->session()->put('test_type', 'full_test');
+
         return view('peserta.asesmen.minat');
     }
 

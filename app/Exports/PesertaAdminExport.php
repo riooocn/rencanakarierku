@@ -48,8 +48,8 @@ class PesertaAdminExport implements FromCollection, WithHeadings, WithMapping
             'Kapasitas 1', 'Kapasitas 2',
             'Mapel 1', 'Mapel 2', 'Mapel 3', 'Mapel 4', 'Mapel 5',
             'Nilai Karier 1', 'Nilai Karier 2', 'Nilai Karier 3',
-            'Eksplorasi 1 - Profesi', 'Eksplorasi 1 - Pendidikan Minimal', 'Eksplorasi 1 - Jurusan Sesuai', 'Eksplorasi 1 - Mata Kuliah', 'Eksplorasi 1 - Keterampilan', 'Eksplorasi 1 - Pelatihan', 'Eksplorasi 1 - Sertifikasi', 'Eksplorasi 1 - Peluang',
-            'Eksplorasi 2 - Profesi', 'Eksplorasi 2 - Pendidikan Minimal', 'Eksplorasi 2 - Jurusan Sesuai', 'Eksplorasi 2 - Mata Kuliah', 'Eksplorasi 2 - Keterampilan', 'Eksplorasi 2 - Pelatihan', 'Eksplorasi 2 - Sertifikasi', 'Eksplorasi 2 - Peluang',
+            'Eksplorasi 1 - Profesi', 'Eksplorasi 1 - Pendidikan Minimal', 'Eksplorasi 1 - Jurusan Sesuai', 'Eksplorasi 1 - Mata Kuliah', 'Eksplorasi 1 - Keterampilan', 'Eksplorasi 1 - Pelatihan', 'Eksplorasi 1 - Sertifikasi', 'Eksplorasi 1 - Peluang', 'Eksplorasi 1 - Tugas', 'Eksplorasi 1 - Info Lain',
+            'Eksplorasi 2 - Profesi', 'Eksplorasi 2 - Pendidikan Minimal', 'Eksplorasi 2 - Jurusan Sesuai', 'Eksplorasi 2 - Mata Kuliah', 'Eksplorasi 2 - Keterampilan', 'Eksplorasi 2 - Pelatihan', 'Eksplorasi 2 - Sertifikasi', 'Eksplorasi 2 - Peluang', 'Eksplorasi 2 - Tugas', 'Eksplorasi 2 - Info Lain',
             'Profesi Pilihan Akhir'
         ];
     }
@@ -65,16 +65,21 @@ class PesertaAdminExport implements FromCollection, WithHeadings, WithMapping
         $types = ['minat', 'kapasitas', 'nilai_karier'];
         $sessionIds = [];
         
-        foreach ($types as $type) {
-            $session = AssessmentSession::where('user_id', $user->id)
-                ->where('asesmen_type', $type)
-                ->where('status', 'completed')
-                ->where('completed_at', '<=', $timestamp)
-                ->orderBy('completed_at', 'desc')
-                ->first();
-            
-            if ($session) {
-                $sessionIds[] = $session->id;
+        // If test_type is eksplorasi_saja, skip loading assessments
+        if ($keputusan->test_type === 'eksplorasi_saja') {
+            $sessionIds = [];
+        } else {
+            foreach ($types as $type) {
+                $session = AssessmentSession::where('user_id', $user->id)
+                    ->where('asesmen_type', $type)
+                    ->where('status', 'completed')
+                    ->where('completed_at', '<=', $timestamp)
+                    ->orderBy('completed_at', 'desc')
+                    ->first();
+                
+                if ($session) {
+                    $sessionIds[] = $session->id;
+                }
             }
         }
 
@@ -177,11 +182,25 @@ class PesertaAdminExport implements FromCollection, WithHeadings, WithMapping
             $top3Nilai[0] ?? '-', $top3Nilai[1] ?? '-', $top3Nilai[2] ?? '-'
         ];
         
+        if ($keputusan->test_type === 'eksplorasi_saja') {
+            $minatRow = ['-', '-', '-'];
+            $kapasitasRow = ['-', '-'];
+            $mapelRow = ['-', '-', '-', '-', '-'];
+            $nilaiKarierRow = ['-', '-', '-'];
+        }
+
+        
+        $lastKeputusan = KeputusanKarier::where('user_id', $user->id)
+            ->where('created_at', '<', $timestamp)
+            ->latest('created_at')
+            ->first();
+        $previousKeputusanTime = $lastKeputusan ? $lastKeputusan->created_at : null;
+
         // --- Fetch Eksplorasi Karier ---
         $eksplorasi = EksplorasiKarier::where('user_id', $user->id)
-            ->where(function($q) use ($timestamp) {
-                $q->whereNull('created_at')
-                  ->orWhere('created_at', '<=', $timestamp);
+            ->where('created_at', '<=', $timestamp)
+            ->when($previousKeputusanTime, function($q) use ($previousKeputusanTime) {
+                return $q->where('created_at', '>', $previousKeputusanTime);
             })
             ->orderBy('id', 'desc')
             ->take(2)
@@ -197,7 +216,7 @@ class PesertaAdminExport implements FromCollection, WithHeadings, WithMapping
 
         $ekspFieldsKeys = [
             'career_name', 'pendidikan', 'jurusan', 'matkul', 'keterampilan', 
-            'pelatihan', 'sertifikasi', 'peluang'
+            'pelatihan', 'sertifikasi', 'peluang', 'tugas', 'info_lain'
         ];
         
         $eksp1Row = [];
@@ -212,7 +231,7 @@ class PesertaAdminExport implements FromCollection, WithHeadings, WithMapping
         return array_merge(
             [
                 $this->rowNumber,
-                $timestamp ? $timestamp->timezone('Asia/Jakarta')->format('Y-m-d H:i:s') : '-',
+                $timestamp ? $timestamp->copy()->timezone('Asia/Jakarta')->format('Y-m-d H:i:s') : '-',
                 $user->name,
                 $user->email,
                 $user->institution ? $user->institution->name : '-',

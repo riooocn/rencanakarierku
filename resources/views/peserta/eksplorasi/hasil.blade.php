@@ -71,14 +71,18 @@
 
             <!-- Action Buttons -->
             <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mt-8">
-                <a href="{{ route('eksplorasi.index') }}" class="inline-flex items-center text-primary-600 font-semibold hover:text-primary-800 transition-colors px-4 py-2">
-                    <svg class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                    </svg>
-                    Edit Data Eksplorasi
-                </a>
+                @if(!$isKeputusanUpToDate)
+                    <a href="{{ route('eksplorasi.index') }}" class="inline-flex items-center text-primary-600 font-semibold hover:text-primary-800 transition-colors px-4 py-2">
+                        <svg class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                        </svg>
+                        Edit Data Eksplorasi
+                    </a>
+                @else
+                    <div></div>
+                @endif
                 
-                <a href="{{ $isKeputusanUpToDate ? route('hasilkeputusan') : route('keputusan.index') }}" class="inline-flex items-center justify-center px-8 py-4 bg-primary-600 text-white font-bold rounded-xl hover:bg-primary-700 transition-colors shadow-lg shadow-primary-600/30 text-lg group">
+                <a href="{{ $isKeputusanUpToDate ? route('keputusan.winner', $latestKeputusan->id) : route('keputusan.index') }}" class="inline-flex items-center justify-center px-8 py-4 bg-primary-600 text-white font-bold rounded-xl hover:bg-primary-700 transition-colors shadow-lg shadow-primary-600/30 text-lg group">
                     {{ $isKeputusanUpToDate ? 'Lihat Hasil Keputusan' : 'Lanjut Tahap Pengambilan Keputusan' }}
                     <svg class="ml-3 w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />

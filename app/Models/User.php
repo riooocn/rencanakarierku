@@ -105,6 +105,11 @@ class User extends Authenticatable
         return $this->hasOne(KeputusanKarier::class);
     }
 
+    public function keputusanKariers(): HasMany
+    {
+        return $this->hasMany(KeputusanKarier::class);
+    }
+
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new \App\Notifications\CustomResetPassword($token));

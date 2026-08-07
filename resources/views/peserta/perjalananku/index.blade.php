@@ -129,12 +129,27 @@
                 <div class="inline-block bg-white/70 backdrop-blur-xl border border-white/40 shadow-xl shadow-slate-200/50 rounded-3xl p-8 max-w-2xl mx-auto">
                     <h3 class="text-xl font-bold text-primary-900 mb-2">Ingin Memulai Perjalanan Baru?</h3>
                     <p class="text-slate-600 mb-6">Jika kamu ingin mengulang tes dan eksplorasi dari awal untuk mendapatkan rekomendasi karier yang baru, kamu dapat memulai ulang seluruh perjalananmu.</p>
-                    <a href="{{ route('asesmen.minat') }}" class="inline-flex items-center justify-center px-6 py-3 bg-white border-2 border-primary-600 text-primary-600 font-bold rounded-xl hover:bg-primary-50 transition-colors shadow-sm">
-                        <svg class="mr-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                        </svg>
-                        Mulai Ulang Seluruh Perjalanan
-                    </a>
+                    <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                        @if($remainingFullTests > 0)
+                            <a href="{{ route('asesmen.minat') }}" class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 bg-white border-2 border-primary-600 text-primary-600 font-bold rounded-xl hover:bg-primary-50 transition-colors shadow-sm">
+                                <svg class="mr-2 w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                                </svg>
+                                <span>Mulai Ulang Seluruh Perjalanan (Sisa: {{ $remainingFullTests }} kali)</span>
+                            </a>
+                        @else
+                            <button disabled class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 bg-slate-100 border-2 border-slate-300 text-slate-500 font-bold rounded-xl cursor-not-allowed shadow-sm">
+                                Batas Mulai Ulang Seluruh Perjalanan Habis
+                            </button>
+                        @endif
+
+                        <a href="{{ route('eksplorasi.ulangi') }}" class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 bg-accent-600 border-2 border-accent-600 text-white font-bold rounded-xl hover:bg-accent-700 transition-colors shadow-sm">
+                            <svg class="mr-2 w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                            <span>Ulangi Eksplorasi Karier Saja</span>
+                        </a>
+                    </div>
                 </div>
             </div>
             @endif

@@ -42,10 +42,17 @@
                 <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md hover:border-primary-200 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div class="flex items-start gap-4">
                         <div class="w-12 h-12 rounded-full bg-primary-50 text-primary-600 flex items-center justify-center flex-shrink-0 font-bold text-lg">
-                            #{{ count($riwayatList) - $index }}
+                            #{{ $index + 1 }}
                         </div>
                         <div>
-                            <h3 class="text-lg font-bold text-slate-900">{{ $riwayat->final_choice }}</h3>
+                            <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                                {{ $riwayat->display_title ?? $riwayat->final_choice }}
+                                @if($riwayat->test_type === 'eksplorasi_saja')
+                                    <span class="px-2 py-0.5 rounded text-xs font-semibold bg-accent-100 text-accent-700 border border-accent-200">Eksplorasi Saja</span>
+                                @else
+                                    <span class="px-2 py-0.5 rounded text-xs font-semibold bg-primary-100 text-primary-700 border border-primary-200">Full Test</span>
+                                @endif
+                            </h3>
                             <div class="text-sm text-slate-500 flex items-center gap-2 mt-1">
                                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />

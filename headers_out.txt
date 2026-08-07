@@ -1,0 +1,271 @@
+134
+array(134) {
+ [0]=>
+ string(2) "No"
+ [1]=>
+ string(15) "Waktu Pengisian"
+ [2]=>
+ string(4) "Nama"
+ [3]=>
+ string(5) "Email"
+ [4]=>
+ string(8) "Instansi"
+ [5]=>
+ string(13) "Jenis Kelamin"
+ [6]=>
+ string(13) "Tanggal Lahir"
+ [7]=>
+ string(8) "Minat Q1"
+ [8]=>
+ string(8) "Minat Q2"
+ [9]=>
+ string(8) "Minat Q3"
+ [10]=>
+ string(8) "Minat Q4"
+ [11]=>
+ string(8) "Minat Q5"
+ [12]=>
+ string(8) "Minat Q6"
+ [13]=>
+ string(8) "Minat Q7"
+ [14]=>
+ string(8) "Minat Q8"
+ [15]=>
+ string(8) "Minat Q9"
+ [16]=>
+ string(9) "Minat Q10"
+ [17]=>
+ string(9) "Minat Q11"
+ [18]=>
+ string(9) "Minat Q12"
+ [19]=>
+ string(9) "Minat Q13"
+ [20]=>
+ string(9) "Minat Q14"
+ [21]=>
+ string(9) "Minat Q15"
+ [22]=>
+ string(9) "Minat Q16"
+ [23]=>
+ string(9) "Minat Q17"
+ [24]=>
+ string(9) "Minat Q18"
+ [25]=>
+ string(9) "Minat Q19"
+ [26]=>
+ string(9) "Minat Q20"
+ [27]=>
+ string(9) "Minat Q21"
+ [28]=>
+ string(9) "Minat Q22"
+ [29]=>
+ string(9) "Minat Q23"
+ [30]=>
+ string(9) "Minat Q24"
+ [31]=>
+ string(9) "Minat Q25"
+ [32]=>
+ string(9) "Minat Q26"
+ [33]=>
+ string(9) "Minat Q27"
+ [34]=>
+ string(9) "Minat Q28"
+ [35]=>
+ string(9) "Minat Q29"
+ [36]=>
+ string(9) "Minat Q30"
+ [37]=>
+ string(9) "Minat Q31"
+ [38]=>
+ string(9) "Minat Q32"
+ [39]=>
+ string(9) "Minat Q33"
+ [40]=>
+ string(9) "Minat Q34"
+ [41]=>
+ string(9) "Minat Q35"
+ [42]=>
+ string(9) "Minat Q36"
+ [43]=>
+ string(9) "Minat Q37"
+ [44]=>
+ string(9) "Minat Q38"
+ [45]=>
+ string(9) "Minat Q39"
+ [46]=>
+ string(9) "Minat Q40"
+ [47]=>
+ string(9) "Minat Q41"
+ [48]=>
+ string(9) "Minat Q42"
+ [49]=>
+ string(25) "Kapasitas Keterampilan Q1"
+ [50]=>
+ string(25) "Kapasitas Keterampilan Q2"
+ [51]=>
+ string(25) "Kapasitas Keterampilan Q3"
+ [52]=>
+ string(25) "Kapasitas Keterampilan Q4"
+ [53]=>
+ string(25) "Kapasitas Keterampilan Q5"
+ [54]=>
+ string(25) "Kapasitas Keterampilan Q6"
+ [55]=>
+ string(25) "Kapasitas Keterampilan Q7"
+ [56]=>
+ string(25) "Kapasitas Keterampilan Q8"
+ [57]=>
+ string(25) "Kapasitas Keterampilan Q9"
+ [58]=>
+ string(26) "Kapasitas Keterampilan Q10"
+ [59]=>
+ string(26) "Kapasitas Keterampilan Q11"
+ [60]=>
+ string(26) "Kapasitas Keterampilan Q12"
+ [61]=>
+ string(26) "Kapasitas Keterampilan Q13"
+ [62]=>
+ string(26) "Kapasitas Keterampilan Q14"
+ [63]=>
+ string(26) "Kapasitas Keterampilan Q15"
+ [64]=>
+ string(26) "Kapasitas Keterampilan Q16"
+ [65]=>
+ string(26) "Kapasitas Keterampilan Q17"
+ [66]=>
+ string(26) "Kapasitas Keterampilan Q18"
+ [67]=>
+ string(26) "Kapasitas Keterampilan Q19"
+ [68]=>
+ string(26) "Kapasitas Keterampilan Q20"
+ [69]=>
+ string(26) "Kapasitas Keterampilan Q21"
+ [70]=>
+ string(26) "Kapasitas Keterampilan Q22"
+ [71]=>
+ string(26) "Kapasitas Keterampilan Q23"
+ [72]=>
+ string(26) "Kapasitas Keterampilan Q24"
+ [73]=>
+ string(26) "Kapasitas Keterampilan Q25"
+ [74]=>
+ string(26) "Kapasitas Keterampilan Q26"
+ [75]=>
+ string(26) "Kapasitas Keterampilan Q27"
+ [76]=>
+ string(26) "Kapasitas Keterampilan Q28"
+ [77]=>
+ string(26) "Kapasitas Keterampilan Q29"
+ [78]=>
+ string(26) "Kapasitas Keterampilan Q30"
+ [79]=>
+ string(26) "Kapasitas Keterampilan Q31"
+ [80]=>
+ string(26) "Kapasitas Keterampilan Q32"
+ [81]=>
+ string(18) "Kapasitas Mapel Q1"
+ [82]=>
+ string(18) "Kapasitas Mapel Q2"
+ [83]=>
+ string(18) "Kapasitas Mapel Q3"
+ [84]=>
+ string(18) "Kapasitas Mapel Q4"
+ [85]=>
+ string(18) "Kapasitas Mapel Q5"
+ [86]=>
+ string(18) "Kapasitas Mapel Q6"
+ [87]=>
+ string(18) "Kapasitas Mapel Q7"
+ [88]=>
+ string(18) "Kapasitas Mapel Q8"
+ [89]=>
+ string(18) "Kapasitas Mapel Q9"
+ [90]=>
+ string(19) "Kapasitas Mapel Q10"
+ [91]=>
+ string(19) "Kapasitas Mapel Q11"
+ [92]=>
+ string(19) "Kapasitas Mapel Q12"
+ [93]=>
+ string(19) "Kapasitas Mapel Q13"
+ [94]=>
+ string(19) "Kapasitas Mapel Q14"
+ [95]=>
+ string(19) "Kapasitas Mapel Q15"
+ [96]=>
+ string(19) "Kapasitas Mapel Q16"
+ [97]=>
+ string(19) "Kapasitas Mapel Q17"
+ [98]=>
+ string(15) "Nilai Karier Q1"
+ [99]=>
+ string(15) "Nilai Karier Q2"
+ [100]=>
+ string(15) "Nilai Karier Q3"
+ [101]=>
+ string(15) "Nilai Karier Q4"
+ [102]=>
+ string(15) "Nilai Karier Q5"
+ [103]=>
+ string(15) "Nilai Karier Q6"
+ [104]=>
+ string(15) "Nilai Karier Q7"
+ [105]=>
+ string(15) "Nilai Karier Q8"
+ [106]=>
+ string(15) "Nilai Karier Q9"
+ [107]=>
+ string(16) "Nilai Karier Q10"
+ [108]=>
+ string(16) "Nilai Karier Q11"
+ [109]=>
+ string(16) "Nilai Karier Q12"
+ [110]=>
+ string(16) "Nilai Karier Q13"
+ [111]=>
+ string(16) "Nilai Karier Q14"
+ [112]=>
+ string(16) "Nilai Karier Q15"
+ [113]=>
+ string(16) "Nilai Karier Q16"
+ [114]=>
+ string(16) "Nilai Karier Q17"
+ [115]=>
+ string(16) "Nilai Karier Q18"
+ [116]=>
+ string(16) "Nilai Karier Q19"
+ [117]=>
+ string(24) "Eksplorasi 1 - Pekerjaan"
+ [118]=>
+ string(25) "Eksplorasi 1 - Pendidikan"
+ [119]=>
+ string(22) "Eksplorasi 1 - Jurusan"
+ [120]=>
+ string(21) "Eksplorasi 1 - Matkul"
+ [121]=>
+ string(27) "Eksplorasi 1 - Keterampilan"
+ [122]=>
+ string(24) "Eksplorasi 1 - Pelatihan"
+ [123]=>
+ string(26) "Eksplorasi 1 - Sertifikasi"
+ [124]=>
+ string(22) "Eksplorasi 1 - Peluang"
+ [125]=>
+ string(24) "Eksplorasi 2 - Pekerjaan"
+ [126]=>
+ string(25) "Eksplorasi 2 - Pendidikan"
+ [127]=>
+ string(22) "Eksplorasi 2 - Jurusan"
+ [128]=>
+ string(21) "Eksplorasi 2 - Matkul"
+ [129]=>
+ string(27) "Eksplorasi 2 - Keterampilan"
+ [130]=>
+ string(24) "Eksplorasi 2 - Pelatihan"
+ [131]=>
+ string(26) "Eksplorasi 2 - Sertifikasi"
+ [132]=>
+ string(22) "Eksplorasi 2 - Peluang"
+ [133]=>
+ string(15) "Keputusan Final"
+}

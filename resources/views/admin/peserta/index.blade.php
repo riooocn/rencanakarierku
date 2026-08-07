@@ -104,7 +104,7 @@
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-center">
                         <span class="inline-flex items-center justify-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800">
-                            {{ $peserta->assessmentSessions ? $peserta->assessmentSessions->count() : 0 }} / 3
+                            {{ $peserta->keputusanKariers ? $peserta->keputusanKariers->where('test_type', 'full_test')->where('id', '!=', 'incomplete')->count() : 0 }}
                         </span>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-center">

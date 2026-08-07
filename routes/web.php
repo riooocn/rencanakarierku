@@ -94,15 +94,20 @@ Route::prefix('perjalananku')->middleware(['auth', 'role:peserta'])->group(funct
         // Keputusan is unlocked if eksplorasi is completed AND up to date
         $hasEksplorasi = $latestEksplorasi != null;
         
-        $isEksplorasiUpToDate = $hasEksplorasi && $latestEksplorasi->created_at >= $latestNilaiKarier->created_at;
+        $isEksplorasiUpToDate = $asesmenCompleted && $hasEksplorasi && $latestEksplorasi->created_at >= $latestNilaiKarier->created_at;
         
         $hasKeputusan = $latestKeputusan != null;
-        $isKeputusanUpToDate = $hasKeputusan && $hasEksplorasi && $latestKeputusan->created_at >= $latestEksplorasi->created_at;
+        $isKeputusanUpToDate = $isEksplorasiUpToDate && $hasKeputusan && $latestKeputusan->created_at >= $latestEksplorasi->created_at;
+
+        $fullTestCount = \App\Models\AssessmentSession::where('user_id', $user->id)->where('asesmen_type', 'minat')->where('status', 'completed')->count();
+        $maxFullTests = 3;
+        $remainingFullTests = max(0, $maxFullTests - $fullTestCount);
 
         return view('peserta.perjalananku.index', compact(
             'asesmenLink', 'asesmenText', 'asesmenCompleted', 
             'hasEksplorasi', 'hasKeputusan', 
-            'isEksplorasiUpToDate', 'isKeputusanUpToDate'
+            'isEksplorasiUpToDate', 'isKeputusanUpToDate',
+            'fullTestCount', 'maxFullTests', 'remainingFullTests'
         ));
     })->name('perjalananku.index');
 
@@ -121,13 +126,17 @@ Route::prefix('perjalananku')->middleware(['auth', 'role:peserta'])->group(funct
     });
 
     Route::prefix('eksplorasi-karier')->group(function () {
-        Route::get('/', [\App\Http\Controllers\Peserta\EksplorasiController::class, 'index'])->name('eksplorasi.index');
-        Route::post('/', [\App\Http\Controllers\Peserta\EksplorasiController::class, 'store'])->name('eksplorasi.store');
+        Route::get('/', [\App\Http\Controllers\Peserta\EksplorasiController::class, 'intro'])->name('eksplorasi.index');
+        Route::get('/ulangi', [\App\Http\Controllers\Peserta\EksplorasiController::class, 'ulangi'])->name('eksplorasi.ulangi');
+        Route::get('/rencana', [\App\Http\Controllers\Peserta\EksplorasiController::class, 'rencana'])->name('eksplorasi.rencana');
+        Route::get('/form', [\App\Http\Controllers\Peserta\EksplorasiController::class, 'index'])->name('eksplorasi.form');
+        Route::post('/form', [\App\Http\Controllers\Peserta\EksplorasiController::class, 'store'])->name('eksplorasi.store');
         Route::get('hasil', [\App\Http\Controllers\Peserta\EksplorasiController::class, 'hasil'])->name('eksplorasi.hasil');
     });
 
     Route::get('keputusan-karier', [\App\Http\Controllers\Peserta\KeputusanController::class, 'index'])->name('keputusan.index');
     Route::post('keputusan-karier', [\App\Http\Controllers\Peserta\KeputusanController::class, 'store'])->name('keputusan.store');
+    Route::get('keputusan-karier/{id}/selamat', [\App\Http\Controllers\Peserta\KeputusanController::class, 'winner'])->name('keputusan.winner');
 });
 
 Route::get('/hasilkeputusan', [\App\Http\Controllers\Peserta\HasilController::class, 'index'])->middleware(['auth', 'role:peserta'])->name('hasilkeputusan');

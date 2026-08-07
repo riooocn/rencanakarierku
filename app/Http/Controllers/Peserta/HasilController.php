@@ -14,10 +14,8 @@ class HasilController extends Controller
     {
         $user = $request->user();
 
-        // Get all keputusan karier as history list
-        $riwayatList = KeputusanKarier::where('user_id', $user->id)
-            ->orderBy('created_at', 'desc')
-            ->get();
+        // Get all keputusan karier as history list, including incomplete
+        $riwayatList = KeputusanKarier::getRiwayatWithIncomplete($user->id);
 
         return view('peserta.hasilkeputusan-index', compact('riwayatList'));
     }
@@ -26,22 +24,63 @@ class HasilController extends Controller
     {
         $user = $request->user();
 
-        $keputusan = KeputusanKarier::where('user_id', $user->id)->findOrFail($id);
+        $previousKeputusanTime = null;
 
-        $minat = AsesmenResult::whereHas('session', function($q) use ($user) {
-            $q->where('user_id', $user->id)->where('asesmen_type', 'minat');
-        })->where('created_at', '<=', $keputusan->created_at)->latest()->first();
+        if ($id === 'incomplete') {
+            $riwayatList = KeputusanKarier::getRiwayatWithIncomplete($user->id);
+            $keputusan = $riwayatList->last();
+            if (!$keputusan || $keputusan->id !== 'incomplete') {
+                abort(404);
+            }
+            $targetTime = now(); // For incomplete, get the latest results up to now
+            $lastKeputusan = KeputusanKarier::where('user_id', $user->id)->latest('created_at')->first();
+            if ($lastKeputusan) {
+                $previousKeputusanTime = $lastKeputusan->created_at;
+            }
+        } else {
+            $keputusan = KeputusanKarier::where('user_id', $user->id)->findOrFail($id);
+            $targetTime = $keputusan->created_at;
+            $lastKeputusan = KeputusanKarier::where('user_id', $user->id)
+                ->where('created_at', '<', $keputusan->created_at)
+                ->latest('created_at')
+                ->first();
+            if ($lastKeputusan) {
+                $previousKeputusanTime = $lastKeputusan->created_at;
+            }
+        }
 
-        $kapasitas = AsesmenResult::whereHas('session', function($q) use ($user) {
-            $q->where('user_id', $user->id)->where('asesmen_type', 'kapasitas');
-        })->where('created_at', '<=', $keputusan->created_at)->latest()->first();
+        if ($keputusan->test_type === 'eksplorasi_saja') {
+            $minat = null;
+            $kapasitas = null;
+            $nilaiKarier = null;
+        } else {
+            $minat = AsesmenResult::whereHas('session', function($q) use ($user) {
+                $q->where('user_id', $user->id)->where('asesmen_type', 'minat');
+            })->where('created_at', '<=', $targetTime)
+              ->when(isset($previousKeputusanTime), function($q) use ($previousKeputusanTime) {
+                  return $q->where('created_at', '>', $previousKeputusanTime);
+              })->latest()->first();
 
-        $nilaiKarier = AsesmenResult::whereHas('session', function($q) use ($user) {
-            $q->where('user_id', $user->id)->where('asesmen_type', 'nilai_karier');
-        })->where('created_at', '<=', $keputusan->created_at)->latest()->first();
+            $kapasitas = AsesmenResult::whereHas('session', function($q) use ($user) {
+                $q->where('user_id', $user->id)->where('asesmen_type', 'kapasitas');
+            })->where('created_at', '<=', $targetTime)
+              ->when(isset($previousKeputusanTime), function($q) use ($previousKeputusanTime) {
+                  return $q->where('created_at', '>', $previousKeputusanTime);
+              })->latest()->first();
+
+            $nilaiKarier = AsesmenResult::whereHas('session', function($q) use ($user) {
+                $q->where('user_id', $user->id)->where('asesmen_type', 'nilai_karier');
+            })->where('created_at', '<=', $targetTime)
+              ->when(isset($previousKeputusanTime), function($q) use ($previousKeputusanTime) {
+                  return $q->where('created_at', '>', $previousKeputusanTime);
+              })->latest()->first();
+        }
 
         $eksplorasi = EksplorasiKarier::where('user_id', $user->id)
-            ->where('created_at', '<=', $keputusan->created_at)
+            ->where('created_at', '<=', $targetTime)
+            ->when(isset($previousKeputusanTime), function($q) use ($previousKeputusanTime) {
+                return $q->where('created_at', '>', $previousKeputusanTime);
+            })
             ->get();
 
         return view('peserta.hasilkeputusan', compact('minat', 'kapasitas', 'nilaiKarier', 'eksplorasi', 'keputusan'));
