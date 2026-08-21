@@ -58,7 +58,6 @@
                         <li><a href="https://www.onetonline.org/" target="_blank" class="text-primary-600 hover:text-primary-800 font-semibold flex items-center gap-2"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg> O*NET</a></li>
                         <li><a href="https://rencanamu.id/profesi" target="_blank" class="text-primary-600 hover:text-primary-800 font-semibold flex items-center gap-2"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg> Rencanamu (Profesi)</a></li>
                         <li><a href="https://rencanamu.id/cari-jurusan" target="_blank" class="text-primary-600 hover:text-primary-800 font-semibold flex items-center gap-2"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg> Rencanamu (Jurusan)</a></li>
-                        <li><a href="https://akupintar.id/jurusan" target="_blank" class="text-primary-600 hover:text-primary-800 font-semibold flex items-center gap-2"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg> Aku Pintar</a></li>
                     </ul>
                 </div>
             </div>
@@ -76,12 +75,9 @@
                         <p class="text-slate-600 text-sm leading-relaxed mb-6">
                             Apabila kamu ingin mencari dari media sosial, sebaiknya kamu mencari tahu dari orang-orang yang ahli di bidangnya atau di media sosial yang juga kredibel. Berikut contoh akun Youtube kredibel yang menyediakan berbagai informasi tentang karier:
                         </p>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <a href="https://www.youtube.com/@CareerOneStop" target="_blank" class="block p-4 rounded-xl bg-slate-50 border border-slate-200 hover:border-red-300 hover:shadow-md transition-all text-center">
                                 <span class="font-bold text-primary-900">CareerOneStop</span>
-                            </a>
-                            <a href="https://www.youtube.com/@Meracareerguide" target="_blank" class="block p-4 rounded-xl bg-slate-50 border border-slate-200 hover:border-red-300 hover:shadow-md transition-all text-center">
-                                <span class="font-bold text-primary-900">CareerGuide.com</span>
                             </a>
                             <a href="https://www.youtube.com/playlist?list=PLC4jotN_tSTy0ZCt2X5LqVlmyJmfN4TLd" target="_blank" class="block p-4 rounded-xl bg-slate-50 border border-slate-200 hover:border-red-300 hover:shadow-md transition-all text-center">
                                 <span class="font-bold text-primary-900">Student Edge</span>
