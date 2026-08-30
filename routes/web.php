@@ -12,8 +12,46 @@ Route::get('/contact', function () {
     return view('contact', compact('institutions'));
 })->name('contact');
 
+Route::get('/deploy/migrate-seed', function () {
+    try {
+        \Illuminate\Support\Facades\Artisan::call('migrate:fresh', ['--force' => true, '--seed' => true]);
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Migration & Seeding completed!',
+            'output' => \Illuminate\Support\Facades\Artisan::output()
+        ]);
+    } catch (\Exception $e) {
+        return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+    }
+});
 
+Route::get('/deploy/migrate', function () {
+    try {
+        \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Migration completed!',
+            'output' => \Illuminate\Support\Facades\Artisan::output()
+        ]);
+    } catch (\Exception $e) {
+        return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+    }
+});
 
+Route::get('/deploy/optimize', function () {
+    try {
+        \Illuminate\Support\Facades\Artisan::call('optimize:clear');
+        \Illuminate\Support\Facades\Artisan::call('config:cache');
+        \Illuminate\Support\Facades\Artisan::call('route:cache');
+        \Illuminate\Support\Facades\Artisan::call('view:cache');
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Application optimized!'
+        ]);
+    } catch (\Exception $e) {
+        return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+    }
+});
 Route::get('/dashboard', function () {
     $user = \Illuminate\Support\Facades\Auth::user();
     if ($user->role === 'superadmin') {
