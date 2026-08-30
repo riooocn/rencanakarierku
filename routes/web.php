@@ -23,7 +23,7 @@ Route::get('/deploy/migrate-seed', function () {
     } catch (\Exception $e) {
         return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
     }
-})->withoutMiddleware(\Illuminate\Session\Middleware\StartSession::class);
+})->withoutMiddleware();
 
 Route::get('/deploy/migrate', function () {
     try {
@@ -36,7 +36,7 @@ Route::get('/deploy/migrate', function () {
     } catch (\Exception $e) {
         return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
     }
-})->withoutMiddleware(\Illuminate\Session\Middleware\StartSession::class);
+})->withoutMiddleware();
 
 Route::get('/deploy/optimize', function () {
     try {
