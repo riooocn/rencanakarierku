@@ -14,22 +14,44 @@ Route::get('/contact', function () {
 
 Route::get('/deploy/migrate-seed', function () {
     try {
-        \Illuminate\Support\Facades\Artisan::call('migrate:fresh', ['--force' => true, '--seed' => true, '--quiet' => true]);
+        // Drop all tables
+        \Illuminate\Support\Facades\Schema::dropAllTables();
+        \Illuminate\Support\Facades\Schema::dropAllViews();
+
+        // Prepare migrator
+        $migrator = app('migrator');
+        if (! $migrator->repositoryExists()) {
+            $migrator->getRepository()->createRepository();
+        }
+
+        // Run migrations
+        $migrator->run(database_path('migrations'));
+
+        // Run seeders
+        $seeder = app(\Database\Seeders\DatabaseSeeder::class);
+        $seeder->run();
+
         return response()->json([
             'status' => 'success',
-            'message' => 'Migration & Seeding completed successfully in quiet mode!'
+            'message' => 'Migration & Seeding completed natively (bypassed Termwind/DOMDocument)!'
         ]);
     } catch (\Exception $e) {
-        return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+        return response()->json(['status' => 'error', 'message' => $e->getMessage(), 'file' => $e->getFile(), 'line' => $e->getLine()]);
     }
 })->withoutMiddleware('web');
 
 Route::get('/deploy/migrate', function () {
     try {
-        \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true, '--quiet' => true]);
+        $migrator = app('migrator');
+        if (! $migrator->repositoryExists()) {
+            $migrator->getRepository()->createRepository();
+        }
+
+        $migrator->run(database_path('migrations'));
+
         return response()->json([
             'status' => 'success',
-            'message' => 'Migration completed successfully in quiet mode!'
+            'message' => 'Migration completed natively (bypassed Termwind/DOMDocument)!'
         ]);
     } catch (\Exception $e) {
         return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
