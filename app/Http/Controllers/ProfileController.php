@@ -16,7 +16,13 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
-        return view('profile.edit', [
+        if ($request->user()->role === 'peserta') {
+            return view('profile.edit-peserta', [
+                'user' => $request->user(),
+            ]);
+        }
+
+        return view('profile.edit-admin', [
             'user' => $request->user(),
         ]);
     }
@@ -28,9 +34,7 @@ class ProfileController extends Controller
     {
         $request->user()->fill($request->validated());
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
-        }
+
 
         $request->user()->save();
 

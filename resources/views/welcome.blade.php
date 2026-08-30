@@ -15,11 +15,11 @@
         <p class="mt-6 text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
             Rencana Karierku hadir untuk membantumu menyusun perencanaan karier secara terarah. Kenali dirimu, eksplorasi peluang, dan buat keputusan terbaik.
         </p>
-        <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
-            <a href="{{ route('register') }}" class="px-8 py-3.5 text-base font-semibold text-white bg-primary-600 rounded-full hover:bg-primary-700 shadow-lg shadow-primary-500/30 transition-all hover:-translate-y-1">
+        <div class="mt-10 flex flex-col sm:flex-row justify-center items-center gap-4 w-full px-4 sm:px-0">
+            <a href="{{ route('register') }}" class="w-full sm:w-auto text-center px-8 py-3.5 text-base font-semibold text-white bg-primary-600 rounded-full hover:bg-primary-700 shadow-lg shadow-primary-500/30 transition-all hover:-translate-y-1">
                 Mulai Sekarang - Gratis
             </a>
-            <a href="#asesmen" class="px-8 py-3.5 text-base font-semibold text-slate-700 bg-white border border-slate-200 rounded-full hover:bg-slate-50 transition-all hover:-translate-y-1">
+            <a href="#asesmen" class="w-full sm:w-auto text-center px-8 py-3.5 text-base font-semibold text-slate-700 bg-white border border-slate-200 rounded-full hover:bg-slate-50 transition-all hover:-translate-y-1">
                 Pelajari Tahapannya
             </a>
         </div>
@@ -34,12 +34,12 @@
             <p class="mt-4 text-slate-600 max-w-2xl mx-auto">Kami merancang alur yang mudah diikuti agar kamu tidak kebingungan dalam menentukan langkah kariermu setelah lulus.</p>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-8 relative">
+        <div class="flex md:grid md:grid-cols-3 gap-6 md:gap-8 overflow-x-auto snap-x snap-mandatory pb-8 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 md:overflow-visible relative [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             <!-- Line connector -->
             <div class="hidden md:block absolute top-12 left-1/6 right-1/6 h-0.5 bg-gradient-to-r from-primary-200 via-primary-400 to-primary-200 z-0"></div>
 
             <!-- Asesmen Diri -->
-            <div id="asesmen" class="relative z-10 group bg-white rounded-3xl p-8 shadow-sm ring-1 ring-slate-200 hover:shadow-xl hover:shadow-primary-500/10 hover:ring-primary-500/30 transition-all duration-300 transform hover:-translate-y-2">
+            <div id="asesmen" class="w-[85vw] sm:w-[320px] shrink-0 md:w-auto snap-center relative z-10 group bg-white rounded-3xl p-8 shadow-sm ring-1 ring-slate-200 hover:shadow-xl hover:shadow-primary-500/10 hover:ring-primary-500/30 transition-all duration-300 transform hover:-translate-y-2">
                 <div class="w-16 h-16 rounded-2xl bg-primary-50 text-primary-600 flex items-center justify-center mb-6 group-hover:bg-primary-600 group-hover:text-white transition-colors duration-300">
                     <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -52,7 +52,7 @@
             </div>
 
             <!-- Eksplorasi Karier -->
-            <div id="eksplorasi" class="relative z-10 group bg-white rounded-3xl p-8 shadow-sm ring-1 ring-slate-200 hover:shadow-xl hover:shadow-accent-500/10 hover:ring-accent-500/30 transition-all duration-300 transform hover:-translate-y-2">
+            <div id="eksplorasi" class="w-[85vw] sm:w-[320px] shrink-0 md:w-auto snap-center relative z-10 group bg-white rounded-3xl p-8 shadow-sm ring-1 ring-slate-200 hover:shadow-xl hover:shadow-accent-500/10 hover:ring-accent-500/30 transition-all duration-300 transform hover:-translate-y-2">
                 <div class="w-16 h-16 rounded-2xl bg-accent-50 text-accent-600 flex items-center justify-center mb-6 group-hover:bg-accent-500 group-hover:text-white transition-colors duration-300">
                     <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -65,7 +65,7 @@
             </div>
 
             <!-- Pengambilan Keputusan -->
-            <div id="keputusan" class="relative z-10 group bg-white rounded-3xl p-8 shadow-sm ring-1 ring-slate-200 hover:shadow-xl hover:shadow-primary-500/10 hover:ring-primary-500/30 transition-all duration-300 transform hover:-translate-y-2">
+            <div id="keputusan" class="w-[85vw] sm:w-[320px] shrink-0 md:w-auto snap-center relative z-10 group bg-white rounded-3xl p-8 shadow-sm ring-1 ring-slate-200 hover:shadow-xl hover:shadow-primary-500/10 hover:ring-primary-500/30 transition-all duration-300 transform hover:-translate-y-2">
                 <div class="w-16 h-16 rounded-2xl bg-primary-50 text-primary-600 flex items-center justify-center mb-6 group-hover:bg-primary-600 group-hover:text-white transition-colors duration-300">
                     <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />

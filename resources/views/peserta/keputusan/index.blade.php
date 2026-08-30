@@ -103,14 +103,14 @@
                         <h4 class="text-xl font-bold text-accent-900 mt-2 mb-4" x-text="questions[step].text"></h4>
                         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
                             <p class="text-sm text-accent-700 font-medium">Pilih (klik) salah satu jawaban di tabel bawah, atau:</p>
-                            <div class="flex gap-2">
-                                <button x-show="step > 0" @click="step--" class="px-4 py-2 bg-white border border-slate-300 text-slate-600 font-semibold rounded-lg hover:bg-slate-50 transition-colors shadow-sm text-sm">
+                            <div class="flex flex-wrap gap-2 w-full md:w-auto">
+                                <button x-show="step > 0" @click="step--" class="flex-1 sm:flex-none justify-center px-4 py-2 bg-white border border-slate-300 text-slate-600 font-semibold rounded-lg hover:bg-slate-50 transition-colors shadow-sm text-sm whitespace-nowrap">
                                     &larr; Kembali
                                 </button>
-                                <button @click="answer('skip')" class="px-4 py-2 bg-white border border-slate-300 text-slate-600 font-semibold rounded-lg hover:bg-slate-50 transition-colors shadow-sm text-sm">
+                                <button @click="answer('skip')" class="flex-1 sm:flex-none justify-center px-4 py-2 bg-white border border-slate-300 text-slate-600 font-semibold rounded-lg hover:bg-slate-50 transition-colors shadow-sm text-sm whitespace-nowrap">
                                     Lewati Pertanyaan Ini
                                 </button>
-                                <button x-show="step === questions.length - 1" @click="finish()" class="px-4 py-2 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors shadow-sm text-sm">
+                                <button x-show="step === questions.length - 1" @click="finish()" class="flex-1 sm:flex-none justify-center px-4 py-2 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors shadow-sm text-sm whitespace-nowrap">
                                     Selesai & Lihat Hasil
                                 </button>
                             </div>
@@ -190,7 +190,7 @@
                         @csrf
                         <input type="hidden" name="winner" x-model="winner">
                         <!-- We can also send the selections array as JSON if needed -->
-                        <button type="submit" class="inline-flex items-center justify-center px-8 py-4 bg-primary-600 text-white font-bold rounded-xl hover:bg-primary-700 transition-colors shadow-lg shadow-primary-600/30 text-lg group">
+                        <button type="submit" class="inline-flex items-center justify-center w-full sm:w-auto px-8 py-4 bg-primary-600 text-white font-bold rounded-xl hover:bg-primary-700 transition-colors shadow-lg shadow-primary-600/30 text-lg group">
                             Simpan & Lihat Rangkuman
                             <svg class="ml-2 w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />

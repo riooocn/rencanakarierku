@@ -30,6 +30,12 @@ class PasswordResetLinkController extends Controller
             'email' => ['required', 'email'],
         ]);
 
+        $user = \App\Models\User::where('email', $request->email)->first();
+        if ($user && is_null($user->password)) {
+            throw ValidationException::withMessages([
+                'email' => 'Email ini terdaftar menggunakan Google. Silakan kembali ke halaman login dan klik tombol "Sign in with Google".',
+            ]);
+        }
         // We will send the password reset link to this user. Once we have attempted
         // to send the link, we will examine the response then see the message we
         // need to show to the user. Finally, we'll send out a proper response.

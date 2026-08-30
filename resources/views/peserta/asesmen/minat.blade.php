@@ -246,25 +246,25 @@
 
 
                         <!-- Navigation Buttons -->
-                        <div class="mt-8 flex justify-between items-center border-t border-gray-100 pt-6">
+                        <div class="mt-8 flex flex-col-reverse sm:flex-row justify-between items-center gap-4 border-t border-gray-100 pt-6">
                             <button type="button" 
                                     x-show="step > 1" 
                                     @click="step--" 
-                                    class="px-6 py-2.5 bg-white border border-gray-300 text-gray-700 font-semibold rounded-xl hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all">
+                                    class="w-full sm:w-auto justify-center px-6 py-2.5 bg-white border border-gray-300 text-gray-700 font-semibold rounded-xl hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all">
                                 Sebelumnya
                             </button>
-                            <div x-show="step === 1"></div> <!-- Spacer for flex-between -->
+                            <div x-show="step === 1" class="hidden sm:block"></div> <!-- Spacer for flex-between -->
 
                             <button type="button" 
                                     x-show="step < totalSteps" 
                                     @click="step++" 
-                                    class="px-6 py-2.5 bg-primary-600 text-white font-semibold rounded-xl hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all shadow-sm hover:-translate-y-0.5">
+                                    class="w-full sm:w-auto justify-center px-6 py-2.5 bg-primary-600 text-white font-semibold rounded-xl hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all shadow-sm hover:-translate-y-0.5">
                                 Selanjutnya
                             </button>
 
                             <button type="submit" 
                                     x-show="step === totalSteps" 
-                                    class="px-6 py-2.5 bg-accent-500 text-white font-bold rounded-xl hover:bg-accent-600 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 transition-all shadow-sm hover:-translate-y-0.5" style="display: none;">
+                                    class="w-full sm:w-auto justify-center px-6 py-2.5 bg-accent-500 text-white font-bold rounded-xl hover:bg-accent-600 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 transition-all shadow-sm hover:-translate-y-0.5" style="display: none;">
                                 Selesai & Lihat Hasil
                             </button>
                         </div>

@@ -11,13 +11,13 @@
 </div>
 
 <div class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100">
-    <div class="mb-8 border-b border-slate-100 pb-6 flex items-center gap-6">
-        <div class="w-16 h-16 bg-slate-200 text-slate-500 font-bold text-2xl rounded-full flex justify-center items-center">
+    <div class="mb-8 border-b border-slate-100 pb-6 flex flex-col sm:flex-row items-center text-center sm:text-left gap-4 sm:gap-6">
+        <div class="w-20 h-20 sm:w-16 sm:h-16 bg-slate-200 text-slate-500 font-bold text-3xl sm:text-2xl rounded-full flex justify-center items-center shrink-0">
             {{ strtoupper(substr($peserta->name, 0, 1)) }}
         </div>
         <div>
-            <h2 class="text-2xl font-extrabold text-slate-900 tracking-tight">{{ $peserta->name }}</h2>
-            <p class="mt-1 text-slate-500">{{ $peserta->email }} • {{ $peserta->grade ?? '-' }}</p>
+            <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">{{ $peserta->name }}</h2>
+            <p class="mt-1 text-sm sm:text-base text-slate-500">{{ $peserta->email }} <span class="hidden sm:inline">•</span><br class="sm:hidden"> {{ $peserta->grade ?? '-' }}</p>
         </div>
     </div>
 

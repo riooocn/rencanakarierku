@@ -13,7 +13,7 @@ class GoogleAuthController extends Controller
     public function redirect(Request $request, $role = 'peserta')
     {
         $request->session()->put('google_role', $role);
-        return Socialite::driver('google')->redirect();
+        return Socialite::driver('google')->with(['prompt' => 'select_account'])->redirect();
     }
 
     public function callback(Request $request)

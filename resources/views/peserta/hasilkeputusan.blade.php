@@ -28,13 +28,11 @@
             <div class="bg-white rounded-3xl p-8 md:p-12 shadow-2xl shadow-slate-200/50 border border-slate-100 relative overflow-hidden print:overflow-visible print:shadow-none print:border-none">
                 
                 <!-- Print Button and Back Link -->
-                <div class="absolute top-8 left-8 print:hidden">
-                    <a href="{{ route('hasilkeputusan') }}" class="flex items-center gap-2 px-4 py-2 text-primary-600 font-medium hover:underline transition-colors">
+                <div class="flex flex-col-reverse sm:flex-row justify-between items-center mb-8 gap-4 print:hidden">
+                    <a href="{{ route('hasilkeputusan') }}" class="flex items-center gap-2 px-4 py-2 text-primary-600 font-medium hover:bg-primary-50 rounded-lg transition-colors w-full sm:w-auto justify-center">
                         &larr; Kembali ke Riwayat
                     </a>
-                </div>
-                <div class="absolute top-8 right-8 print:hidden">
-                    <button class="flex items-center gap-2 px-4 py-2 bg-slate-100 text-slate-700 font-medium rounded-lg hover:bg-slate-200 transition-colors" onclick="window.print()">
+                    <button class="flex items-center gap-2 px-4 py-2 bg-slate-100 text-slate-700 font-medium rounded-lg hover:bg-slate-200 transition-colors w-full sm:w-auto justify-center" onclick="window.print()">
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
                         </svg>
@@ -55,13 +53,13 @@
                         <span class="bg-primary-600 text-white w-6 h-6 rounded-full inline-flex items-center justify-center text-sm mr-2">1</span>
                         Profil Peserta
                     </h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-slate-700">
-                        <div><strong class="inline-block w-32">Nama:</strong> {{ Auth::user()->name }}</div>
-                        <div><strong class="inline-block w-32">Asal Sekolah:</strong> {{ Auth::user()->institution->name ?? '-' }}</div>
-                        <div><strong class="inline-block w-32">Kelas:</strong> {{ Auth::user()->grade ? (is_numeric(Auth::user()->grade) ? 'Kelas ' . Auth::user()->grade : Auth::user()->grade) : '-' }}</div>
-                        <div><strong class="inline-block w-32">Email:</strong> {{ Auth::user()->email }}</div>
-                        <div><strong class="inline-block w-32">Tanggal Lahir:</strong> {{ Auth::user()->tanggal_lahir ? \Carbon\Carbon::parse(Auth::user()->tanggal_lahir)->format('d M Y') : '-' }}</div>
-                        <div><strong class="inline-block w-32">Jenis Kelamin:</strong> {{ Auth::user()->jenis_kelamin ?? '-' }}</div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-slate-700">
+                        <div class="flex items-start"><span class="font-semibold w-32 shrink-0">Nama:</span> <span class="break-words min-w-0">{{ Auth::user()->name }}</span></div>
+                        <div class="flex items-start"><span class="font-semibold w-32 shrink-0">Asal Sekolah:</span> <span class="break-words min-w-0">{{ Auth::user()->institution->name ?? '-' }}</span></div>
+                        <div class="flex items-start"><span class="font-semibold w-32 shrink-0">Kelas:</span> <span>{{ Auth::user()->grade ? (is_numeric(Auth::user()->grade) ? 'Kelas ' . Auth::user()->grade : Auth::user()->grade) : '-' }}</span></div>
+                        <div class="flex items-start"><span class="font-semibold w-32 shrink-0">Email:</span> <span class="break-words min-w-0">{{ Auth::user()->email }}</span></div>
+                        <div class="flex items-start"><span class="font-semibold w-32 shrink-0">Tanggal Lahir:</span> <span>{{ Auth::user()->tanggal_lahir ? \Carbon\Carbon::parse(Auth::user()->tanggal_lahir)->format('d M Y') : '-' }}</span></div>
+                        <div class="flex items-start"><span class="font-semibold w-32 shrink-0">Jenis Kelamin:</span> <span>{{ Auth::user()->jenis_kelamin ?? '-' }}</span></div>
                     </div>
                 </div>
 
@@ -124,7 +122,7 @@
                             </div>
                         </div>
                         
-                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 print:block print:space-y-6">
                             <!-- Kapasitas Dominan -->
                             <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100">
                                 <h4 class="font-bold text-slate-800 mb-4 text-lg">Kapasitas Dominan</h4>

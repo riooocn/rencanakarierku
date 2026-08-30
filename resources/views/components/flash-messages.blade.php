@@ -4,7 +4,7 @@
         $toastMessage = session('success') ?? session('status');
     @endphp
     <!-- Tailwind Toast Notification -->
-    <div id="tailwindToast" class="fixed bottom-6 right-6 z-[100] flex items-center w-full max-w-sm p-4 space-x-3 text-slate-700 bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-100 transform translate-y-10 opacity-0 transition-all duration-300" role="alert">
+    <div id="tailwindToast" class="fixed bottom-4 sm:bottom-6 left-4 right-4 sm:left-auto sm:right-6 z-[100] flex items-center w-auto sm:w-full max-w-sm p-4 space-x-3 text-slate-700 bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-100 transform translate-y-10 opacity-0 transition-all duration-300" role="alert">
         @if($toastType === 'success')
             <div class="inline-flex items-center justify-center flex-shrink-0 w-10 h-10 text-emerald-500 bg-emerald-50 rounded-full">
                 <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

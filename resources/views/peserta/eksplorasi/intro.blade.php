@@ -141,7 +141,7 @@
 
             <!-- Lanjut Button -->
             <div class="text-center mt-12 mb-8">
-                <a href="{{ route('eksplorasi.rencana') }}" class="inline-flex items-center justify-center px-10 py-4 bg-accent-500 hover:bg-accent-600 text-white text-lg font-bold rounded-full shadow-lg shadow-accent-500/30 transition-transform transform hover:-translate-y-1">
+                <a href="{{ route('eksplorasi.rencana') }}" class="inline-flex items-center justify-center w-full sm:w-auto px-6 sm:px-10 py-4 bg-accent-500 hover:bg-accent-600 text-white text-lg font-bold rounded-full shadow-lg shadow-accent-500/30 transition-transform transform hover:-translate-y-1">
                     Lanjut Susun Rencana Eksplorasi
                     <svg class="ml-3 w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />

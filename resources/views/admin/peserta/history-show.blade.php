@@ -23,21 +23,19 @@
     }
 </style>
 
-<div class="mb-6 print:hidden">
+<div class="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 print:hidden">
     <a href="{{ route('admin.peserta.show', $peserta->id) }}" class="text-primary-600 font-medium hover:underline">&larr; Kembali ke Riwayat Peserta</a>
-</div>
-
-<div class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 relative">
     
     <!-- Print Button -->
-    <div class="absolute top-8 right-8 print:hidden">
-        <button class="flex items-center gap-2 px-4 py-2 bg-slate-100 text-slate-700 font-medium rounded-lg hover:bg-slate-200 transition-colors" onclick="window.print()">
-            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
-            </svg>
-            Cetak PDF
-        </button>
-    </div>
+    <button class="inline-flex items-center justify-center gap-2 px-4 py-2 bg-white border border-slate-200 text-slate-700 font-medium rounded-lg hover:bg-slate-50 transition-colors shadow-sm w-full sm:w-auto" onclick="window.print()">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+        </svg>
+        Cetak PDF
+    </button>
+</div>
+
+<div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-100 relative">
 
     <!-- Header Document (Hanya untuk Print) -->
     <div class="hidden print:flex flex-col items-center mb-12 border-b border-slate-100 pb-8">
@@ -48,19 +46,19 @@
 
 
     <!-- Identitas -->
-    <div class="flex items-center gap-6 mb-10 border-b border-slate-100 pb-8">
-        <div class="w-20 h-20 bg-slate-200 text-slate-500 font-bold text-3xl rounded-full flex justify-center items-center print:hidden">
+    <div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-6 mb-10 border-b border-slate-100 pb-8">
+        <div class="w-20 h-20 bg-slate-200 text-slate-500 font-bold text-3xl rounded-full flex justify-center items-center shrink-0 print:hidden">
             {{ strtoupper(substr($peserta->name, 0, 1)) }}
         </div>
-        <div class="flex-1">
-            <h2 class="text-2xl font-extrabold text-slate-900 mb-1">{{ $peserta->name }}</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-slate-700 mt-4">
-                <div><span class="font-semibold w-24 inline-block">Nama:</span> {{ $peserta->name }}</div>
-                <div><span class="font-semibold w-24 inline-block">Kelas:</span> {{ $peserta->grade ? (is_numeric($peserta->grade) ? 'Kelas ' . $peserta->grade : $peserta->grade) : '-' }}</div>
-                <div><span class="font-semibold w-24 inline-block">Email:</span> {{ $peserta->email }}</div>
-                <div><span class="font-semibold w-24 inline-block">No HP:</span> {{ $peserta->phone ?? '-' }}</div>
-                <div><span class="font-semibold w-24 inline-block">Tgl Lahir:</span> {{ $peserta->tanggal_lahir ? \Carbon\Carbon::parse($peserta->tanggal_lahir)->format('d M Y') : '-' }}</div>
-                <div><span class="font-semibold w-24 inline-block">Kelamin:</span> {{ $peserta->jenis_kelamin ?? '-' }}</div>
+        <div class="flex-1 w-full">
+            <h2 class="text-2xl font-extrabold text-slate-900 mb-1 break-words">{{ $peserta->name }}</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-slate-700 mt-4 text-left">
+                <div class="flex items-start"><span class="font-semibold w-24 shrink-0">Nama:</span> <span class="break-words">{{ $peserta->name }}</span></div>
+                <div class="flex items-start"><span class="font-semibold w-24 shrink-0">Kelas:</span> <span>{{ $peserta->grade ? (is_numeric($peserta->grade) ? 'Kelas ' . $peserta->grade : $peserta->grade) : '-' }}</span></div>
+                <div class="flex items-start"><span class="font-semibold w-24 shrink-0">Email:</span> <span class="break-words min-w-0">{{ $peserta->email }}</span></div>
+                <div class="flex items-start"><span class="font-semibold w-24 shrink-0">No HP:</span> <span>{{ $peserta->phone ?? '-' }}</span></div>
+                <div class="flex items-start"><span class="font-semibold w-24 shrink-0">Tgl Lahir:</span> <span>{{ $peserta->tanggal_lahir ? \Carbon\Carbon::parse($peserta->tanggal_lahir)->format('d M Y') : '-' }}</span></div>
+                <div class="flex items-start"><span class="font-semibold w-24 shrink-0">Kelamin:</span> <span>{{ $peserta->jenis_kelamin ?? '-' }}</span></div>
             </div>
             <div class="text-slate-500 flex items-center gap-4 text-sm mt-4">
                 <span><strong class="font-medium">Tanggal Daftar:</strong> {{ $peserta->created_at->format('d M Y') }}</span>
@@ -121,7 +119,7 @@
                 </div>
             </div>
             
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 print:block print:space-y-6">
                 <!-- Kapasitas Dominan -->
                 <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100">
                     <h4 class="font-bold text-slate-800 mb-4 text-lg">Kapasitas Dominan</h4>

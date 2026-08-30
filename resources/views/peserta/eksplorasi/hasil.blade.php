@@ -18,8 +18,8 @@
                     </div>
                 </div>
 
-                <!-- Table Content -->
-                <div class="p-0">
+                <!-- Table Content (Desktop) -->
+                <div class="hidden md:block p-0">
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse min-w-[800px]">
                             @php
@@ -67,22 +67,59 @@
                         </table>
                     </div>
                 </div>
+
+                <!-- Card Content (Mobile) -->
+                <div class="block md:hidden p-4 bg-slate-50">
+                    <div class="space-y-6">
+                        <!-- Karier 1 -->
+                        <div class="bg-white rounded-2xl shadow-sm border border-blue-100 overflow-hidden">
+                            <div class="bg-blue-50/80 p-5 border-b border-blue-100 text-center">
+                                <span class="inline-block px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-[10px] font-bold mb-2 uppercase tracking-wider">Karier Pilihan 1</span>
+                                <h4 class="text-xl font-extrabold text-primary-800">{{ $k1 ? $k1->career_name : 'Karier 1' }}</h4>
+                            </div>
+                            <div class="divide-y divide-slate-100">
+                                @foreach($aspects as $aspect)
+                                <div class="p-4 hover:bg-slate-50 transition-colors">
+                                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">{{ $aspect['label'] }}</div>
+                                    <div class="text-slate-800 text-sm font-medium leading-relaxed">{{ $k1 ? $k1->{$aspect['id']} : '-' }}</div>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        
+                        <!-- Karier 2 -->
+                        <div class="bg-white rounded-2xl shadow-sm border border-purple-100 overflow-hidden">
+                            <div class="bg-purple-50/80 p-5 border-b border-purple-100 text-center">
+                                <span class="inline-block px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-[10px] font-bold mb-2 uppercase tracking-wider">Karier Pilihan 2</span>
+                                <h4 class="text-xl font-extrabold text-accent-800">{{ $k2 ? $k2->career_name : 'Karier 2' }}</h4>
+                            </div>
+                            <div class="divide-y divide-slate-100">
+                                @foreach($aspects as $aspect)
+                                <div class="p-4 hover:bg-slate-50 transition-colors">
+                                    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">{{ $aspect['label'] }}</div>
+                                    <div class="text-slate-800 text-sm font-medium leading-relaxed">{{ $k2 ? $k2->{$aspect['id']} : '-' }}</div>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Action Buttons -->
             <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mt-8">
                 @if(!$isKeputusanUpToDate)
-                    <a href="{{ route('eksplorasi.index') }}" class="inline-flex items-center text-primary-600 font-semibold hover:text-primary-800 transition-colors px-4 py-2">
+                    <a href="{{ route('eksplorasi.index') }}" class="inline-flex items-center text-primary-600 font-semibold hover:text-primary-800 transition-colors px-4 py-2 text-center w-full sm:w-auto justify-center">
                         <svg class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                         </svg>
                         Edit Data Eksplorasi
                     </a>
                 @else
-                    <div></div>
+                    <div class="hidden sm:block"></div>
                 @endif
                 
-                <a href="{{ $isKeputusanUpToDate ? route('keputusan.winner', $latestKeputusan->id) : route('keputusan.index') }}" class="inline-flex items-center justify-center px-8 py-4 bg-primary-600 text-white font-bold rounded-xl hover:bg-primary-700 transition-colors shadow-lg shadow-primary-600/30 text-lg group">
+                <a href="{{ $isKeputusanUpToDate ? route('keputusan.winner', $latestKeputusan->id) : route('keputusan.index') }}" class="inline-flex items-center justify-center w-full sm:w-auto px-8 py-4 bg-primary-600 text-white font-bold rounded-xl hover:bg-primary-700 transition-colors shadow-lg shadow-primary-600/30 text-lg group">
                     {{ $isKeputusanUpToDate ? 'Lihat Hasil Keputusan' : 'Lanjut Tahap Pengambilan Keputusan' }}
                     <svg class="ml-3 w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />

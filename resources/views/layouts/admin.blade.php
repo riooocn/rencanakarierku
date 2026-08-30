@@ -6,10 +6,13 @@
     <title>@yield('title', 'Admin Dashboard') - Rencana Karierku</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="antialiased font-sans text-neutral-dark bg-neutral-light selection:bg-primary-500 selection:text-white flex h-screen overflow-hidden print:overflow-visible print:h-auto">
+<body x-data="{ sidebarOpen: false }" class="antialiased font-sans text-neutral-dark bg-neutral-light selection:bg-primary-500 selection:text-white flex h-screen overflow-hidden print:overflow-visible print:h-auto print:block">
     
+    <!-- Mobile sidebar backdrop -->
+    <div x-show="sidebarOpen" x-transition.opacity class="fixed inset-0 z-40 bg-slate-900/50 backdrop-blur-sm md:hidden" @click="sidebarOpen = false" style="display: none;"></div>
+
     <!-- Sidebar -->
-    <aside class="w-64 bg-white border-r border-slate-200 flex flex-col hidden md:flex shrink-0 print:hidden">
+    <aside class="fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col transition-transform duration-300 ease-in-out md:relative md:translate-x-0 print:hidden" :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'">
         <!-- Logo -->
         <div class="h-16 flex items-center px-6 border-b border-slate-200">
             <a href="{{ Auth::user()->role === 'superadmin' ? route('superadmin.dashboard') : route('admin.dashboard') }}" class="inline-flex items-center gap-2">
@@ -68,14 +71,16 @@
         <!-- Profile / Logout -->
         <div class="p-4 border-t border-slate-200">
             <div class="flex items-center w-full px-3 py-2">
-                <div class="w-8 h-8 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center font-bold text-sm mr-3">
-                    {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
-                </div>
-                <div class="flex-1 truncate">
-                    <p class="text-sm font-medium text-slate-900 truncate">{{ Auth::user()->name }}</p>
-                    <p class="text-xs text-slate-500 truncate">{{ Auth::user()->email }}</p>
-                </div>
-                <form action="{{ route('logout') }}" method="POST" class="inline">
+                <a href="{{ route('profile.edit') }}" class="flex items-center flex-1 min-w-0 group cursor-pointer">
+                    <div class="w-8 h-8 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center font-bold text-sm mr-3 shrink-0 group-hover:bg-primary-200 transition-colors">
+                        {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
+                    </div>
+                    <div class="flex-1 truncate mr-2">
+                        <p class="text-sm font-medium text-slate-900 truncate group-hover:text-primary-700 transition-colors">{{ Auth::user()->name }}</p>
+                        <p class="text-xs text-slate-500 truncate">{{ Auth::user()->email }}</p>
+                    </div>
+                </a>
+                <form action="{{ route('logout') }}" method="POST" class="inline shrink-0">
                     @csrf
                     <button type="submit" class="text-slate-400 hover:text-red-600 transition-colors" title="Logout">
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -88,13 +93,16 @@
     </aside>
 
     <!-- Main Content -->
-    <div class="flex-1 flex flex-col overflow-hidden print:overflow-visible print:h-auto">
+    <div class="flex-1 flex flex-col overflow-hidden print:overflow-visible print:h-auto print:block">
         <!-- Top header for mobile -->
-        <header class="md:hidden h-16 bg-white border-b border-slate-200 flex items-center justify-between px-4 print:hidden">
+        <header class="md:hidden h-16 bg-white border-b border-slate-200 shadow-sm flex items-center justify-between px-4 print:hidden sticky top-0 z-50">
             <a href="{{ Auth::user()->role === 'superadmin' ? route('superadmin.dashboard') : route('admin.dashboard') }}" class="inline-flex items-center gap-2">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-8 h-8 object-contain">
+                <span class="font-bold text-lg tracking-tight text-slate-900">
+                    Rencana<span class="text-primary-600">Karierku</span>
+                </span>
             </a>
-            <button class="text-slate-500 hover:text-slate-900 focus:outline-none">
+            <button @click="sidebarOpen = true" class="text-slate-500 hover:text-slate-900 focus:outline-none">
                 <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
@@ -102,7 +110,7 @@
         </header>
 
         <!-- Page Content -->
-        <main class="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
+        <main class="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 print:overflow-visible print:h-auto print:block">
             <div class="max-w-7xl mx-auto">
                 <div class="mb-6 md:mb-8 print:hidden">
                     <h1 class="text-2xl md:text-3xl font-bold text-slate-900">@yield('page_title')</h1>

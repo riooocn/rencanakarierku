@@ -13,7 +13,7 @@
             <div class="absolute -bottom-32 left-1/2 w-96 h-96 bg-primary-100/40 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000"></div>
         </div>
 
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 relative z-10 space-y-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-8">
             
             <div class="flex flex-col md:flex-row items-center gap-12 mb-16">
                 <div class="flex-1 space-y-6 text-center md:text-left">
