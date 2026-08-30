@@ -14,11 +14,10 @@ Route::get('/contact', function () {
 
 Route::get('/deploy/migrate-seed', function () {
     try {
-        \Illuminate\Support\Facades\Artisan::call('migrate:fresh', ['--force' => true, '--seed' => true]);
+        \Illuminate\Support\Facades\Artisan::call('migrate:fresh', ['--force' => true, '--seed' => true, '--quiet' => true]);
         return response()->json([
             'status' => 'success',
-            'message' => 'Migration & Seeding completed!',
-            'output' => \Illuminate\Support\Facades\Artisan::output()
+            'message' => 'Migration & Seeding completed successfully in quiet mode!'
         ]);
     } catch (\Exception $e) {
         return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
@@ -27,11 +26,10 @@ Route::get('/deploy/migrate-seed', function () {
 
 Route::get('/deploy/migrate', function () {
     try {
-        \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
+        \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true, '--quiet' => true]);
         return response()->json([
             'status' => 'success',
-            'message' => 'Migration completed!',
-            'output' => \Illuminate\Support\Facades\Artisan::output()
+            'message' => 'Migration completed successfully in quiet mode!'
         ]);
     } catch (\Exception $e) {
         return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
