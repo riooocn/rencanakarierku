@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', 'Rencana Karierku') - Perencanaan Karier SMA</title>
+    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png">
     
     <!-- Meta SEO -->
     <meta name="description" content="Aplikasi web untuk membantu siswa SMA menyusun perencanaan karier dari asesmen diri hingga pengambilan keputusan.">

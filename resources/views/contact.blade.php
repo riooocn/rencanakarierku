@@ -27,17 +27,6 @@
             
             <!-- Contact Info (Left Column) -->
             <div class="lg:col-span-2 space-y-6">
-                <!-- Email Card -->
-                <a href="mailto:halo@rencanakarierku.com" class="group block bg-white/80 backdrop-blur-xl rounded-3xl p-8 border border-slate-100 shadow-xl shadow-slate-200/50 hover:shadow-primary-500/10 hover:border-primary-100 transition-all duration-300 transform hover:-translate-y-1">
-                    <div class="w-14 h-14 rounded-2xl bg-primary-50 text-primary-600 flex items-center justify-center mb-6 group-hover:bg-primary-600 group-hover:text-white transition-colors duration-300">
-                        <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-2">Kirim Email</h3>
-                    <p class="text-slate-500 mb-4">Cocok untuk pertanyaan umum, penawaran kerja sama, dan bantuan teknis.</p>
-                    <span class="text-primary-600 font-semibold group-hover:text-primary-700">halo@rencanakarierku.com</span>
-                </a>
 
                 <!-- Info Box -->
                 <div class="bg-accent-50 rounded-3xl p-8 border border-accent-100">
@@ -130,7 +119,7 @@
             message: '',
 
             sendWA() {
-                const targetNumber = '6281914945188';
+                const targetNumber = '6282139026026';
                 const finalSchool = this.isUnregistered ? this.customSchool : this.school;
                 
                 // Constructing the message text

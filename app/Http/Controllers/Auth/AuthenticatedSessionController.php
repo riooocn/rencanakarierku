@@ -48,7 +48,7 @@ class AuthenticatedSessionController extends Controller
             
             if ($role === 'admin') {
                 $institutionName = $user->institution ? $user->institution->name : 'Instansi';
-                $targetNumber = '6281914945188';
+                $targetNumber = '6282139026026';
                 $waText = "Halo Tim Rencana Karierku,\n\nPerkenalkan saya {$user->name} dari {$institutionName} \nNo telp: {$user->phone}\n\nMohon untuk konfirmasi akun admin untuk instansi {$institutionName} segera. Saya sedang menunggu agar akun dapat diverifikasi.";
                 $redirectData['login_wa_redirect'] = 'https://wa.me/' . $targetNumber . '?text=' . rawurlencode($waText);
             }

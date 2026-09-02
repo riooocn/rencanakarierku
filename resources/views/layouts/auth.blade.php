@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', 'Autentikasi') - Rencana Karierku</title>
+    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="antialiased font-sans text-neutral-dark bg-neutral-light selection:bg-primary-500 selection:text-white h-screen flex">

@@ -60,7 +60,7 @@ class ProfileCompletionController extends Controller
                     return redirect('/login')->with('account_inactive', true);
                 }
 
-                $targetNumber = '6281914945188';
+                $targetNumber = '6282139026026';
                 $waText = "Halo Tim Rencana Karierku,\n\nPerkenalkan saya {$user->name} dari {$institution->name} \nNo telp: {$user->phone}\n\nMohon untuk konfirmasi akun admin untuk instansi {$institution->name} segera. Saya sedang menunggu agar akun dapat diverifikasi.";
                 $waUrl = 'https://wa.me/' . $targetNumber . '?text=' . rawurlencode($waText);
 
