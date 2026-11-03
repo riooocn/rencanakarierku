@@ -102,16 +102,16 @@
                         </div>
                         <h4 class="text-xl font-bold text-accent-900 mt-2 mb-4" x-text="questions[step].text"></h4>
                         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                            <p class="text-sm text-accent-700 font-medium">Pilih (klik) salah satu jawaban di tabel bawah, atau:</p>
-                            <div class="flex flex-wrap gap-2 w-full md:w-auto">
-                                <button x-show="step > 0" @click="step--" class="flex-1 sm:flex-none justify-center px-4 py-2 bg-white border border-slate-300 text-slate-600 font-semibold rounded-lg hover:bg-slate-50 transition-colors shadow-sm text-sm whitespace-nowrap">
+                            <p class="text-sm text-accent-800 font-medium">Pilih jawaban di tabel bawah (bisa pilih salah satu atau keduanya):</p>
+                            <div class="flex flex-wrap items-center gap-2 w-full md:w-auto">
+                                <button x-show="step > 0" @click="prevStep()" type="button" class="flex-1 sm:flex-none justify-center px-4 py-2 bg-white border border-slate-300 text-slate-600 font-semibold rounded-lg hover:bg-slate-50 transition-colors shadow-sm text-sm whitespace-nowrap">
                                     &larr; Kembali
                                 </button>
-                                <button @click="answer('skip')" class="flex-1 sm:flex-none justify-center px-4 py-2 bg-white border border-slate-300 text-slate-600 font-semibold rounded-lg hover:bg-slate-50 transition-colors shadow-sm text-sm whitespace-nowrap">
-                                    Lewati Pertanyaan Ini
+                                <button x-show="step < questions.length - 1" @click="nextStep()" type="button" class="flex-1 sm:flex-none justify-center px-5 py-2 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors shadow-sm text-sm whitespace-nowrap">
+                                    Lanjut &rarr;
                                 </button>
-                                <button x-show="step === questions.length - 1" @click="finish()" class="flex-1 sm:flex-none justify-center px-4 py-2 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors shadow-sm text-sm whitespace-nowrap">
-                                    Selesai & Lihat Hasil
+                                <button x-show="step === questions.length - 1" @click="finish()" type="button" class="flex-1 sm:flex-none justify-center px-5 py-2 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors shadow-sm text-sm whitespace-nowrap">
+                                    Selesai & Lihat Hasil &rarr;
                                 </button>
                             </div>
                         </div>
@@ -139,21 +139,21 @@
                                         <td class="p-4 border-r border-slate-200 font-medium text-slate-700 bg-slate-50" x-text="row.label"></td>
                                         
                                         <!-- Cell Karier 1 -->
-                                        <td @click="if(questions[step].targetRow === index) answer(1)" 
-                                            :class="{'cursor-pointer hover:bg-blue-100': questions[step].targetRow === index, 'bg-blue-500 text-white font-bold': selections[index] === 1}"
-                                            class="p-4 border-r border-slate-200 text-slate-800 transition-colors relative">
+                                        <td @click="if(questions[step].targetRow === index) toggleChoice(1)" 
+                                            :class="{'cursor-pointer hover:bg-blue-100': questions[step].targetRow === index, 'bg-blue-600 text-white font-bold': isSelected(index, 1)}"
+                                            class="p-4 border-r border-slate-200 text-slate-800 transition-colors relative select-none">
                                             <span x-text="row.k1"></span>
-                                            <div x-show="selections[index] === 1" class="absolute top-2 right-2 w-6 h-6 bg-white text-blue-500 rounded-full flex items-center justify-center shadow-md">
+                                            <div x-show="isSelected(index, 1)" class="absolute top-2 right-2 w-6 h-6 bg-white text-blue-600 rounded-full flex items-center justify-center shadow-md">
                                                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
                                             </div>
                                         </td>
 
                                         <!-- Cell Karier 2 -->
-                                        <td @click="if(questions[step].targetRow === index) answer(2)" 
-                                            :class="{'cursor-pointer hover:bg-purple-100': questions[step].targetRow === index, 'bg-purple-500 text-white font-bold': selections[index] === 2}"
-                                            class="p-4 text-slate-800 transition-colors relative">
+                                        <td @click="if(questions[step].targetRow === index) toggleChoice(2)" 
+                                            :class="{'cursor-pointer hover:bg-purple-100': questions[step].targetRow === index, 'bg-purple-600 text-white font-bold': isSelected(index, 2)}"
+                                            class="p-4 text-slate-800 transition-colors relative select-none">
                                             <span x-text="row.k2"></span>
-                                            <div x-show="selections[index] === 2" class="absolute top-2 right-2 w-6 h-6 bg-white text-purple-500 rounded-full flex items-center justify-center shadow-md">
+                                            <div x-show="isSelected(index, 2)" class="absolute top-2 right-2 w-6 h-6 bg-white text-purple-600 rounded-full flex items-center justify-center shadow-md">
                                                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
                                             </div>
                                         </td>
@@ -235,8 +235,7 @@
                 step: 0,
                 showResult: false,
                 winner: "",
-                scores: { 1: 0, 2: 0 },
-                selections: {}, // Maps rowIndex -> 1 or 2
+                selections: {}, // Maps rowIndex -> { 1: bool, 2: bool }
                 detailModalOpen: false,
                 activeDetail: { title: '', desc: '' },
                 
@@ -265,27 +264,52 @@
                     { text: "Bandingkan minat, kapasitas, atau nilai kariermu dengan informasi lain dari karier tersebut. Apakah informasi tersebut sesuai dengan dirimu?", targetRow: 8 }
                 ],
 
-                answer(choice) {
-                    if (choice === 1 || choice === 2) {
-                        this.scores[choice]++;
-                        this.selections[this.questions[this.step].targetRow] = choice;
+                toggleChoice(choice) {
+                    let targetRow = this.questions[this.step].targetRow;
+                    let current = this.selections[targetRow] || { 1: false, 2: false };
+                    this.selections[targetRow] = {
+                        ...current,
+                        [choice]: !current[choice]
+                    };
+                },
+
+                isSelected(rowIndex, choice) {
+                    return !!(this.selections[rowIndex] && this.selections[rowIndex][choice]);
+                },
+
+                prevStep() {
+                    if (this.step > 0) {
+                        this.step--;
                     }
-                    
+                },
+
+                nextStep() {
                     if (this.step < this.questions.length - 1) {
                         this.step++;
                     }
                 },
 
+                calculateScores() {
+                    let score1 = 0;
+                    let score2 = 0;
+                    this.questions.forEach(q => {
+                        if (this.isSelected(q.targetRow, 1)) score1++;
+                        if (this.isSelected(q.targetRow, 2)) score2++;
+                    });
+                    return { 1: score1, 2: score2 };
+                },
+
                 finish() {
                     let c1 = {!! json_encode($k1 ? $k1->career_name : 'Profesi Pilihan 1') !!};
                     let c2 = {!! json_encode($k2 ? $k2->career_name : 'Profesi Pilihan 2') !!};
+                    let scores = this.calculateScores();
 
-                    if (this.scores[1] > this.scores[2]) {
+                    if (scores[1] > scores[2]) {
                         this.winner = c1;
-                    } else if (this.scores[2] > this.scores[1]) {
+                    } else if (scores[2] > scores[1]) {
                         this.winner = c2;
                     } else {
-                        this.winner = c1 + " & " + c2 + " (Seimbang)";
+                        this.winner = c1 + " & " + c2;
                     }
                     this.showResult = true;
                     window.scrollTo({ top: 0, behavior: 'smooth' });

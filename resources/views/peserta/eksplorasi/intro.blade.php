@@ -18,7 +18,7 @@
             <div class="bg-primary-600 rounded-3xl p-10 text-center text-white relative overflow-hidden shadow-xl">
                 <div class="absolute inset-0 bg-gradient-to-r from-primary-700 to-primary-500 opacity-80"></div>
                 <div class="relative z-10">
-                    <h3 class="text-3xl font-extrabold mb-4">Pengantar Eksplorasi Karier</h3>
+                    <h3 class="text-3xl font-extrabold mb-4">Eksplorasi Karier</h3>
                     <p class="text-primary-100 mb-2 max-w-3xl mx-auto leading-relaxed">
                         Sebelum menentukan karier yang ingin kamu jalani, kamu perlu melakukan eksplorasi atau mencari tahu mengenai karier-karier tersebut. Eksplorasi ini perlu kamu lakukan untuk mengetahui berbagai informasi karier yang berguna sebagai bahan pertimbanganmu dalam memilih karier nantinya.
                     </p>
@@ -56,8 +56,6 @@
                     </p>
                     <ul class="space-y-2 text-sm">
                         <li><a href="https://www.onetonline.org/" target="_blank" class="text-primary-600 hover:text-primary-800 font-semibold flex items-center gap-2"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg> O*NET</a></li>
-                        <li><a href="https://rencanamu.id/profesi" target="_blank" class="text-primary-600 hover:text-primary-800 font-semibold flex items-center gap-2"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg> Rencanamu (Profesi)</a></li>
-                        <li><a href="https://rencanamu.id/cari-jurusan" target="_blank" class="text-primary-600 hover:text-primary-800 font-semibold flex items-center gap-2"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg> Rencanamu (Jurusan)</a></li>
                     </ul>
                 </div>
             </div>

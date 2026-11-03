@@ -5,11 +5,11 @@
 @section('page_description', 'Selamat datang di Dashboard Admin Instansi. Berikut adalah ringkasan data di sekolah Anda.')
 
 @section('content')
-<div class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 mb-8">
+<div class="grid grid-cols-3 gap-3 md:gap-6 mb-8">
     
     <!-- Card 1 -->
-    <div class="bg-white p-4 md:p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col md:flex-row md:items-center">
-        <div class="w-10 h-10 md:w-14 md:h-14 rounded-xl bg-blue-50 flex justify-center items-center text-blue-600 mb-3 md:mb-0 md:mr-4">
+    <div class="bg-white p-4 md:p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center">
+        <div class="w-10 h-10 md:w-14 md:h-14 rounded-xl bg-blue-50 flex justify-center items-center text-blue-600 mr-3 md:mr-4 shrink-0">
             <svg class="w-5 h-5 md:w-7 md:h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
             </svg>
@@ -21,8 +21,8 @@
     </div>
 
     <!-- Card 2 -->
-    <div class="bg-white p-4 md:p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col md:flex-row md:items-center">
-        <div class="w-10 h-10 md:w-14 md:h-14 rounded-xl bg-green-50 flex justify-center items-center text-green-600 mb-3 md:mb-0 md:mr-4">
+    <div class="bg-white p-4 md:p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center">
+        <div class="w-10 h-10 md:w-14 md:h-14 rounded-xl bg-green-50 flex justify-center items-center text-green-600 mr-3 md:mr-4 shrink-0">
             <svg class="w-5 h-5 md:w-7 md:h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
@@ -34,8 +34,8 @@
     </div>
 
     <!-- Card 3 -->
-    <div class="bg-white p-4 md:p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col md:flex-row md:items-center">
-        <div class="w-10 h-10 md:w-14 md:h-14 rounded-xl bg-yellow-50 flex justify-center items-center text-yellow-600 mb-3 md:mb-0 md:mr-4">
+    <div class="bg-white p-4 md:p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center">
+        <div class="w-10 h-10 md:w-14 md:h-14 rounded-xl bg-yellow-50 flex justify-center items-center text-yellow-600 mr-3 md:mr-4 shrink-0">
             <svg class="w-5 h-5 md:w-7 md:h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
@@ -46,18 +46,6 @@
         </div>
     </div>
 
-    <!-- Card 4 -->
-    <div class="bg-white p-4 md:p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col md:flex-row md:items-center">
-        <div class="w-10 h-10 md:w-14 md:h-14 rounded-xl bg-primary-50 flex justify-center items-center text-primary-600 mb-3 md:mb-0 md:mr-4">
-            <svg class="w-5 h-5 md:w-7 md:h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-            </svg>
-        </div>
-        <div>
-            <p class="text-xs md:text-sm font-medium text-slate-500 mb-1">Rata-rata Waktu Tes</p>
-            <h4 class="text-xl md:text-2xl font-bold text-slate-900">45 Menit</h4>
-        </div>
-    </div>
 </div>
 
 <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">

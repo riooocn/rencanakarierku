@@ -32,61 +32,61 @@
             <div class="bg-white/80 backdrop-blur-xl border border-white shadow-xl shadow-slate-200/50 rounded-3xl p-8 md:p-10">
                 <p class="text-slate-600 mb-8 italic">Tuliskan rencanamu pada kotak di bawah ini (lembar kerja mandiri):</p>
 
-                <div class="space-y-6">
+                <div class="space-y-7">
                     <!-- Soal 1 -->
                     <div>
-                        <label class="block text-primary-900 font-semibold mb-2">
+                        <label class="block text-primary-900 font-semibold mb-2.5 leading-relaxed">
                             1. Aku akan mencari tahu mengenai pendidikan tinggi, jurusan dan mata kuliah yang berkaitan dengan karier tersebut melalui…
                         </label>
-                        <textarea rows="2" class="w-full rounded-xl border-slate-300 shadow-sm focus:border-primary-500 focus:ring focus:ring-primary-200 transition-colors" placeholder="Ketik rencanamu di sini..."></textarea>
+                        <textarea rows="3" class="w-full rounded-xl border border-slate-300 shadow-sm focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-colors p-4 text-slate-700 leading-relaxed placeholder:text-slate-400" placeholder="Ketik rencanamu di sini..."></textarea>
                     </div>
 
                     <!-- Soal 2 -->
                     <div>
-                        <label class="block text-primary-900 font-semibold mb-2">
+                        <label class="block text-primary-900 font-semibold mb-2.5 leading-relaxed">
                             2. Aku akan mencari tahu mengenai keterampilan yang perlu aku kuasai melalui…
                         </label>
-                        <textarea rows="2" class="w-full rounded-xl border-slate-300 shadow-sm focus:border-primary-500 focus:ring focus:ring-primary-200 transition-colors" placeholder="Ketik rencanamu di sini..."></textarea>
+                        <textarea rows="3" class="w-full rounded-xl border border-slate-300 shadow-sm focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-colors p-4 text-slate-700 leading-relaxed placeholder:text-slate-400" placeholder="Ketik rencanamu di sini..."></textarea>
                     </div>
 
                     <!-- Soal 3 -->
                     <div>
-                        <label class="block text-primary-900 font-semibold mb-2">
+                        <label class="block text-primary-900 font-semibold mb-2.5 leading-relaxed">
                             3. Aku akan mencari tahu mengenai pelatihan formal/pendidikan lanjutan yang perlu aku tempuh melalui…
                         </label>
-                        <textarea rows="2" class="w-full rounded-xl border-slate-300 shadow-sm focus:border-primary-500 focus:ring focus:ring-primary-200 transition-colors" placeholder="Ketik rencanamu di sini..."></textarea>
+                        <textarea rows="3" class="w-full rounded-xl border border-slate-300 shadow-sm focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-colors p-4 text-slate-700 leading-relaxed placeholder:text-slate-400" placeholder="Ketik rencanamu di sini..."></textarea>
                     </div>
 
                     <!-- Soal 4 -->
                     <div>
-                        <label class="block text-primary-900 font-semibold mb-2">
+                        <label class="block text-primary-900 font-semibold mb-2.5 leading-relaxed">
                             4. Aku akan mencari tahu mengenai sertifikasi yang perlu aku jalani melalui…
                         </label>
-                        <textarea rows="2" class="w-full rounded-xl border-slate-300 shadow-sm focus:border-primary-500 focus:ring focus:ring-primary-200 transition-colors" placeholder="Ketik rencanamu di sini..."></textarea>
+                        <textarea rows="3" class="w-full rounded-xl border border-slate-300 shadow-sm focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-colors p-4 text-slate-700 leading-relaxed placeholder:text-slate-400" placeholder="Ketik rencanamu di sini..."></textarea>
                     </div>
 
                     <!-- Soal 5 -->
                     <div>
-                        <label class="block text-primary-900 font-semibold mb-2">
+                        <label class="block text-primary-900 font-semibold mb-2.5 leading-relaxed">
                             5. Informasi-informasi mengenai peluang karier akan aku peroleh dari…
                         </label>
-                        <textarea rows="2" class="w-full rounded-xl border-slate-300 shadow-sm focus:border-primary-500 focus:ring focus:ring-primary-200 transition-colors" placeholder="Ketik rencanamu di sini..."></textarea>
+                        <textarea rows="3" class="w-full rounded-xl border border-slate-300 shadow-sm focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-colors p-4 text-slate-700 leading-relaxed placeholder:text-slate-400" placeholder="Ketik rencanamu di sini..."></textarea>
                     </div>
 
                     <!-- Soal 6 -->
                     <div>
-                        <label class="block text-primary-900 font-semibold mb-2">
+                        <label class="block text-primary-900 font-semibold mb-2.5 leading-relaxed">
                             6. Aku akan mencari tahu mengenai tugas/tanggung jawab dari karier tersebut melalui…
                         </label>
-                        <textarea rows="2" class="w-full rounded-xl border-slate-300 shadow-sm focus:border-primary-500 focus:ring focus:ring-primary-200 transition-colors" placeholder="Ketik rencanamu di sini..."></textarea>
+                        <textarea rows="3" class="w-full rounded-xl border border-slate-300 shadow-sm focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-colors p-4 text-slate-700 leading-relaxed placeholder:text-slate-400" placeholder="Ketik rencanamu di sini..."></textarea>
                     </div>
 
                     <!-- Soal 7 -->
                     <div>
-                        <label class="block text-primary-900 font-semibold mb-2">
+                        <label class="block text-primary-900 font-semibold mb-2.5 leading-relaxed">
                             7. Aku akan mencari tahu informasi lainnya melalui…
                         </label>
-                        <textarea rows="2" class="w-full rounded-xl border-slate-300 shadow-sm focus:border-primary-500 focus:ring focus:ring-primary-200 transition-colors" placeholder="Ketik rencanamu di sini..."></textarea>
+                        <textarea rows="3" class="w-full rounded-xl border border-slate-300 shadow-sm focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-colors p-4 text-slate-700 leading-relaxed placeholder:text-slate-400" placeholder="Ketik rencanamu di sini..."></textarea>
                     </div>
                 </div>
 

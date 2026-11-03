@@ -35,7 +35,7 @@
                         
                         <!-- Introduction Step (Step 0 if we wanted, but let's put it on top of step 1) -->
                         <div x-show="step === 1" class="mb-8 bg-primary-50 p-6 rounded-2xl border border-primary-100">
-                            <h3 class="text-lg font-bold text-primary-900 mb-3">Pengantar Asesmen Minat (RIASEC)</h3>
+                            <h3 class="text-lg font-bold text-primary-900 mb-3">Asesmen Minat</h3>
                             <p class="text-sm text-gray-700 mb-3">
                                 Tahukah kamu menurut Holland (1997 dalam Rounds, Hoff, & Lewis, 2021), terdapat 6 jenis minat pekerjaan, yaitu realistic, investigative, artistic, social, enterprising, dan conventional?
                             </p>

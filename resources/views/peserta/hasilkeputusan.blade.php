@@ -94,9 +94,9 @@
                     </h3>
                     
                     <div class="space-y-6">
-                        <!-- Minat (RIASEC) -->
+                        <!-- Minat -->
                         <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100">
-                            <h4 class="font-bold text-slate-800 mb-4 text-lg">Minat (RIASEC)</h4>
+                            <h4 class="font-bold text-slate-800 mb-4 text-lg">Minat</h4>
                             <div class="space-y-5">
                                 @if(isset($minat) && is_array($minat->top_results))
                                     @foreach($minat->top_results as $code)

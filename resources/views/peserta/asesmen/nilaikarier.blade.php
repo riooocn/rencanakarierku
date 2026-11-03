@@ -36,7 +36,7 @@
                         <!-- Pengantar (Step 0) -->
                         <div x-show="step === 0" class="mb-8" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform translate-x-4" x-transition:enter-end="opacity-100 transform translate-x-0">
                             <div class="bg-primary-50 p-6 rounded-2xl border border-primary-100 mb-8">
-                                <h3 class="text-lg font-bold text-primary-900 mb-3">Pengantar Asesmen Nilai Karier</h3>
+                                <h3 class="text-lg font-bold text-primary-900 mb-3">Asesmen Nilai Karier</h3>
                                 <p class="text-sm text-gray-700 mb-3">
                                     Terdapat 5 kategori nilai karier yang akan diukur: <strong>Leisure, Extrinsic Rewards, Intrinsic Rewards, Altruistic Rewards, dan Social Rewards</strong>.
                                 </p>

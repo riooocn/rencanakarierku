@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-bold text-2xl text-primary-900 leading-tight">
-            {{ __('Hasil Tes Minat (RIASEC)') }}
+            {{ __('Hasil Tes Minat') }}
         </h2>
     </x-slot>
 
@@ -27,7 +27,7 @@
                 
                 <div class="text-center mb-10">
                     <h3 class="text-3xl font-extrabold text-primary-900 mb-2">Profil Minat Kariermu</h3>
-                    <p class="text-slate-600">Berdasarkan jawabanmu, berikut adalah 3 tipe minat paling dominan (RIASEC) yang mencerminkan dirimu.</p>
+                    <p class="text-slate-600">Berdasarkan jawabanmu, berikut adalah 3 tipe minat paling dominan yang mencerminkan dirimu.</p>
                 </div>
 
                 <!-- 3 Top Scores -->
@@ -91,7 +91,7 @@
                                 <div class="mt-4 space-y-3">
                                     <div class="border-b border-slate-100 pb-2">
                                         <h4 class="font-bold text-slate-800 text-sm">Rekomendasi Profesi:</h4>
-                                        <p class="text-xs text-slate-500 mt-1">Itu merupakan contoh rekomendasi pekerjaan, kamu dapat menemukan pekerjaan yang serupa.</p>
+                                        <p class="text-xs text-slate-500 mt-1">Berikut adalah contoh rekomendasi profesi yang sesuai dengan minatmu. Profesi lain yang serupa tapi di luar daftar berikut juga dapat kamu pertimbangkan.</p>
                                     </div>
                                     <div class="grid grid-cols-1 gap-3 max-h-60 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-slate-200 scrollbar-track-transparent">
                                         <template x-if="activeDetail.jobs && activeDetail.jobs.length > 0">

@@ -41,7 +41,7 @@
                         </svg>
                     </div>
                     <h3 class="text-2xl font-bold text-primary-900 mb-3">1. Asesmen Diri</h3>
-                    <p class="text-slate-600 mb-6 line-clamp-3">Kenali dirimu lebih dalam melalui tiga tes psikologi yang dirancang khusus: Tes Minat (RIASEC), Kapasitas, dan Nilai Karier.</p>
+                    <p class="text-slate-600 mb-6 line-clamp-3">Kenali dirimu lebih dalam melalui tiga tes psikologi yang dirancang khusus: Tes Minat, Kapasitas, dan Nilai Karier.</p>
                     @if($asesmenCompleted)
                         <a href="{{ $asesmenLink }}" class="inline-flex items-center justify-center w-full px-4 py-3 bg-primary-600 text-white font-semibold rounded-xl hover:bg-primary-700 transition-colors shadow-md">
                             Lihat Hasil Asesmen
